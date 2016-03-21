@@ -5,10 +5,31 @@
  *
  * Made By MaterializeCSS.com
  */
+/*************************************
+ *
+ * Remember to remove @import when finished
+ * and include in big .scss file
+ *
+*************************************/
+@import "components/color";
+@import "components/variables";
+@import "components/grid";
 
 nav ul a,
 nav .brand-logo {
   color: #444;
+  &:hover {
+    background-color: rgba(255,171,64,.8);
+  }
+}
+
+#logo-container {
+  width: 55px;
+  height: 55px;
+  @media #{$medium-and-up} {
+    width: 66px;
+    height: 66px;
+  }
 }
 
 p {
@@ -19,8 +40,12 @@ p {
   color: #26a69a;
 }
 
+#koncerter img {
+  width: 100%;
+}
+
 .parallax-container {
-  min-height: 380px;
+  min-height: 400px;
   line-height: 0;
   height: auto;
   color: rgba(255,255,255,.9);

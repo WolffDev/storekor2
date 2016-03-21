@@ -48,7 +48,7 @@ module.exports = function(grunt) {
           pretty: true,
         },
         files: {
-          'index2.html': 'index.jade'
+          'index.html': 'index.jade'
         }
       }
     },
