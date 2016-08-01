@@ -15,8 +15,7 @@
 @import "components/variables";
 @import "components/grid";
 
-nav ul a,
-nav .brand-logo {
+nav ul a {
   color: #444;
   &:hover {
     background-color: rgba(255,171,64,.8);

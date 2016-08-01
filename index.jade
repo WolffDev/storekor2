@@ -1,217 +1,219 @@
 <!DOCTYPE html>
 html(lang="dk")
-  head
-    title SDU's Storekor || Odense
-    meta(http-equiv="Content-Type", content="text/html; charset=utf-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no")
-    link(rel="shortcut icon", href="img/favicon.ico", type="image/x-icon")
-    // CSS
-    link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
-    link(href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection")
-    link(href="css/style.min.css" rel="stylesheet")
+    head
+        title Storekor || Odense
+        meta(http-equiv="Content-Type", content="text/html; charset=utf-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no")
+        link(rel="shortcut icon", href="img/favicon.ico", type="image/x-icon")
+        // ****** CSS ******
+        link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+        link(href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection")
+        link(href="css/style.min.css" rel="stylesheet")
+        // ****** SCRIPTS ******
+        script(src="js/min/jquery2.1.1.min.js")
+        script(src="js/materialize.js")
+        script(src="js/init.js")
 
-  body
-    // ****** Navbar *****
-    .navbar-fixed
-      nav.white(role="navigation")
-        .nav-wrapper.container
-          a#logo-container.brand-logo(href="#")
-            img(src="img/logo.svg")
-          ul.right.hide-on-med-and-down
-            li
-              a(href="#") Forside
-            li
-              a(href="#") Optagelseskrav
-            li
-              a(href="#") Koncerter
-            li
-              a(href="#") Dirigent
-            li
-              a(href="#!", data-activates="dropdown1").dropdown-button Om Os
-                i.material-icons.right arrow_drop_down
-            li
-              a(href="./#kontakt") Kontakt
-            li
-              a(href="#") Login
-          #dropdown1.dropdown-content
-            ul
-              li
-                a(href="#") Om Storekoret
-              li
-                a(href="#") Bestyrelsen
-              li
-                a(href="#") Historie
-              li.divider
-              li
-                a(href="#") PR
-          
-          ul#nav-mobile.side-nav
-            li
-              a(href="#") Forside
-            li
-              a(href="#") Optagelseskrav
-            li
-              a(href="#") Koncerter
-            li
-              a(href="#") Dirigent
-            li
-              a(href="#!") Om Storekoret
-            li
-              a(href="#!") Bestyrelsen
-            li
-              a(href="#!") Historie
-            li
-              a(href="#!") PR
-            li
-              a(href="./#kontakt") Kontakt
-            li
-              a(href="#") Login
-              
-          a.button-collapse(href="#" data-activates="nav-mobile")
-            i.material-icons menu
-          
-    // ****** INTRO ******
-    
-    #index-banner.parallax-container
-      .section.no-pad-bot
+    body
+        // ****** Navbar *****
+        .navbar-fixed
+            nav.white(role="navigation")
+                .nav-wrapper.container
+                    a#logo-container.brand-logo(href="#")
+                        img(src="img/logo.svg")
+                    ul.right.hide-on-med-and-down
+                        li
+                            a(href="./") Forside
+                        li
+                            a(href="#") Optagelseskrav
+                        li
+                            a(href="#") Koncerter
+                        li
+                            a(href="#") Dirigent
+                        li
+                            a(href="#", data-activates="dropdown1").dropdown-button Om Os
+                                i.material-icons.right arrow_drop_down
+                        li
+                            a(href="./#kontakt") Kontakt
+                        li
+                            a(href="#") Login
+                    #dropdown1.dropdown-content
+                        ul
+                            li
+                                a(href="#") Om Storekoret
+                            li
+                                a(href="#") Bestyrelsen
+                            li
+                                a(href="#") Historie
+                            li.divider
+                            li
+                                a(href="#") PR
+
+                    ul#nav-mobile.side-nav
+                        li
+                            a(href="#") Forside
+                        li
+                            a(href="#") Optagelseskrav
+                        li
+                            a(href="#") Koncerter
+                        li
+                            a(href="#") Dirigent
+                        li
+                            a(href="#!") Om Storekoret
+                        li
+                            a(href="#!") Bestyrelsen
+                        li
+                            a(href="#!") Historie
+                        li
+                            a(href="#!") PR
+                        li
+                            a(href="./#kontakt") Kontakt
+                        li
+                            a(href="#") Login
+
+                    a.button-collapse(href="#" data-activates="nav-mobile")
+                        i.material-icons menu
+
+        // ****** INTRO ******
+
+        #index-banner.parallax-container
+            .section.no-pad-bot
+                .container
+                    br
+                    br
+                    h1.header.center.white-text.text-lighten-2 Storekor || Odense
+                    .row.center
+                        h5.header.col.s12 Klassisk repertoire med a cappella og orkesterledsagelse
+                    .row.center
+                        a.btn-large.waves-effect.waves-light.teal.lighten-1(href="#") Søg optagelse!
+                    br
+                    br
+            .parallax
+                img(src="img/people3.jpg" alt="Unsplashed background img 1")
         .container
-          br
-          br
-          h1.header.center.white-text.text-lighten-2 SDU's Storekor
-          .row.center
-            h5.header.col.s12 Klassisk repertoire med a cappella og orkesterledsagelse
-          .row.center
-            a.btn-large.waves-effect.waves-light.teal.lighten-1(href="#") Søg optagelse!
-          br
-          br
-      .parallax
-        img(src="img/people3.jpg" alt="Unsplashed background img 1")
-    .container
-      section
-        .row
-          .col.s12.m4
-            .icon-block
-              h2.center.green-text
-                i.material-icons power_settings_new
-                //-highlight_off
-              h5.center Optagelses Status
-              
-              p Vi holder løbende optagelseprøver og lige nu søger vi adskillige nye medlemmer til Storekoret. Vi øver hver mandag fra kl. 19.00 til 21.30, ofte i lokale U77 på Syddansk Universitet.
-          .col.s12.m4
-            .icon-block
-              h2.center.blue-text.darken-4
-                i.material-icons group
-              h5.center Kort om Storekoret
-              
-              p Vi er et meget socialt kor, der også ses uden for prøverne og koncerterne. Vores stamsted er Carlsens Kvarter, hvor vi som regel mødes efter den ugentlige korprøve. Vi holder både forårsfest, sommerfest og julefest og spiser ofte sammen efter længerevarende koncertprøver.
-              
-          .col.s12.m4
-            .icon-block
-              h2.center.yellow-text.text-darken-3
-                i.material-icons lightbulb_outline
-              h5.center Stadig med på moden
-      
-              p Storekoret har rødder helt tilbage til år 1964, hvor koret blev stiftet under navnet Skt. Knuds gymnasiums kor.
-              | I 2001 blev korets navn ændret til Syddansk Universitets Storekor og vi
-    
-    // ****** KONCERTER ******
-    
-    .parallax-container.valign-wrapper
-      .section.no-pad-bot.container
-        .row.center
-          //-h5.header.col.s12.black-text.grey.lighten-3 
-      .parallax
-        img(src="./img/people2.jpg", alt="Unsplashed background img 2")
-    
-    .container#koncerter
-      .section
-        .row
-          .col.s12.center
-            h4.yellow-text.text-darken-3
-              i.medium.material-icons grade
-              i.medium.material-icons grade
-              i.medium.material-icons grade
-              h4 Koncerter
-        .row
-          .col.s12.l6
-            h5.left-align Titel på Koncert
-            p.left-align Dette afsnit bliver kun vist så fremt det ønskes. Dette ville kunne ændres inde på admin siden.
-          .col.s12.l6
-            a(href="#")
-              img(src="img/background1.jpg")
-        .row
-          .col.s12.l6
-            h5.left-align Titel på Koncert
-            p.left-align Dette afsnit bliver kun vist så fremt det ønskes. Dette ville kunne ændres inde på admin siden.
-          .col.s12.l6
-            a(href="#")
-              img(src="img/background1.jpg")
-                
-    
-    // ****** KONTAKT******
-    
-    .parallax-container.valign-wrapper#kontakt
-      .section.no-pad-bot.container
-        .row.center
-          h5.header.col.s12 If you hear the birds singing does it have to have a message?
-      .parallax
-        img(src="./img/people4.jpg", alt="Unsplashed background img 2")
-    
-    .container
-      .section
-        .row
-          .col.s12.center
-            h4.red-text
-              i.medium.material-icons mail_outline
-            h4 Kontakt
-            p.left-align Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-            
-    // ****** FOOTER ******
-    
-    .parallax-container.valign-wrapper
-      .section.no-pad-bot
+            section
+                .row
+                    .col.s12.m4
+                        .icon-block
+                            h2.center.green-text
+                                i.material-icons power_settings_new
+                                //-highlight_off
+                            h5.center Optagelses Status
+
+                            p Vi holder løbende optagelseprøver og lige nu søger vi nye medlemmer til Storekoret.
+                            | Vi øver hver mandag fra kl. 19.00 til 21.30, ofte i lokale U77 på Syddansk Universitet.
+                    .col.s12.m4
+                        .icon-block
+                            h2.center.blue-text.darken-4
+                                i.material-icons group
+                            h5.center Kort om Storekoret
+
+                            p Vi er et meget socialt kor, der også ses uden for prøverne og koncerterne. Vores stamsted er Carlsens Kvarter, hvor vi som regel mødes efter den ugentlige korprøve.
+                            //- | Vi holder både forårsfest, sommerfest og julefest og spiser ofte sammen efter længerevarende koncertprøver.
+
+                    .col.s12.m4
+                        .icon-block
+                            h2.center.yellow-text.text-darken-3
+                                i.material-icons lightbulb_outline
+                            h5.center Stadig med på moden
+
+                            p Storekoret har rødder helt tilbage til år 1964, hvor koret blev stiftet under navnet Skt. Knuds gymnasiums kor.
+                            | Storekorets medlemmer findes i alle aldre. De unge får stor udbytte af de ældres erfaringer.
+
+        // ****** KONCERTER ******
+
+        .parallax-container.valign-wrapper
+            .section.no-pad-bot.container
+                .row.center
+                    //-h5.header.col.s12.black-text.grey.lighten-3 
+            .parallax
+                img(src="./img/people2.jpg", alt="Unsplashed background img 2")
+
+        .container#koncerter
+            .section
+                .row
+                    .col.s12.center
+                        h4.yellow-text.text-darken-3
+                            i.medium.material-icons star_border
+                            i.medium.material-icons star_border
+                            i.medium.material-icons star_border
+                            h4 Koncerter
+                .row
+                    .col.s12.l6
+                        h5.left-align Titel på Koncert
+                        p.left-align Dette afsnit bliver kun vist så fremt det ønskes. Dette ville kunne ændres inde på admin siden.
+                    .col.s12.l6
+                        a(href="#")
+                            img(src="img/background1.jpg")
+                .row
+                    .col.s12.l6
+                        h5.left-align Titel på Koncert
+                        p.left-align Dette afsnit bliver kun vist så fremt det ønskes. Dette ville kunne ændres inde på admin siden.
+                    .col.s12.l6
+                        a(href="#")
+                            img(src="img/background1.jpg")
+
+
+        // ****** KONTAKT******
+
+        .parallax-container.valign-wrapper#kontakt
+            .section.no-pad-bot.container
+                .row.center
+                    h5.header.col.s12 If you hear the birds singing does it have to have a message?
+            .parallax
+                img(src="./img/people4.jpg", alt="Unsplashed background img 2")
+
         .container
-          .row.center
-            h5.header.col.s12 A modern responsive front-end framework based on Material Design
-      .parallax
-        img(src="img/people3.jpg", alt="Unsplashed background img 3")
-    
-    footer.page-footer.teal
-      .container
-        .row
-          .col.l6.s12
-            h5.white-text SDU's Storekor
-            p.grey-text.text-lighten-4  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias commodi officiis, atque sint quibusdam deserunt nihil ducimus quidem totam maxime.
-          .col.l3.s12
-            h5.white-text Settings
-            ul
-              li
-                a(href="#").white-text Link 1
-              li
-                a(href="#").white-text Link 1
-              li
-                a(href="#").white-text Link 1
-              li
-                a(href="#").white-text Link 1
-              li
-                a(href="#").white-text Link 1
-          .col.l3.s12
-            h5.white-text Connect
-            ul
-              li
-                a(href="#").white-text Link 1
-              li
-                a(href="#").white-text Link 1
-              li
-                a(href="#").white-text Link 1
-              li
-                a(href="#").white-text Link 1
-              li
-                a(href="#").white-text Link 1
-                
-      .footer-copyright
-        .container &copy; 2016 SDU's Storekor
-    // ****** SCRIPTS ******
-    script(src="https://code.jquery.com/jquery-2.1.1.min.js")
-    script(src="js/materialize.js")
-    script(src="js/init.js")
+            .section
+                .row
+                    .col.s12.center
+                        h4.red-text
+                            i.medium.material-icons mail_outline
+                        h4 Kontakt
+                        p.left-align Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+
+        // ****** FOOTER ******
+
+        .parallax-container.valign-wrapper
+            .section.no-pad-bot
+                .container
+                    .row.center
+                        h5.header.col.s12 A modern responsive front-end framework based on Material Design
+            .parallax
+                img(src="img/people3.jpg", alt="Unsplashed background img 3")
+
+        footer.page-footer.teal
+            .container
+                .row
+                    .col.l6.s12
+                        h5.white-text Storekor Odense
+                        p.grey-text.text-lighten-4  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias commodi officiis, atque sint quibusdam deserunt nihil ducimus quidem totam maxime.
+                    .col.l3.s12
+                        h5.white-text Settings
+                        ul
+                            li
+                                a(href="#").white-text Link 1
+                            li
+                                a(href="#").white-text Link 1
+                            li
+                                a(href="#").white-text Link 1
+                            li
+                                a(href="#").white-text Link 1
+                            li
+                                a(href="#").white-text Link 1
+                    .col.l3.s12
+                        h5.white-text Connect
+                        ul
+                            li
+                                a(href="#").white-text Link 1
+                            li
+                                a(href="#").white-text Link 1
+                            li
+                                a(href="#").white-text Link 1
+                            li
+                                a(href="#").white-text Link 1
+                            li
+                                a(href="#").white-text Link 1
+
+            .footer-copyright
+                .container &copy; 2016 Storekor Odense
