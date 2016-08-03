@@ -21,7 +21,7 @@
       </div>
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#">Forside</a></li>
-        <li><a href="./optagelse">Optagelse</a></li>
+        <li><a href="./optagelse.php">Optagelse</a></li>
         <li><a href="#">Koncerter</a></li>
         <li><a href="#">Dirigent</a></li>
         <li><a href="#!">Om Storekoret</a></li>

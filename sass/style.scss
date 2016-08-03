@@ -79,3 +79,23 @@ p {
 footer.page-footer {
   margin: 0;
 }
+
+// Optagelse form
+form {
+  ul.helper-text {
+    display: block;
+    margin-top: 6px;
+    margin-left: 10px;
+    font-size: 12px;
+    line-height: 22px;
+    color: #808080;
+
+    li.valid {
+      color: #1fd34a;
+    }
+  }
+
+  &.valid {
+    input { border: 2px solid #1fd34a; }
+  }
+}

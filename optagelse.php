@@ -9,8 +9,10 @@
   if(isset($_POST['optag_form'])) {
     $fornavn = escape($_POST['fornavn']);
     $efternavn = escape($_POST['efternavn']);
+    $password = escape($_POST['password']);
     $adresse = escape($_POST['adresse']);
-    $bosted = escape($_POST['bosted']);
+    $postnr = escape($_POST['postnr']);
+    $bynavn = escape($_POST['bynavn']);
     $email = escape($_POST['email']);
     $telefon = escape($_POST['telefon']);
     $brugernavn = substr($fornavn,0,2) . substr($efternavn,0,2) . substr($telefon,4,2);
@@ -26,16 +28,25 @@
     // omregner alderen fra database til et tal.
     $alder_nu = floor(((time()- $tid)  /(3600 * 24 * 365)));
 
-    $query = "INSERT INTO medlemmer(brugernavn, fornavn, efternavn, adresse, bosted, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona) VALUES('{$brugernavn}','{$fornavn}','{$efternavn}','{$adresse}','{$bosted}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}')";
+    $query = "SELECT * FROM medlemmer WHERE brugernavn = '$brugernavn'";
+    $check_conn = mysqli_query($conn, $query);
+    $count = mysqli_num_rows($check_conn);
+    if(!$count > 1) {
 
-    $create_user_query = mysqli_query($conn, $query);
+      $query = "INSERT INTO medlemmer(brugernavn, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona) VALUES('{$brugernavn}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}')";
 
-    if(!$create_user_query) {
-      die("Query Failed: " . mysqli_error($conn));
+      $create_user_query = mysqli_query($conn, $query);
+
+      if(!$create_user_query) {
+        die("Query Failed: " . mysqli_error($conn));
+      } else {
+        $message = urlencode("success");
+        header("Location: index.php?message=".$message);
+        die;
+      }
     } else {
-      $message = urlencode("success");
-      header("Location: index.php?message=".$message);
-      die;
+      echo "";
+      mysqli_close($conn);
     }
   }
 ?>
@@ -104,37 +115,57 @@
   <section>
     <div class="row">
       <div class="col s12"><h4>Dine oplysninger</h4></div>
-      <form class="col s12" action="" method="post" autocomplete="on">
+      <form class="col s12" action="" method="post" autocomplete="on" id="registration">
         <div class="row">
           <div class="input-field col s12 m6">
-            <input id="fornavn" type="text" class="validate" name="fornavn">
+            <input id="fornavn" required="required" type="text" class="validate" name="fornavn">
             <label for="fornavn">Fornavn</label>
           </div>
           <div class="input-field col s12 m6">
-            <input id="efternavn" type="text" class="validate" name="efternavn">
+            <input id="efternavn" required="required" type="text" class="validate" name="efternavn">
             <label for="efternavn">Efternavn</label>
-          </div>
-          <div class="input-field col s12 m6">
-            <input id="adresse" type="text" class="validate" name="adresse">
-            <label for="adresse">Adresse</label>
-          </div>
-          <div class="input-field col s12 m6">
-            <input id="bosted" type="text" class="validate" name="bosted">
-            <label for="bosted">Postnummer og by</label>
           </div>
           <div class="input-field col s12 m6">
             <input id="email" type="email" class="validate" name="email">
             <label for="email">Email</label>
           </div>
           <div class="input-field col s12 m6">
-            <input id="telefon" type="tel" class="validate" name="telefon">
+            <input id="telefon" required="required" type="tel" class="validate" name="telefon">
             <label for="telefon">Telefon nummer</label>
           </div>
+          <div class="input-field col s12 m6">
+            <input id="password" required type="password" class="validate password" name="password" minlength="8" maxlength="100">
+            <ul class="helper-text">
+                <li class="length">Mindst 8 bogstaver.</li>
+                <li class="lowercase">Skal indeholde et lille bogstav.</li>
+                <li class="uppercase">Skal indeholde et stort bogstav.</li>
+                <li class="special">Skal indeholde et tal eller speciel tegn (!, #, ?, %).</li>
+            </ul>
+            <label for="password">Kodeord</label>
+          </div>
+          <div class="input-field col s12 m6">
+            <input id="password_repeat" required="required" type="password" class="validate" name="telefon" minlength="8" maxlength="100">
+            <label for="password_repeat">Gentag kodeord</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="adresse" required="required" type="text" class="validate" name="adresse">
+            <label for="adresse">Adresse</label>
+          </div>
+          <div class="input-field col s12 m6">
+            <input id="postnr" required="required" type="text" class="validate" name="postnr">
+            <label for="postnr">Postnummer</label>
+          </div>
+          <div class="input-field col s12 m6">
+            <input id="bynavn" required="required" type="text" class="validate" name="bynavn">
+            <label for="bynavn">By</label>
+          </div>
         </div>
-
+        <br>
+        <div class="divider"></div>
+        <br>
         <div class="row">
           <div class="input-field col s12 m6">
-            <input id="alder" type="date" class="datepicker" name="alder">
+            <input id="alder" required="required" type="date" class="datepicker" name="alder">
             <label for="alder">Din fødselsdato</label>
           </div>
           <div class="input-field col s12 m6">
@@ -152,11 +183,11 @@
             </select>
           </div>
           <div class="input-field col s12 m6">
-            <input id="erfaring" type="text" class="validate" name="erfaring">
+            <input id="erfaring" required="required" type="text" class="validate" name="erfaring">
             <label for="erfaring">Hvilken stemme/r har du sunget før?</label>
           </div>
           <div class="input-field col s12 m6">
-            <input id="kor_type" type="text" class="validate" name="kor_type">
+            <input id="kor_type" required="required" type="text" class="validate" name="kor_type">
             <label for="kor_type">Hviklet type kor har du sunget i før?</label>
           </div>
           <div class="input-field col s12 m6">
@@ -166,7 +197,7 @@
               <option value="I arbejde">I arbejde</option>
               <option value="Ledig">Ledig</option>
               <option value="Studerende ved SDU">Studerende ved SDU</option>
-              <option value="Har relation til SDU">Har relation til SDU</option>
+              <option value="Arbejder ved SDU">Arbejder ved SDU</option>
               <option value="Pensionist">Pensionist</option>
               <option value="Ønsker ikke at oplyse">Ønsker ikke at oplyse</option>
             </select>
@@ -193,5 +224,6 @@
 </section>
 
 </div>
+<script type="text/javascript" src="js/form_validate.js"></script>
 <!-- ****** FOOTER ******-->
 <?php include "./includes/footer.php"; ?>

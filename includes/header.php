@@ -15,6 +15,5 @@
     <!-- ****** SCRIPTS ******-->
     <script src="js/min/jquery2.1.1.min.js"></script>
     <script src="js/materialize.js"></script>
-    <script src="js/init.js"></script>
   </head>
   <body>
