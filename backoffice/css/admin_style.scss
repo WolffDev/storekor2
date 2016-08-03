@@ -1,0 +1,9 @@
+@import "../../sass/components/color";
+@import "../../sass/components/variables";
+@import "../../sass/components/grid";
+
+@media #{$large-and-up} {
+  footer, .admin-main {
+    padding-left: 300px;
+  }
+}

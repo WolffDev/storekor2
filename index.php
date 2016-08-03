@@ -4,7 +4,7 @@
 <?php include "./includes/navbar.php"; ?>
 <!-- ****** INTRO ******-->
 <?php if(isset($_GET['message'])) {
-  if ($_GET['message'] == 'success') { ?>
+  if ($_GET['message'] === 'success') { ?>
   <div id="modal1" class="modal">
     <div class="modal-content black-text">
       <h4>Optagelse afsendt</h4>
