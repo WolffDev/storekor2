@@ -6,3 +6,4 @@ tmp
 *.css.map
 research
 compiled
+.codekit-cache

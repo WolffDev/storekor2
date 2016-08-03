@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php ob_start(); ?>
 <!-- ****** Header *****-->
 <?php include "./includes/header.php"; ?>
@@ -7,6 +8,7 @@
 
 <?php
   if(isset($_POST['optag_form'])) {
+    if(isset($_POST["captcha"])&&$_POST["captcha"]!=""&&$_SESSION["code"]==$_POST["captcha"]) {
     $fornavn = escape($_POST['fornavn']);
     $efternavn = escape($_POST['efternavn']);
     $password = escape($_POST['password']);
@@ -32,7 +34,6 @@
     $check_conn = mysqli_query($conn, $query);
     $count = mysqli_num_rows($check_conn);
     if(!$count > 1) {
-
       $query = "INSERT INTO medlemmer(brugernavn, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona) VALUES('{$brugernavn}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}')";
 
       $create_user_query = mysqli_query($conn, $query);
@@ -45,9 +46,22 @@
         die;
       }
     } else {
-      echo "";
-      mysqli_close($conn);
+      $query = "INSERT INTO medlemmer(brugernavn, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona, flag_status) VALUES('{$brugernavn}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}', 1)";
+
+      $create_user_query = mysqli_query($conn, $query);
+
+      if(!$create_user_query) {
+        die("Query Failed: " . mysqli_error($conn));
+      } else {
+        $message = urlencode("success");
+        header("Location: index.php?message=".$message);
+        die;
+      }
     }
+  } else {
+    $human_error = "Du har tastet forkerte cifrer under verificering - prøv igen.<br>Hvis fejlen fortsætter, gå ind på kontakt siden og udfyld kontakt formularen, hvor du beskriver fejlen.";
+    mysqli_close($conn);
+  }
   }
 ?>
 
@@ -68,6 +82,13 @@
   <section>
     <div class="row">
       <div class="col s12"><h4>Optagelse</h4></div>
+      <?php if(isset($human_error)) {
+        echo "<div class='col s12'>";
+        echo "<p class='red-text'>";
+        echo $human_error;
+        echo "</p>";
+        echo "</div>";
+      } ?>
       <div class="col s12">
         <p>
           For at søge om optagelse i Storekoret, skal du gennemlæse optagelseskravene.<br>Længere nede på siden er der en formular du kan udfylde og sende til os.<br>Vi vil svare dig inde for maks 7 dage, hvis vi er i korsæsonen. I mailen vil der fremkomme yderligere informationer.<br>Udenfor korsæsonen kan svartiden være op til 4 uger.
@@ -139,7 +160,7 @@
                 <li class="length">Mindst 8 bogstaver.</li>
                 <li class="lowercase">Skal indeholde et lille bogstav.</li>
                 <li class="uppercase">Skal indeholde et stort bogstav.</li>
-                <li class="special">Skal indeholde et tal eller speciel tegn (!, #, ?, %).</li>
+                <li class="special">Skal indeholde et tal eller et tegn (!, #, ?, %).</li>
             </ul>
             <label for="password">Kodeord</label>
           </div>
@@ -214,6 +235,14 @@
             <label for="persona">Skriv en kort introduktion af dig selv</label>
           </div>
         </div>
+        <div class="input-field col s12 m6">
+          <img src="includes/recaptcha.php" alt="reCaptcha image - human verification" />
+        </div>
+        <div class="input-field col s12 m6">
+            <input type="text" name="captcha" class="validate" required="" id="captcha">
+            <label for="captcha">Indtast nummeret.</label>
+        </div>
+        <div class="row"></div>
       </div>
       <div class="row center">
         <button class="btn waves-effect waves-light" type="submit" name="optag_form">Send ansøgning<i class="material-icons right">send</i>

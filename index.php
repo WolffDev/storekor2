@@ -3,7 +3,8 @@
 <!-- ****** Navbar *****-->
 <?php include "./includes/navbar.php"; ?>
 <!-- ****** INTRO ******-->
-<?php if(isset($_GET['message'])) { ?>
+<?php if(isset($_GET['message'])) {
+  if ($_GET['message'] == 'success') { ?>
   <div id="modal1" class="modal">
     <div class="modal-content black-text">
       <h4>Optagelse afsendt</h4>
@@ -16,7 +17,7 @@
   <script type="text/javascript">
     $('#modal1').openModal();
   </script>
-<?php } ?>
+<?php }} ?>
 <div id="index-banner" class="parallax-container">
   <div class="section no-pad-bot">
     <div class="container"><br/><br/>
