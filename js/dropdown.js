@@ -253,7 +253,7 @@
       origin.on('open', function(e, eventType) {
         placeDropdown(eventType);
       });
-      origin.on('close', hideDropdown);
+      // origin.on('close', hideDropdown);
 
 
     });

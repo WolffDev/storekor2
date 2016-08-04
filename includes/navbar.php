@@ -4,12 +4,38 @@
       <ul class="right hide-on-med-and-down">
         <li><a href="./">Forside</a></li>
         <li><a href="./optagelse.php">Optagelse</a></li>
-        <li><a href="#">Koncerter</a></li>
+        <li><a href="./backoffice/">Admin</a></li>
         <li><a href="#">Dirigent</a></li>
         <li><a href="#" data-activates="dropdown1" class="dropdown-button">Om Os<i class="material-icons right">arrow_drop_down</i></a></li>
         <li><a href="./#kontakt">Kontakt</a></li>
-        <li><a href="#">Login</a></li>
+        <li>
+          <span class="login-pin">
+            <a href="#" id="login-trigger">Login</a>
+            <div id="login-content">
+              <form class="" action="login.php" method="post">
+                <div class="row">
+                  <div class="input-field col">
+                    <input type="text" name="username" value="" id="username" required>
+                    <label for="username">Email</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col">
+                    <input type="password" name="password" value="" id="login-password" required>
+                    <label for="login-password">Adganskode</label>
+                  </div>
+                </div>
+                <div class="row center">
+                  <button class="btn waves-effect waves-light" type="submit" name="login">Login<i class="material-icons right">send</i></button>
+                </div>
+              </form>
+            </div>
+          </span>
+        </li>
       </ul>
+
+
+
       <div id="dropdown1" class="dropdown-content">
         <ul>
           <li><a href="#">Om Storekoret</a></li>

@@ -16,6 +16,5 @@
     <!-- ****** SCRIPTS ******-->
     <script src="../js/min/jquery2.1.1.min.js"></script>
     <script src="../js/materialize.js"></script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
   <body>

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php ob_start(); ?>
 <?php include "./includes/db.php"; ?>
 <?php include "./backoffice/functions.php"; ?>
@@ -15,6 +16,6 @@
     <!-- ****** SCRIPTS ******-->
     <script src="js/min/jquery2.1.1.min.js"></script>
     <script src="js/materialize.js"></script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="js/init.js"></script>
   </head>
   <body>

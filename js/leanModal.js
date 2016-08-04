@@ -21,8 +21,8 @@
         ready: undefined,
         complete: undefined,
         dismissible: true,
-        starting_top: '4%',
-        ending_top: '10%'
+        starting_top: '10%',
+        ending_top: '20%'
       };
       var $modal = $(this);
 

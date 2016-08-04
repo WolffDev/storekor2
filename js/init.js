@@ -1,5 +1,29 @@
 (function($) {
     $(function() {
+      // Login toggle
+
+      $("#login-trigger").click(function(e) {
+        e.preventDefault();
+        $("#login-content").slideToggle();
+      });
+      $(document).on("click", function(e) {
+        if ($(e.target).closest(".login-pin").length === 0) {
+          $("#login-content").slideUp();
+        }
+      });
+        // $("#login-trigger").click(function(e) {
+        //   e.stopPropagation();
+        //   $("#login-content").not($(this).next()).hide();
+        //   $(this).next().slideToggle();
+        // });
+        // $("#login-content").find("#login-content, form, div, input, label").click(function(e){
+        //   e.stopPropagation();
+        // });
+        // $(document).click(function(){
+        //   $("#login-content").slideToggle();
+        // });
+
+
 
         $('.button-collapse').sideNav({
             menuWidth: 300, // Default is 240
@@ -17,6 +41,7 @@
             alignment: 'left' // Displays dropdown with edge aligned to the left of button
         });
         $('.datepicker').pickadate({
+          // http://amsul.ca/pickadate.js/date/#formats
             labelMonthNext: 'Næste måned',
             labelMonthPrev: 'Forrige måned',
             labelMonthSelect: 'Vælg måned',
@@ -53,14 +78,6 @@
                 }
             }
         });
-
-
-
-
-
-
-
-
 
 
     }); // end of document ready
