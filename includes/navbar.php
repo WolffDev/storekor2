@@ -1,37 +1,49 @@
 <div class="navbar-fixed">
+  <?php
+    if(isset($_SESSION['brugernavn']) && $_SESSION['bruger_status'] != 'ikke_godkendt') {
+      echo "<h1>".$_SESSION['brugernavn']."</h1>";
+      echo "<h1>".$_SESSION['bruger_status']."</h1>";
+      echo "<h1>DASSAD</h1>";
+    }
+  ?>
   <nav role="navigation" class="white">
     <div class="nav-wrapper container"><a id="logo-container" href="./" class="brand-logo"><img src="img/logo.svg"/></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="./">Forside</a></li>
         <li><a href="./optagelse.php">Optagelse</a></li>
-        <li><a href="./backoffice/">Admin</a></li>
         <li><a href="#">Dirigent</a></li>
         <li><a href="#" data-activates="dropdown1" class="dropdown-button">Om Os<i class="material-icons right">arrow_drop_down</i></a></li>
         <li><a href="./#kontakt">Kontakt</a></li>
-        <li>
-          <span class="login-pin">
-            <a href="#" id="login-trigger">Login</a>
-            <div id="login-content">
-              <form class="" action="login.php" method="post">
-                <div class="row">
-                  <div class="input-field col">
-                    <input type="text" name="username" value="" id="username" required>
-                    <label for="username">Email</label>
+        <?php if($_SESSION['logged_in'] == true) { ?>
+          <li><a href="./backoffice/">Admin</a></li>
+          <li><a href="./backoffice/includes/logout.php">Logud</a></li>
+        <?php } ?>
+        <?php if($_SESSION['logged_in'] == null) { ?>
+          <li>
+            <span class="login-pin">
+              <a href="#" id="login-trigger">Login</a>
+              <div id="login-content">
+                <form class="" action="./backoffice/includes/login.php" method="post">
+                  <div class="row">
+                    <div class="input-field col">
+                      <input type="text" name="username" value="" id="username" required>
+                      <label for="username">Email</label>
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col">
-                    <input type="password" name="password" value="" id="login-password" required>
-                    <label for="login-password">Adganskode</label>
+                  <div class="row">
+                    <div class="input-field col">
+                      <input type="password" name="password" value="" id="login-password" required>
+                      <label for="login-password">Adganskode</label>
+                    </div>
                   </div>
-                </div>
-                <div class="row center">
-                  <button class="btn waves-effect waves-light" type="submit" name="login">Login<i class="material-icons right">send</i></button>
-                </div>
-              </form>
-            </div>
-          </span>
-        </li>
+                  <div class="row center">
+                    <button class="btn waves-effect waves-light" type="submit" name="login">Login<i class="material-icons right">send</i></button>
+                  </div>
+                </form>
+              </div>
+            </span>
+          </li>
+        <?php } ?>
       </ul>
 
 

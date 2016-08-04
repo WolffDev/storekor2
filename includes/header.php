@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 <?php ob_start(); ?>
-<?php include "./includes/db.php"; ?>
-<?php include "./backoffice/functions.php"; ?>
+<?php include "backoffice/includes/db.php"; ?>
+<?php include "backoffice/functions.php"; ?>
 <!DOCTYPE html>
 <html lang="dk">
   <head>

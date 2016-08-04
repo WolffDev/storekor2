@@ -1,6 +1,12 @@
+<?php session_start(); ?>
 <?php ob_start(); ?>
-<?php include "../includes/db.php"; ?>
-<?php include "./functions.php"; ?>
+<?php include "db.php"; ?>
+<?php include "functions.php"; ?>
+<?php
+if($_SESSION['logged_in'] != true) {
+    header("Location: ../../index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="dk">
   <head>
