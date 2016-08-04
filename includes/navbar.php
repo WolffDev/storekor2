@@ -1,11 +1,4 @@
 <div class="navbar-fixed">
-  <?php
-    if(isset($_SESSION['brugernavn']) && $_SESSION['bruger_status'] != 'ikke_godkendt') {
-      echo "<h1>".$_SESSION['brugernavn']."</h1>";
-      echo "<h1>".$_SESSION['bruger_status']."</h1>";
-      echo "<h1>DASSAD</h1>";
-    }
-  ?>
   <nav role="navigation" class="white">
     <div class="nav-wrapper container"><a id="logo-container" href="./" class="brand-logo"><img src="img/logo.svg"/></a>
       <ul class="right hide-on-med-and-down">

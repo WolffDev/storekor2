@@ -4,6 +4,7 @@
 <!-- ****** INTRO ******-->
 <?php
   if(isset($_GET['message'])) {
+    mysqli_close($conn);
     if ($_GET['message'] === 'success') { ?>
       <div id="modal1" class="modal">
         <div class="modal-content black-text">
@@ -32,7 +33,13 @@
       <script type="text/javascript">
         $('#modal1').openModal();
       </script>
-<?php } } ?>
+<?php }
+  if ($_GET['message'] === 'invalid_login') { ?>
+    <script type="text/javascript">
+      var $toastContent = $('<span>Email og/eller password er forkert.</span>');
+      Materialize.toast($toastContent, 5000, 'toastInvalidUser');
+    </script>
+<?php } }?>
 <div id="index-banner" class="parallax-container">
   <div class="section no-pad-bot">
     <div class="container"><br/><br/>
