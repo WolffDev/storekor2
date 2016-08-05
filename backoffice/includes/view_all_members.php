@@ -1,20 +1,21 @@
-<table class="striped highlight responsive-table">
+<table class="striped highlight responsive-table" id="medlemmer_table">
   <thead>
     <tr>
       <th data-field="id">Fornavn</th>
-      <th data-field="name">Efternavn</th>
       <th data-field="price">Brugernavn</th>
       <th data-field="id">Telefon</th>
       <th data-field="id">Stemme</th>
       <th data-field="id">Rolle</th>
       <th data-field="id">Status</th>
+      <th data-field="id">Tilmeldt</th>
+      <th data-field="id">Nye tilmeldinger</th>
     </tr>
   </thead>
 
   <tbody>
     <?php
       global $conn;
-      $query = "SELECT * FROM medlemmer";
+      $query = "SELECT * FROM medlemmer ORDER BY id DESC";
       $select_users = mysqli_query($conn, $query);
 
       while($row = mysqli_fetch_assoc($select_users )) {
@@ -25,30 +26,42 @@
         $stemme = $row['stemme'];
         $bruger_rolle = $row['bruger_rolle'];
         $bruger_status = $row['bruger_status'];
-        $flag_status = $row['flag_status'];
         $dato_oprettet = $row['dato_oprettet'];
         $app_status = $row['app_status'];
 
         echo "<tr>";
-        echo "<td>$fornavn</td>";
-        echo "<td>$efternavn</td>";
+        echo "<td>$fornavn $efternavn</td>";
         echo "<td>$brugernavn</td>";
         echo "<td>$telefon</td>";
         echo "<td>$stemme</td>";
         echo "<td>$bruger_rolle</td>";
         echo "<td>$bruger_status</td>";
-        if($app_status != 'godkendt') {
-          $date = date_create($dato_oprettet);
-          echo "<td>".date_format($date, 'D, d/M-Y')."</td>";
-        }
-        if($app_status == 'ny') {
+        $date = date_create($dato_oprettet);
+        $date_show = date_format($date, 'd\. M - Y');
+        echo "<td>$date_show</td>";
+        if($app_status == 'ny' || $app_status == 'oprettet af bestyrrelsen') {
           echo "<td>$app_status</td>";
-        }
-        if($flag_status == 1) {
-          echo "<td>$flag_status</td>";
         }
         echo "<tr>";
       }
     ?>
   </tbody>
 </table>
+<script type="text/javascript" language="javascript" >
+			$(document).ready(function() {
+				var dataTable = $('#medlemmer_table').DataTable( {
+					"processing": true,
+					"serverSide": true,
+					"ajax":{
+						url :"employee-grid-data.php", // json datasource
+						type: "post",  // method  , by default get
+						error: function(){  // error handling
+							$(".employee-grid-error").html("");
+							$("#employee-grid").append('<tbody class="employee-grid-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
+							$("#employee-grid_processing").css("display","none");
+
+						}
+					}
+				} );
+			} );
+		</script>

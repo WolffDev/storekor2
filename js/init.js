@@ -1,7 +1,9 @@
 (function($) {
     $(function() {
-      // Login toggle
+      
 
+
+      // Login toggle
       $("#login-trigger").click(function(e) {
         e.preventDefault();
         $("#login-content").slideToggle();

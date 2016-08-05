@@ -14,8 +14,8 @@
       case 'view_all':
         include "includes/view_all_members.php";
         break;
-      case 'edit_user':
-        include "includes/edit_user.php";
+      case 'add_member':
+        include "includes/add_member.php";
         break;
       default:
         include "includes/view_all_members.php";
