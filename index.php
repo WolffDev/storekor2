@@ -4,7 +4,6 @@
 <!-- ****** INTRO ******-->
 <?php
   if(isset($_GET['message'])) {
-    mysqli_close($conn);
     if ($_GET['message'] === 'success') { ?>
       <div id="modal1" class="modal">
         <div class="modal-content black-text">

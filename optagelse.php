@@ -24,7 +24,7 @@
       $job = escape($_POST['job']);
       $relate = escape($_POST['relate']);
       $persona = escape($_POST['persona']);
-      $dato_oprettet = date('d-m-y');
+      $dato_oprettet = date('Y-m-d H:i:s');
 
       $tid = strtotime($alder);
       // $alder = date('d-m/Y',$tid);
@@ -38,7 +38,7 @@
           $check_conn = mysqli_query($conn, $query);
           $count = mysqli_num_rows($check_conn);
           if($count == 0) {
-            $query = "INSERT INTO medlemmer(brugernavn, password, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona, bruger_rolle, bruger_status, dato_oprettet, app_status) VALUES('{$brugernavn}', '{$password}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}','ikke_godkendt','ikke_godkendt',now(),'ny')";
+            $query = "INSERT INTO medlemmer(brugernavn, password, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona, bruger_rolle, bruger_status, dato_oprettet, app_status) VALUES('{$brugernavn}', '{$password}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}','ikke_godkendt','ikke_godkendt','{$dato_oprettet}','ny')";
 
             $create_user_query = mysqli_query($conn, $query);
 
@@ -46,11 +46,13 @@
               die("Query Failed: " . mysqli_error($conn));
             } else {
               $message = urlencode("success");
+              $_SESSION["code"] = null;
+              $_SESSION['logged_in'] = false;
               header("Location: index.php?message=".$message);
-              die;
+              mysqli_close($conn);
             }
           } else {
-            $query = "INSERT INTO medlemmer(brugernavn, password, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona, flag_status, bruger_rolle, bruger_status, dato_oprettet, app_status) VALUES('{$brugernavn}', '{$password}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}', 1,'ikke_godkendt','ikke_godkendt',now(), 'ny')";
+            $query = "INSERT INTO medlemmer(brugernavn, password, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona, flag_status, bruger_rolle, bruger_status, dato_oprettet, app_status) VALUES('{$brugernavn}', '{$password}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}', 1,'ikke_godkendt','ikke_godkendt','{$dato_oprettet}', 'ny')";
 
             $create_user_query = mysqli_query($conn, $query);
 

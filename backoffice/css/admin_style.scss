@@ -8,8 +8,12 @@
 @media #{$large-and-up} {
   .admin-area {
     padding-left: 300px;
-
+    .admin-area {
+      padding: 0 20px;
+    }
   }
+}
+.admin-main {
 }
 .nav-wrapper {
   color: $secondary-color;
