@@ -23,4 +23,4 @@ if($_SESSION['logged_in'] != true) {
     <script src="../js/min/jquery2.1.1.min.js"></script>
     <script src="../js/materialize.js"></script>
   </head>
-  <body>
+  <body class="admin-area">

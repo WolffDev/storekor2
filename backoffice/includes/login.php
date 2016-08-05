@@ -34,7 +34,7 @@
         $_SESSION['efternavn'] = $efternavn;
         $_SESSION['bruger_status'] = $bruger_status;
         $_SESSION['bruger_rolle'] = $bruger_rolle;
-        $_SESSION['logged_in'] = true;
+        $_SESSION['logged_in'] = 'true';
 
         header("Location: ../");
 

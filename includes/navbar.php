@@ -7,7 +7,7 @@
         <li><a href="#">Dirigent</a></li>
         <li><a href="#" data-activates="dropdown1" class="dropdown-button">Om Os<i class="material-icons right">arrow_drop_down</i></a></li>
         <li><a href="./#kontakt">Kontakt</a></li>
-        <?php if(isset($_SESION['logged_in']) && $_SESSION['logged_in'] == true) { ?>
+        <?php if($_SESSION['logged_in'] == 'true') { ?>
           <li><a href="./backoffice/">Admin</a></li>
           <li><a href="./backoffice/includes/logout.php">Logud</a></li>
         <?php } else { ?>

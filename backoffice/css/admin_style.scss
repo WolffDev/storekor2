@@ -1,9 +1,17 @@
 @import "../../sass/components/color";
 @import "../../sass/components/variables";
 @import "../../sass/components/grid";
+@import "../../sass/components/typography";
+@import "../../sass/components/global";
+
 
 @media #{$large-and-up} {
-  footer, .admin-main {
+  .admin-area {
     padding-left: 300px;
+
   }
+}
+.nav-wrapper {
+  color: $secondary-color;
+  padding: 0 20px;
 }
