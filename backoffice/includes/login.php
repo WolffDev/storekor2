@@ -21,7 +21,7 @@
         $bruger_status = $row['bruger_status'];
         $bruger_rolle = $row['bruger_rolle'];
       }
-      if($bruger_status === 'ikke_godkendt') {
+      if($bruger_status === 'ikke godkendt') {
         $message = urlencode("unapproved");
         header("Location: ../../index.php?message=".$message);
         die;

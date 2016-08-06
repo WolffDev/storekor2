@@ -1,3 +1,8 @@
+<?php if (session_status() === PHP_SESSION_NONE){session_start();}
+if(!isset($_SESSION['bruger_status']) || $_SESSION['bruger_status'] == 'ikke godkendt') {
+  header("Location: ../index.php");
+}
+?>
 <table class="striped" id="medlemmer_table">
   <thead>
     <tr>

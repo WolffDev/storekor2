@@ -38,7 +38,7 @@
           $check_conn = mysqli_query($conn, $query);
           $count = mysqli_num_rows($check_conn);
           if($count == 0) {
-            $query = "INSERT INTO medlemmer(brugernavn, password, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona, bruger_rolle, bruger_status, dato_oprettet, app_status) VALUES('{$brugernavn}', '{$password}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}','ikke_godkendt','ikke_godkendt','{$dato_oprettet}','ny')";
+            $query = "INSERT INTO medlemmer(brugernavn, password, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona, bruger_rolle, bruger_status, dato_oprettet, app_status) VALUES('{$brugernavn}', '{$password}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}','ikke godkendt','ikke godkendt','{$dato_oprettet}','ny')";
 
             $create_user_query = mysqli_query($conn, $query);
 
@@ -52,7 +52,7 @@
               mysqli_close($conn);
             }
           } else {
-            $query = "INSERT INTO medlemmer(brugernavn, password, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona, flag_status, bruger_rolle, bruger_status, dato_oprettet, app_status) VALUES('{$brugernavn}', '{$password}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}', 1,'ikke_godkendt','ikke_godkendt','{$dato_oprettet}', 'ny')";
+            $query = "INSERT INTO medlemmer(brugernavn, password, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona, flag_status, bruger_rolle, bruger_status, dato_oprettet, app_status) VALUES('{$brugernavn}', '{$password}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}', 1,'ikke godkendt','ikke godkendt','{$dato_oprettet}', 'ny')";
 
             $create_user_query = mysqli_query($conn, $query);
 

@@ -2,8 +2,8 @@
   if(isset($_POST['optag_form'])) {
     $fornavn = escape($_POST['fornavn']);
     $efternavn = escape($_POST['efternavn']);
-    $password = escape($_POST['password']);
-    $password_validate = escape($_POST['password_validate']);
+    $password = 'Storekor123';
+    $password_validate = 'Storekor123';
     $adresse = escape($_POST['adresse']);
     $postnr = escape($_POST['postnr']);
     $bynavn = escape($_POST['bynavn']);
@@ -32,29 +32,29 @@
         $check_conn = mysqli_query($conn, $query);
         $count = mysqli_num_rows($check_conn);
         if($count == 0) {
-          $query = "INSERT INTO medlemmer(brugernavn, password, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona, bruger_rolle, bruger_status, dato_oprettet, app_status) VALUES('{$brugernavn}', '{$password}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}','ikke_godkendt','ikke_godkendt','{$dato_oprettet}','oprettet af bestyrrelsen')";
+          $query = "INSERT INTO medlemmer(brugernavn, password, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona, bruger_rolle, bruger_status, dato_oprettet, app_status) VALUES('{$brugernavn}', '{$password}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}','ikke godkendt','ikke godkendt','{$dato_oprettet}','oprettet af bestyrrelsen')";
 
           $create_user_query = mysqli_query($conn, $query);
 
           if(!$create_user_query) {
             die("Query Failed: " . mysqli_error($conn));
           } else {
-            $message = urlencode("success");
+            $message = urlencode("success_add_member");
             $_SESSION["code"] = null;
             $_SESSION['logged_in'] = false;
-            header("Location: medlemmder.php?message=".$message);
+            header("Location: index.php?message=".$message);
             mysqli_close($conn);
           }
         } else {
-          $query = "INSERT INTO medlemmer(brugernavn, password, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona, flag_status, bruger_rolle, bruger_status, dato_oprettet, app_status) VALUES('{$brugernavn}', '{$password}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}', 1,'ikke_godkendt','ikke_godkendt','{$dato_oprettet}', 'oprettet af bestyrrelsen')";
+          $query = "INSERT INTO medlemmer(brugernavn, password, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona, flag_status, bruger_rolle, bruger_status, dato_oprettet, app_status) VALUES('{$brugernavn}', '{$password}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}', 1,'ikke godkendt','ikke godkendt','{$dato_oprettet}', 'oprettet af bestyrrelsen')";
 
           $create_user_query = mysqli_query($conn, $query);
 
           if(!$create_user_query) {
             die("Query Failed: " . mysqli_error($conn));
           } else {
-            $message = urlencode("success");
-            header("Location: medlemmer.php?message=".$message);
+            $message = urlencode("success_add_member");
+            header("Location: index.php?message=".$message);
             die;
           }
         }
@@ -149,20 +149,6 @@
           <div class="input-field col s12 m6">
             <input id="telefon" required="required" type="tel" class="validate" name="telefon" value="<?php if(isset($telefon)){echo $telefon;} ?>">
             <label for="telefon">Telefon nummer</label>
-          </div>
-          <div class="input-field col s12 m6">
-            <input id="password" required type="password" class="validate password" name="password" minlength="8">
-            <ul class="helper-text">
-                <li class="length">Mindst 8 bogstaver.</li>
-                <li class="lowercase">Skal indeholde et lille bogstav.</li>
-                <li class="uppercase">Skal indeholde et stort bogstav.</li>
-                <li class="special">Skal indeholde et tal eller et tegn (!, #, ?, %).</li>
-            </ul>
-            <label for="password">Kodeord</label>
-          </div>
-          <div class="input-field col s12 m6">
-            <input id="password_validate" required="required" type="password" class="validate" name="password_validate" minlength="8">
-            <label for="password_validate">Gentag kodeord</label>
           </div>
           <div class="input-field col s12">
             <input id="adresse" required="required" type="text" class="validate" name="adresse" value="<?php if(isset($adresse)){echo $adresse;} ?>">
