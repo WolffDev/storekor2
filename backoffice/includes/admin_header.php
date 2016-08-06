@@ -18,8 +18,8 @@ if($_SESSION['logged_in'] != true) {
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <link href="../css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="../css/style.css" rel="stylesheet"/>
-    <link href="css/admin_style.css" rel="stylesheet"/>
     <link href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.css" rel="stylesheet"/>
+    <link href="css/admin_style.css" rel="stylesheet"/>
     <!-- ****** SCRIPTS ******-->
     </script>
     <script src="../js/min/jquery2.1.1.min.js"></script>

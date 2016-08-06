@@ -53,6 +53,9 @@
 				var dataTable = $('#medlemmer_table').DataTable( {
 					"processing": false,
 					"serverSide": true,
+          'iDisplayLength': 150,
+          'bLengthChange': false,
+          "sPaginationType": "full_numbers",
 					"ajax":{
 						url :"includes/medlemmer_data.php", // json datasource
 						type: "post",  // method  , by default get
@@ -62,7 +65,10 @@
 							$("#employee-grid_processing").css("display","none");
 
 						}
-					}
+					},
 				} );
+        $('#medlemmer_table_paginate').hide();
+        $('#medlemmer_table_filter label input').appendTo('#medlemmer_table_filter');
+        $('#medlemmer_table_filter label').appendTo('#medlemmer_table_filter');
 			} );
 		</script>

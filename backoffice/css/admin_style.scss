@@ -19,3 +19,21 @@
   color: $secondary-color;
   padding: 0 20px;
 }
+
+#medlemmer_table_wrapper {
+  overflow-x: scroll;
+  #medlemmer_table_filter {
+    position: relative;
+    margin: 20px auto;
+    width: 150px;
+    float: none;
+    input[type="search"] {
+      height: 2rem;
+    }
+    label {
+      position: absolute;
+      top: 11px;
+      left: -44px;
+    }
+  }
+}

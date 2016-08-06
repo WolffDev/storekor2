@@ -19,7 +19,7 @@
       </div>
       <ul id="nav-mobile" class="side-nav fixed">
         <ul class="collapsible collapsible-accordion">
-          <li><a href="./"><i class="material-icons left">home</i>Forside</a></li>
+          <li><a href="./"><i class="material-icons left">home</i>Status oversigt</a></li>
           <li><a href="#!" class="collapsible-header  waves-effect waves-teal"><i class="material-icons left">account_box</i>Alle Medlemmer</a>
             <div class="div collapsible-body">
               <ul>

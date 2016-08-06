@@ -131,7 +131,7 @@
 
   <section>
     <div class="row">
-      <div class="col s12"><h5>Oplysninger på det nye medlem.<br>Husk at godkende det nye medlem du opretter, under "Se alle medlemmer".</h5></div>
+      <div class="col s12"><h5>Indtadt oplysningerne til det nye medlem.<br>Husk at godkende det nye medlem du opretter, under "Se alle medlemmer".</h5></div>
       <form class="col s12" action="" method="post" autocomplete="on" id="registration">
         <div class="row">
           <div class="input-field col s12 m6">
