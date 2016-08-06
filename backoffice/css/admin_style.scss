@@ -21,7 +21,12 @@
 }
 
 #medlemmer_table_wrapper {
+  margin: 10px 15px 0;
   overflow-x: scroll;
+  .dataTables_empty {
+    background-color: $primary-color;
+    color: white;
+  }
   #medlemmer_table_filter {
     position: relative;
     margin: 20px auto;
@@ -33,7 +38,7 @@
     label {
       position: absolute;
       top: 11px;
-      left: -44px;
+      left: -85px;
     }
   }
 }

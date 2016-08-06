@@ -56,6 +56,13 @@
           'iDisplayLength': 150,
           'bLengthChange': false,
           "sPaginationType": "full_numbers",
+          "dom": '<"top"i>rft',
+          "language": {
+            "search": "Indtast søgeord:",
+            "zeroRecords": "Der blev ikke fundet noget på det du søgte efter - prøv igen.",
+            "info": "Viser _TOTAL_ medlemmer",
+            "infoFiltered": "(filtreret fra _MAX_ medlemmer)",
+          },
 					"ajax":{
 						url :"includes/medlemmer_data.php", // json datasource
 						type: "post",  // method  , by default get
