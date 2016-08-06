@@ -1,7 +1,8 @@
-<table class="" id="medlemmer_table">
+<table class="striped" id="medlemmer_table">
   <thead>
     <tr>
-      <th data-field="id">Fornavn</th>
+      <th data-field="id">Id</th>
+      <th data-field="id">Navn</th>
       <th data-field="id">Efternavn</th>
       <th data-field="price">Brugernavn</th>
       <th data-field="id">Telefon</th>
@@ -10,6 +11,7 @@
       <th data-field="id">Status</th>
       <th data-field="id">Tilmeldt</th>
       <th data-field="id">Nye tilmeldinger</th>
+      <th data-field="id">Alder</th>
     </tr>
   </thead>
 
@@ -73,6 +75,16 @@
 
 						}
 					},
+          "columnDefs": [
+            {
+              "render": function ( data, type, row ) {
+                    return '<a href="medlemmer.php?action=edit_member&id=' + row[0] + '">' + data +' '+ row[2] + ' ' + '</a> (' + row[10] + ' år)';
+                },
+                "targets": 1
+            },
+            { "visible": false,  "targets": [ 0, 2, 10 ] }
+          ],
+          "fixedHeader": true
 				} );
         $('#medlemmer_table_paginate').hide();
         $('#medlemmer_table_filter label input').appendTo('#medlemmer_table_filter');

@@ -16,19 +16,21 @@ $requestData= $_REQUEST;
 
 $columns = array(
 // datatable column index  => database column name
-	0 => 'fornavn',
-	1 => 'efternavn',
-	2 => 'brugernavn',
-  3 => 'telefon',
-  4 => 'stemme',
-  5 => 'bruger_rolle',
-  6 => 'bruger_status',
-  7 => 'dato_oprettet',
-  8 => 'app_status'
+  0 => 'id',
+	1 => 'fornavn',
+	2 => 'efternavn',
+	3 => 'brugernavn',
+  4 => 'telefon',
+  5 => 'stemme',
+  6 => 'bruger_rolle',
+  7 => 'bruger_status',
+  8 => 'dato_oprettet',
+  9 => 'app_status',
+  10 => 'alder'
 );
 
 // getting total number records without any search
-$sql = "SELECT fornavn, efternavn, brugernavn, telefon, stemme, bruger_rolle, bruger_status, dato_oprettet, app_status ";
+$sql = "SELECT id, fornavn, efternavn, brugernavn, telefon, stemme, bruger_rolle, bruger_status, dato_oprettet, app_status ";
 $sql.=" FROM medlemmer";
 $query=mysqli_query($conn, $sql) or die("medlemmer_data.php: get medlemmer");
 $totalData = mysqli_num_rows($query);
@@ -37,7 +39,7 @@ $totalFiltered = $totalData;  // when there is no search parameter then total nu
 
 if( !empty($requestData['search']['value']) ) {
 	// if there is a search parameter
-	$sql = "SELECT fornavn, efternavn, brugernavn, telefon, stemme, bruger_rolle, bruger_status, dato_oprettet, app_status ";
+	$sql = "SELECT id, fornavn, efternavn, brugernavn, telefon, stemme, bruger_rolle, bruger_status, dato_oprettet, app_status, alder ";
 	$sql.=" FROM medlemmer";
 	$sql.=" WHERE fornavn LIKE '".$requestData['search']['value']."%' ";    // $requestData['search']['value'] contains search parameter
 	$sql.=" OR efternavn LIKE '".$requestData['search']['value']."%' ";
@@ -51,14 +53,14 @@ if( !empty($requestData['search']['value']) ) {
 	$query=mysqli_query($conn, $sql) or die("medlemmer_data.php: get medlemmer");
 	$totalFiltered = mysqli_num_rows($query); // when there is a search parameter then we have to modify total number filtered rows as per search result without limit in the query
 
-	$sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]."   ".$requestData['order'][0]['dir']."   LIMIT ".$requestData['start']." ,".$requestData['length']."   "; // $requestData['order'][0]['column'] contains colmun index, $requestData['order'][0]['dir'] contains order such as asc/desc , $requestData['start'] contains start row number ,$requestData['length'] contains limit length.
+	$sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]."   ".$requestData['order'][0]['dir']." LIMIT ".$requestData['start']." ,".$requestData['length']."   "; // $requestData['order'][0]['column'] contains colmun index, $requestData['order'][0]['dir'] contains order such as asc/desc , $requestData['start'] contains start row number ,$requestData['length'] contains limit length.
 	$query=mysqli_query($conn, $sql) or die("medlemmer_data.php: get medlemmer"); // again run query with limit
 
 } else {
 
-	$sql = "SELECT fornavn, efternavn, brugernavn, telefon, stemme, bruger_rolle, bruger_status, dato_oprettet, app_status ";
+	$sql = "SELECT id, fornavn, efternavn, brugernavn, telefon, stemme, bruger_rolle, bruger_status, dato_oprettet, app_status, alder ";
 	$sql.=" FROM medlemmer";
-	$sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]."   ".$requestData['order'][0]['dir']."   LIMIT ".$requestData['start']." ,".$requestData['length']."   ";
+	$sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]."   ".$requestData['order'][0]['dir']." LIMIT ".$requestData['start']." ,".$requestData['length']."   ";
 	$query=mysqli_query($conn, $sql) or die("medlemmer_data.php: get medlemmer");
 
 }
@@ -71,8 +73,12 @@ while( $row=mysqli_fetch_array($query) ) {  // preparing an array
   $date = date_create($dato_oprettet);
   $date_show = date_format($date, 'd\. M - Y');
 
+  $tid = strtotime($row["alder"]);
+  $alder_nu = floor(((time()- $tid)  /(3600 * 24 * 365)));
+
 	$nestedData=array();
 
+  $nestedData[] = $row["id"];
 	$nestedData[] = $row["fornavn"];
 	$nestedData[] = $row["efternavn"];
 	$nestedData[] = $row["brugernavn"];
@@ -82,6 +88,7 @@ while( $row=mysqli_fetch_array($query) ) {  // preparing an array
   $nestedData[] = $row["bruger_status"];
 	$nestedData[] = $date_show;
 	$nestedData[] = $row["app_status"];
+  $nestedData[] = $alder_nu;
 
 	$data[] = $nestedData;
 }
