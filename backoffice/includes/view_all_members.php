@@ -15,7 +15,7 @@ if(!isset($_SESSION['bruger_status']) || $_SESSION['bruger_status'] == 'ikke god
       <th data-field="id">Rolle</th>
       <th data-field="id">Status</th>
       <th data-field="id">Tilmeldt</th>
-      <th data-field="id">Nye tilmeldinger</th>
+      <th data-field="id">Tilmelding</th>
       <th data-field="id">Alder</th>
     </tr>
   </thead>
@@ -47,7 +47,7 @@ if(!isset($_SESSION['bruger_status']) || $_SESSION['bruger_status'] == 'ikke god
       //   $date = date_create($dato_oprettet);
       //   $date_show = date_format($date, 'd\. M - Y');
       //   echo "<td>$date_show</td>";
-      //   if($app_status == 'ny' || $app_status == 'oprettet af bestyrrelsen') {
+      //   if($app_status == 'ny' || $app_status == 'oprettet af bestyrelsen') {
       //     echo "<td>$app_status</td>";
       //   }
       //   echo "<tr>";

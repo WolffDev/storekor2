@@ -37,11 +37,14 @@
     float: none;
     input[type="search"] {
       height: 2rem;
+      position: relative;
+      top: 17px;
     }
     label {
       position: absolute;
-      top: 11px;
-      left: -85px;
+      top: 18px;
+      left: -135px;
+      font-size: 18px;
     }
   }
 }
