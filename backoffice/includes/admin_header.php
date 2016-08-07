@@ -25,5 +25,9 @@ if($_SESSION['logged_in'] != true) {
     <script src="js/dataTables.js"></script>
     <script src="../js/materialize.js"></script>
     <script src="js/dataTables.fixedHeader.min.js"></script>
+    <script src="js/dataTables.checkboxes.min.js"></script>
+    <script src="js/script.js">
+
+    </script>
   </head>
   <body class="admin-area">

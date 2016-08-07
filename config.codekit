@@ -210,6 +210,17 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/backoffice\/js\/dataTables.checkboxes.min.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/backoffice\/js\/dataTables.checkboxes.min.js",
+		"outputAbbreviatedPath": "\/backoffice\/js\/min\/dataTables.checkboxes.min-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/backoffice\/js\/dataTables.fixedHeader.min.js": {
 		"fileType": 64,
 		"ignore": 0,
@@ -227,6 +238,28 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/backoffice\/js\/dataTables.js",
 		"outputAbbreviatedPath": "\/backoffice\/js\/min\/dataTables-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/backoffice\/js\/min\/script-min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/backoffice\/js\/min\/script-min.js",
+		"outputAbbreviatedPath": "\/backoffice\/js\/min\/min\/script-min-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/backoffice\/js\/script.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/backoffice\/js\/script.js",
+		"outputAbbreviatedPath": "\/backoffice\/js\/min\/script-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
