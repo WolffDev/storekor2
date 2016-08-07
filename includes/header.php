@@ -1,4 +1,9 @@
 <?php session_start(); ?>
+<?php
+  if(!isset($_SESSION['logged_in'])) {
+    $_SESSION['logged_in'] = 'false';
+  }
+  ?>
 <?php ob_start(); ?>
 <?php include "backoffice/includes/db.php"; ?>
 <?php include "backoffice/functions.php"; ?>
