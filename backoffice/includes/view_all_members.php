@@ -2,8 +2,73 @@
 if(!isset($_SESSION['bruger_status']) || $_SESSION['bruger_status'] == 'ikke godkendt') {
   header("Location: ../index.php");
 }
+
+  if(isset($_POST['checkBoxArray'])) {
+    foreach($_POST['checkBoxArray'] as $checkbox_member_id) {
+      $bulk_options = $_POST['bulk_options'];
+
+      switch ($bulk_options) {
+        case 'formand':
+          $query = "UPDATE medlemmer SET bruger_rolle = '{$bulk_options}' WHERE id = '{$checkbox_member_id}'";
+          $update = mysqli_query($conn, $query);
+          break;
+        case 'bestyrelsen':
+          $query = "UPDATE medlemmer SET bruger_rolle = '{$bulk_options}' WHERE id = '{$checkbox_member_id}'";
+          $update = mysqli_query($conn, $query);
+          break;
+        case 'dirigent':
+          $query = "UPDATE medlemmer SET bruger_rolle = '{$bulk_options}' WHERE id = '{$checkbox_member_id}'";
+          $update = mysqli_query($conn, $query);
+          break;
+        case 'sanger':
+          $query = "UPDATE medlemmer SET bruger_rolle = '{$bulk_options}' WHERE id = '{$checkbox_member_id}'";
+          $update = mysqli_query($conn, $query);
+          break;
+        case 'aktiv':
+          $query = "UPDATE medlemmer SET bruger_status = '{$bulk_options}' WHERE id = '{$checkbox_member_id}'";
+          $update = mysqli_query($conn, $query);
+          break;
+        case 'orlov':
+          $query = "UPDATE medlemmer SET bruger_status = '{$bulk_options}' WHERE id = '{$checkbox_member_id}'";
+          $update = mysqli_query($conn, $query);
+          break;
+        case 'godkendt':
+          $query = "UPDATE medlemmer SET app_status = '{$bulk_options}' WHERE id = '{$checkbox_member_id}'";
+          $update = mysqli_query($conn, $query);
+
+          $query1 = "UPDATE medlemmer SET bruger_status = 'aktiv' WHERE id = '{$checkbox_member_id}'";
+          $update1 = mysqli_query($conn, $query1);
+
+          $query1 = "UPDATE medlemmer SET bruger_rolle = 'sanger' WHERE id = '{$checkbox_member_id}'";
+          $update1 = mysqli_query($conn, $query1);
+          break;
+        case 'delete':
+          $query = "DELETE FROM medlemmer WHERE id = '{$checkbox_member_id}'";
+          $delete = mysqli_query($conn, $query);
+          break;
+      }
+    }
+  }
 ?>
 <form class="" action="" method="post">
+  <div class="row">
+    <div id="bulkOptionContainer" class="col s12 m3">
+      <select class="form-control" name="bulk_options">
+        <option disabled selected value="">Vælg handling</option>
+        <option value="formand">Sæt formand</option>
+        <option value="bestyrelsen">Sæt bestyrelse medlem</option>
+        <option value="dirigent">Sæt dirigent</option>
+        <option value="sanger">Sæt medlem til sanger</option>
+        <option value="aktiv">Sæt medlem aktiv</option>
+        <option value="orlov">Sæt medlem orlov</option>
+        <option value="godkendt">Sæt til godkendt</option>
+        <option value="delete">Slet medlem</option>
+      </select>
+    </div>
+    <div class="col s12 m4">
+      <button class="btn waves-effect waves-light" type="submit" name="submit">Opdater</button>
+    </div>
+  </div>
   <table class="striped" id="medlemmer_table">
     <thead>
       <tr>
@@ -66,7 +131,7 @@ if(!isset($_SESSION['bruger_status']) || $_SESSION['bruger_status'] == 'ikke god
           'iDisplayLength': 150,
           'bLengthChange': false,
           "sPaginationType": "full_numbers",
-          "dom": '<"row form-accept"<"col s12 m5"f>><"top"i>t',
+          "dom": '<"row valign-wrapper"<"col s12 m6"f><"col s12 m6"i>>t',
           "language": {
             "search": "Indtast søgeord:",
             "zeroRecords": "Der blev ikke fundet noget på det du søgte efter - prøv igen.",
@@ -114,10 +179,5 @@ if(!isset($_SESSION['bruger_status']) || $_SESSION['bruger_status'] == 'ikke god
           var table= $(e.target).closest('table');
           $('td input:checkbox',table).prop('checked',this.checked);
         });
-
-
-        $('<div id="bulkOptionContainer" class="col s12 m3"><select class="form-control" name="bulk_options"><option disabled selected value="">Vælg handling</option><option value="Published">Publish</option><option value="Draft">Draft</option><option value="delete">Delete</option><option value="clone">Clone</option></select></div><div class="col s12 m4"><button class="btn waves-effect waves-light" type="submit" name="submit">Opdater</button>').prependTo('#medlemmer_table_wrapper .form-accept');
-
-
 			}); // <---- Document.ready END
 		</script>

@@ -41,10 +41,11 @@
       }
     }
     label {
-      position: absolute;
-      top: 18px;
-      left: -135px;
+      position: relative;;
       font-size: 18px;
+      &:focus {
+        transform: translateY(-140%)
+      }
     }
 
   }
