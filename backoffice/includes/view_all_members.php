@@ -1,8 +1,10 @@
-<?php if (session_status() === PHP_SESSION_NONE){session_start();}
-if(!isset($_SESSION['bruger_status']) || $_SESSION['bruger_status'] == 'ikke godkendt') {
-  header("Location: ../index.php");
-}
-
+<?php
+  if (session_status() === PHP_SESSION_NONE){session_start();}
+  if(!isset($_SESSION['bruger_status']) || $_SESSION['bruger_status'] == 'ikke godkendt') {
+    header("Location: ../index.php");
+  }
+?>
+<?php
   if(isset($_POST['checkBoxArray'])) {
     foreach($_POST['checkBoxArray'] as $checkbox_member_id) {
       $bulk_options = $_POST['bulk_options'];
@@ -151,7 +153,7 @@ if(!isset($_SESSION['bruger_status']) || $_SESSION['bruger_status'] == 'ikke god
           "columnDefs": [
             {
               "render": function ( data, type, row ) {
-                    return '<a href="medlemmer.php?action=edit_member&id=' + row[0] + '">' + data +' '+ row[2] + ' ' + '</a> (' + row[10] + ' år)';
+                    return '<a href="medlemmer.php?action=view&id=' + row[0] + '">' + data +' '+ row[2] + ' ' + '</a> (' + row[10] + ' år)';
                 },
               "targets": 1,
 

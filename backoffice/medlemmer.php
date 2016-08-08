@@ -6,8 +6,6 @@
   <?php
     if(isset($_GET['action'])) {
       $action = $_GET['action'];
-    } else {
-      $action = '';
     }
 
     switch($action) {
@@ -17,7 +15,7 @@
       case 'add_member':
         include "includes/add_member.php";
         break;
-      case 'edit_member':
+      case 'view':
         include "includes/edit_member.php";
         break;
       default:

@@ -14,6 +14,7 @@
       die("Query failed: ". mysqli_error($conn));
     } else {
       while($row = mysqli_fetch_array($select_user_query)) {
+        $user_id = $row['id'];
         $brugernavn = $row['brugernavn'];
         $db_password = $row['password'];
         $fornavn = $row['fornavn'];
@@ -28,7 +29,7 @@
       }
       if(password_verify($password, $db_password)) {
 
-
+        $_SESSION['user_id'] = $user_id;
         $_SESSION['brugernavn'] = $brugernavn;
         $_SESSION['fornavn'] = $fornavn;
         $_SESSION['efternavn'] = $efternavn;
