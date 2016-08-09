@@ -1,4 +1,10 @@
 <?php
+  if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION['bruger_status'] == 'ikke godkendt') {
+    header("Location: ../../index.php");
+    exit();
+  };
+?>
+<?php
   if(isset($_POST['optag_form'])) {
     $fornavn = escape($_POST['fornavn']);
     $efternavn = escape($_POST['efternavn']);

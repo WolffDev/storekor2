@@ -7,13 +7,19 @@
 
 @media #{$large-and-up} {
   .admin-area {
-    padding-left: 300px;
+    padding-left: 250px;
     .admin-area {
       padding: 0 20px;
     }
   }
 }
 .admin-main {
+  .card.large .card-content,
+   .card.medium .card-content,
+   .card.small .card-content {
+    overflow: scroll;
+    padding: 5px 20px 5px;
+  }
 }
 .nav-wrapper {
   color: $secondary-color;

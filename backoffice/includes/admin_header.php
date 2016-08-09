@@ -3,9 +3,10 @@
 <?php include "db.php"; ?>
 <?php include "functions.php"; ?>
 <?php
-if($_SESSION['logged_in'] != true) {
+  if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION['bruger_status'] == 'ikke godkendt') {
     header("Location: ../../index.php");
-}
+    exit();
+  }
 ?>
 <!DOCTYPE html>
 <html lang="dk">

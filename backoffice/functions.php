@@ -17,5 +17,10 @@
     return $datetime->format('Y\-m\-d\ h:i:s');
   }
 
+  function alderNu($alder) {
+    $tid = strtotime($alder);
+    return $alder_nu = floor(((time()- $tid)  /(3600 * 24 * 365)));
+  }
+
 
 ?>
