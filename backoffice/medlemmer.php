@@ -6,6 +6,8 @@
   <?php
     if(isset($_GET['action'])) {
       $action = $_GET['action'];
+    } else {
+      header("Location: medlemmer.php?action=view_all");
     }
 
     switch($action) {
@@ -16,6 +18,9 @@
         include "includes/add_member.php";
         break;
       case 'view':
+        include "includes/view_member.php";
+        break;
+      case 'edit':
         include "includes/edit_member.php";
         break;
       default:

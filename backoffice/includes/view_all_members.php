@@ -11,19 +11,19 @@
 
       switch ($bulk_options) {
         case 'formand':
-          $query = "UPDATE medlemmer SET bruger_rolle = '{$bulk_options}' WHERE id = '{$checkbox_member_id}'";
+          $query = "UPDATE medlemmer SET bruger_rolle = '{$bulk_options}', auth = '1' WHERE id = '{$checkbox_member_id}'";
           $update = mysqli_query($conn, $query);
           break;
         case 'bestyrelsen':
-          $query = "UPDATE medlemmer SET bruger_rolle = '{$bulk_options}' WHERE id = '{$checkbox_member_id}'";
+          $query = "UPDATE medlemmer SET bruger_rolle = '{$bulk_options}', auth = '2' WHERE id = '{$checkbox_member_id}'";
           $update = mysqli_query($conn, $query);
           break;
         case 'dirigent':
-          $query = "UPDATE medlemmer SET bruger_rolle = '{$bulk_options}' WHERE id = '{$checkbox_member_id}'";
+          $query = "UPDATE medlemmer SET bruger_rolle = '{$bulk_options}', auth = '3' WHERE id = '{$checkbox_member_id}'";
           $update = mysqli_query($conn, $query);
           break;
         case 'sanger':
-          $query = "UPDATE medlemmer SET bruger_rolle = '{$bulk_options}' WHERE id = '{$checkbox_member_id}'";
+          $query = "UPDATE medlemmer SET bruger_rolle = '{$bulk_options}', auth = '4' WHERE id = '{$checkbox_member_id}'";
           $update = mysqli_query($conn, $query);
           break;
         case 'aktiv':
@@ -38,7 +38,7 @@
           $query = "UPDATE medlemmer SET app_status = '{$bulk_options}' WHERE id = '{$checkbox_member_id}'";
           $update = mysqli_query($conn, $query);
 
-          $query1 = "UPDATE medlemmer SET bruger_status = 'aktiv' WHERE id = '{$checkbox_member_id}'";
+          $query1 = "UPDATE medlemmer SET bruger_status = 'aktiv', auth = '4' WHERE id = '{$checkbox_member_id}'";
           $update1 = mysqli_query($conn, $query1);
 
           $query1 = "UPDATE medlemmer SET bruger_rolle = 'sanger' WHERE id = '{$checkbox_member_id}'";
@@ -52,8 +52,24 @@
     }
   }
 ?>
-<form class="" action="" method="post">
+<?php
+  if(isset($_GET['message'])) {
+    if ($_GET['message'] === 'success_edit_member') {
+      $edit_name = escape($_GET['edit_name']); ?>
+      <div class="container">
+        <div class="row teal">
+          <div class="col s12 center white-text bold">
+            <p>
+              <?php echo $edit_name; ?> er blevet opdateret.
+            </p>
+          </div>
+        </div>
+      </div>
+    <?php } ?>
+  <?php } ?>
+<form class="view-all-members" action="" method="post">
   <div class="row">
+    <div class="col m3"></div>
     <div id="bulkOptionContainer" class="col s12 m3">
       <select class="form-control" name="bulk_options">
         <option disabled selected value="">Vælg handling</option>
@@ -67,9 +83,10 @@
         <option value="delete">Slet medlem</option>
       </select>
     </div>
-    <div class="col s12 m4">
+    <div class="col s12 m3">
       <button class="btn waves-effect waves-light" type="submit" name="submit">Opdater</button>
     </div>
+    <div class="col m3"></div>
   </div>
   <table class="striped" id="medlemmer_table">
     <thead>
@@ -133,7 +150,7 @@
           'iDisplayLength': 150,
           'bLengthChange': false,
           "sPaginationType": "full_numbers",
-          "dom": '<"row valign-wrapper"<"col s12 m6"f><"col s12 m6"i>>t',
+          "dom": 'fti',
           "language": {
             "search": "Indtast søgeord:",
             "zeroRecords": "Der blev ikke fundet noget på det du søgte efter - prøv igen.",
@@ -153,7 +170,7 @@
           "columnDefs": [
             {
               "render": function ( data, type, row ) {
-                    return '<a href="medlemmer.php?action=view&id=' + row[0] + '">' + data +' '+ row[2] + ' ' + '</a> (' + row[10] + ' år)';
+                    return '<a href="medlemmer.php?action=view&id=' + row[0] + '">' + data +' '+ row[2] + ' ' + '</a>';
                 },
               "targets": 1,
 

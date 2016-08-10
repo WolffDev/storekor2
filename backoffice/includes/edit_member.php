@@ -5,11 +5,10 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
 }
 ?>
 <?php
-  if(isset($_POST['optag_form'])) {
+  if(isset($_POST['edit_form'])) {
+    $user_id = $_GET['id'];
     $fornavn = escape($_POST['fornavn']);
     $efternavn = escape($_POST['efternavn']);
-    $password = 'Storekor123';
-    $password_validate = 'Storekor123';
     $adresse = escape($_POST['adresse']);
     $postnr = escape($_POST['postnr']);
     $bynavn = escape($_POST['bynavn']);
@@ -32,36 +31,34 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
     $alder_nu = floor(((time()- $tid)  /(3600 * 24 * 365)));
 
     if(!empty($fornavn) && !empty($email) && !empty($efternavn)) {
-      $query = "SELECT * FROM medlemmer WHERE brugernavn = '$brugernavn'";
-      $check_conn = mysqli_query($conn, $query);
-      $count = mysqli_num_rows($check_conn);
-      if($count == 0) {
-        $query = "INSERT INTO medlemmer(brugernavn, password, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona, bruger_rolle, bruger_status, dato_oprettet, app_status, auth) VALUES('{$brugernavn}', '{$password}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}','ikke godkendt','ikke godkendt','{$dato_oprettet}','oprettet af bestyrelsen', 5)";
+      $query = "UPDATE medlemmer SET ";
+      $query .="brugernavn = '{$brugernavn}', ";
+      $query .="efternavn = '{$efternavn}', ";
+      $query .="adresse = '{$adresse}', ";
+      $query .="postnr = '{$postnr}', ";
+      $query .="email = '{$email}', ";
+      $query .="telefon = '{$telefon}', ";
+      $query .="alder = '{$alder}', ";
+      $query .="stemme = '{$stemme}', ";
+      $query .="erfaring = '{$erfaring}', ";
+      $query .="kor_type = '{$kor_type}', ";
+      $query .="job = '{$job}', ";
+      $query .="relate = '{$relate}', ";
+      $query .="persona = '{$persona}', ";
+      $query .="dato_oprettet = '{$dato_oprettet}' ";
+      $query .="WHERE id = {$user_id} ";
 
-        $create_user_query = mysqli_query($conn, $query);
-
-        if(!$create_user_query) {
-          die("Query Failed: " . mysqli_error($conn));
-        } else {
-          $message = urlencode("success_add_member");
-          header("Location: index.php?message=".$message);
-          mysqli_close($conn);
-        }
+      $create_user_query = mysqli_query($conn, $query);
+      if(!$create_user_query) {
+        die("Query Failed123: " . mysqli_error($conn));
       } else {
-        $query = "INSERT INTO medlemmer(brugernavn, password, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona, flag_status, bruger_rolle, bruger_status, dato_oprettet, app_status, auth) VALUES('{$brugernavn}', '{$password}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}', 1,'ikke godkendt','ikke godkendt','{$dato_oprettet}', 'oprettet af bestyrelsen', 5)";
-
-        $create_user_query = mysqli_query($conn, $query);
-
-        if(!$create_user_query) {
-          die("Query Failed: " . mysqli_error($conn));
-        } else {
-          $message = urlencode("success_add_member");
-          header("Location: index.php?message=".$message);
-          die;
-        }
+        $message = urlencode("success_edit_member");
+        $edit_name = urlencode($fornavn . " " . $efternavn);
+        header("Location: medlemmer.php?action=view_all&message=" . $message . "&edit_name=" . $edit_name);
+        die;
       }
     } else {
-      $login_fail = "Du mangler at udfylde nogle felter der er påkrævet.<br>Udfyld venligst alle de vigtie felter.";
+      $update_fail = "Du mangler at udfylde nogle felter der er påkrævet.<br>Udfyld venligst alle de vigtie felter.";
       $fornavn = escape($_POST['fornavn']);
       $efternavn = escape($_POST['efternavn']);
       $adresse = escape($_POST['adresse']);
@@ -81,30 +78,53 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
   }
 ?>
 
+<?php
+  if(isset($_GET['id'])) {
+    $user_id = escape($_GET['id']);
+  } else {
+    header("Location: ../medlemmer.php?action=view_all");
+  }
 
+  $query = "SELECT * FROM medlemmer WHERE id = $user_id";
+  $select_users_query = mysqli_query($conn,$query);
+    while($row = mysqli_fetch_assoc($select_users_query)) {
+
+        $brugernavn     = $row['brugernavn'];
+        $fornavn        = $row['fornavn'];
+        $efternavn      = $row['efternavn'];
+        $adresse        = $row['adresse'];
+        $postnr         = $row['postnr'];
+        $bynavn         = $row['bynavn'];
+        $email          = $row['email'];
+        $telefon        = $row['telefon'];
+        $alder          = $row['alder'];
+        $stemme         = $row['stemme'];
+        $erfaring       = $row['erfaring'];
+        $kor_type       = $row['kor_type'];
+        $job            = $row['job'];
+        $relate         = $row['relate'];
+        $persona        = $row['persona'];
+        $bruger_rolle   = $row['bruger_rolle'];
+        $bruger_status  = $row['bruger_status'];
+        $dato_oprettet  = $row['dato_oprettet'];
+        $app_status     = $row['app_status'];
+        $profil_billede = $row['profil_billede'];
+
+    }
+
+    if($profil_billede == '') {
+      $profil_billede = 'images/placeholder-user.png';
+    }
+?>
 
 <div class="container">
   <section>
     <div class="row">
       <?php
-        if(isset($human_error)) {
+        if(isset($update_fail)) {
           echo "<div class='col s12'>";
           echo "<p class='red-text'>";
-          echo $human_error;
-          echo "</p>";
-          echo "</div>";
-        }
-        if(isset($login_fail)) {
-          echo "<div class='col s12'>";
-          echo "<p class='red-text'>";
-          echo $login_fail;
-          echo "</p>";
-          echo "</div>";
-        }
-        if(isset($password_fail)) {
-          echo "<div class='col s12'>";
-          echo "<p class='red-text'>";
-          echo $password_fail;
+          echo $update_fail;
           echo "</p>";
           echo "</div>";
         }
@@ -204,7 +224,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
         <div class="row"></div>
       </div>
       <div class="row center">
-        <button class="btn waves-effect waves-light" type="submit" name="optag_form">Tilføj nyt medlem<i class="material-icons right">send</i>
+        <button class="btn waves-effect waves-light" type="submit" name="edit_form">Opdater medlem<i class="material-icons right">send</i>
         </button>
       </div>
     </form>

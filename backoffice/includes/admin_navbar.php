@@ -1,3 +1,9 @@
+<?php
+  if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION['bruger_status'] == 'ikke godkendt') {
+    header("Location: ../../index.php");
+    exit();
+  }
+?>
 <div class="navbar">
   <nav role="navigation" class="white">
     <div class="nav-wrapper">
@@ -20,10 +26,10 @@
       <ul id="nav-mobile" class="side-nav fixed">
         <ul class="collapsible collapsible-accordion">
           <li><a href="./"><i class="material-icons left">home</i>Status oversigt</a></li>
-          <li><a href="#!" class="collapsible-header  waves-effect waves-teal"><i class="material-icons left">account_box</i>Alle Medlemmer</a>
+          <li><a href="#!" class="collapsible-header  waves-effect waves-teal"><i class="material-icons left">account_box</i>Medlemmer</a>
             <div class="div collapsible-body">
               <ul>
-                <li><a href="medlemmer.php?action=view_all"><i class="material-icons left">supervisor_account</i>Se alle medlemmer</a></li>
+                <li><a href="medlemmer.php?action=view_all"><i class="material-icons left">supervisor_account</i>Se medlemmer</a></li>
                 <li><a href="medlemmer.php?action=add_member"><i class="material-icons left">person_add</i>Tilføj nyt medlem</a></li>
               </ul>
             </div>
