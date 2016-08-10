@@ -29,7 +29,7 @@
           <li><a href="#!" class="collapsible-header  waves-effect waves-teal"><i class="material-icons left">account_box</i>Medlemmer</a>
             <div class="div collapsible-body">
               <ul>
-                <li><a href="medlemmer.php?action=view_all"><i class="material-icons left">supervisor_account</i>Se alle medlemmer</a></li>
+                <li><a href="medlemmer.php?action=view_all"><i class="material-icons left">supervisor_account</i>Se medlemmer</a></li>
                 <li><a href="medlemmer.php?action=add_member"><i class="material-icons left">person_add</i>Tilføj nyt medlem</a></li>
               </ul>
             </div>

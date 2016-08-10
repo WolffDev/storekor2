@@ -5,7 +5,7 @@
 
 <?php
   if(isset($_POST['optag_form'])) {
-    if(isset($_POST["captcha"]) && $_POST["captcha"]!="" && $_SESSION["code"]==$_POST["captcha"]) {
+    if(isset($_POST["captcha"]) && $_POST["captcha"]!="" && $_SESSION["code"] == $_POST["captcha"]) {
       $fornavn = escape($_POST['fornavn']);
       $efternavn = escape($_POST['efternavn']);
       $password = escape($_POST['password']);

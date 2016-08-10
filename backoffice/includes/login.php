@@ -21,6 +21,7 @@
         $efternavn = $row['efternavn'];
         $bruger_status = $row['bruger_status'];
         $bruger_rolle = $row['bruger_rolle'];
+        $auth = $row['auth'];
       }
       if($bruger_status === 'ikke godkendt') {
         $message = urlencode("unapproved");
@@ -36,6 +37,7 @@
         $_SESSION['bruger_status'] = $bruger_status;
         $_SESSION['bruger_rolle'] = $bruger_rolle;
         $_SESSION['logged_in'] = 'true';
+        $_SESSION['auth'] = $auth;
 
         header("Location: ../");
 

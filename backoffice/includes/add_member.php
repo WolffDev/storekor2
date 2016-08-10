@@ -1,8 +1,8 @@
 <?php
-  if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION['bruger_status'] == 'ikke godkendt') {
-    header("Location: ../../index.php");
-    exit();
-  };
+if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION['auth'] > 2){
+  header("Location: ../../index.php");
+  exit();
+}
 ?>
 <?php
   if(isset($_POST['optag_form'])) {
@@ -31,56 +31,34 @@
     // omregner alderen fra database til et tal.
     $alder_nu = floor(((time()- $tid)  /(3600 * 24 * 365)));
 
-    if(!empty($fornavn) && !empty($email) && !empty($efternavn) && !empty($password)) {
-      if(($password == $password_validate)) {
-        $password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 10));
-        $query = "SELECT * FROM medlemmer WHERE brugernavn = '$brugernavn'";
-        $check_conn = mysqli_query($conn, $query);
-        $count = mysqli_num_rows($check_conn);
-        if($count == 0) {
-          $query = "INSERT INTO medlemmer(brugernavn, password, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona, bruger_rolle, bruger_status, dato_oprettet, app_status) VALUES('{$brugernavn}', '{$password}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}','ikke godkendt','ikke godkendt','{$dato_oprettet}','oprettet af bestyrelsen')";
+    if(!empty($fornavn) && !empty($email) && !empty($efternavn)) {
+      $query = "SELECT * FROM medlemmer WHERE brugernavn = '$brugernavn'";
+      $check_conn = mysqli_query($conn, $query);
+      $count = mysqli_num_rows($check_conn);
+      if($count == 0) {
+        $query = "INSERT INTO medlemmer(brugernavn, password, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona, bruger_rolle, bruger_status, dato_oprettet, app_status, auth) VALUES('{$brugernavn}', '{$password}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}','ikke godkendt','ikke godkendt','{$dato_oprettet}','oprettet af bestyrelsen', 5)";
 
-          $create_user_query = mysqli_query($conn, $query);
+        $create_user_query = mysqli_query($conn, $query);
 
-          if(!$create_user_query) {
-            die("Query Failed: " . mysqli_error($conn));
-          } else {
-            $message = urlencode("success_add_member");
-            $_SESSION["code"] = null;
-            $_SESSION['logged_in'] = false;
-            header("Location: index.php?message=".$message);
-            mysqli_close($conn);
-          }
+        if(!$create_user_query) {
+          die("Query Failed: " . mysqli_error($conn));
         } else {
-          $query = "INSERT INTO medlemmer(brugernavn, password, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona, flag_status, bruger_rolle, bruger_status, dato_oprettet, app_status) VALUES('{$brugernavn}', '{$password}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}', 1,'ikke godkendt','ikke godkendt','{$dato_oprettet}', 'oprettet af bestyrelsen')";
-
-          $create_user_query = mysqli_query($conn, $query);
-
-          if(!$create_user_query) {
-            die("Query Failed: " . mysqli_error($conn));
-          } else {
-            $message = urlencode("success_add_member");
-            header("Location: index.php?message=".$message);
-            die;
-          }
+          $message = urlencode("success_add_member");
+          header("Location: index.php?message=".$message);
+          mysqli_close($conn);
         }
       } else {
-        $password_fail = "Det password du har indtastet stemmer ikke overens i begge felter.<br>Indtast det samme password i begge felter.";
-        $fornavn = escape($_POST['fornavn']);
-        $efternavn = escape($_POST['efternavn']);
-        $adresse = escape($_POST['adresse']);
-        $postnr = escape($_POST['postnr']);
-        $bynavn = escape($_POST['bynavn']);
-        $email = escape($_POST['email']);
-        $telefon = escape($_POST['telefon']);
-        $alder = escape($_POST['alder']);
-        $stemme = escape($_POST['stemme']);
-        $erfaring = escape($_POST['erfaring']);
-        $kor_type = escape($_POST['kor_type']);
-        $job = escape($_POST['job']);
-        $relate = escape($_POST['relate']);
-        $persona = escape($_POST['persona']);
-        mysqli_close($conn);
+        $query = "INSERT INTO medlemmer(brugernavn, password, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona, flag_status, bruger_rolle, bruger_status, dato_oprettet, app_status, auth) VALUES('{$brugernavn}', '{$password}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}', 1,'ikke godkendt','ikke godkendt','{$dato_oprettet}', 'oprettet af bestyrelsen', 5)";
+
+        $create_user_query = mysqli_query($conn, $query);
+
+        if(!$create_user_query) {
+          die("Query Failed: " . mysqli_error($conn));
+        } else {
+          $message = urlencode("success_add_member");
+          header("Location: index.php?message=".$message);
+          die;
+        }
       }
     } else {
       $login_fail = "Du mangler at udfylde nogle felter der er påkrævet.<br>Udfyld venligst alle de vigtie felter.";
