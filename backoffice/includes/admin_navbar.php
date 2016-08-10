@@ -24,10 +24,10 @@
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
       </div>
       <ul id="nav-mobile" class="side-nav fixed">
-        <ul class="collapsible collapsible-accordion">
+        <ul class="">
           <li><a href="./"><i class="material-icons left">home</i>Status oversigt</a></li>
-          <li><a href="#!" class="collapsible-header  waves-effect waves-teal"><i class="material-icons left">account_box</i>Medlemmer</a>
-            <div class="div collapsible-body">
+          <li><a href="#!" class="waves-effect waves-teal"><i class="material-icons left">account_box</i>Medlemmer</a>
+            <div class="div">
               <ul>
                 <li><a href="medlemmer.php?action=view_all"><i class="material-icons left">supervisor_account</i>Se medlemmer</a></li>
                 <li><a href="medlemmer.php?action=add_member"><i class="material-icons left">person_add</i>Tilføj nyt medlem</a></li>
@@ -37,6 +37,10 @@
           </li>
           <li><a href="#">Dirigent</a></li>
           <li><a href="#!">Om Storekoret</a></li>
+          <div class="div hide-on-med-and-up">
+            <li><a href="#"><?php echo ucfirst($_SESSION['fornavn']); ?><i class="material-icons left">account_box</i></a></li>
+            <li><a href="includes/logout.php"><i class="material-icons left">power_settings_new</i>Logud</a></li>
+            </ul>
         </ul>
       </ul>
     </div>

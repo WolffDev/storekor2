@@ -51,7 +51,7 @@
   </div>
   <div class="card-content">
     <span class="card-title activator grey-text text-darken-4">
-      <?php echo $fornavn . " " . $efternavn . " - " . alderNu($alder) . " år - " . $bruger_status . " - " . $bruger_rolle; ?>
+      <?php echo $fornavn . " " . $efternavn . " || " . alderNu($alder) . " år || " . $bruger_status . " || " . $bruger_rolle; ?>
       <a href="medlemmer.php?action=edit&id=<?php echo $user_id; ?>">Rediger medlem</a>
       <i class="material-icons right">more_vert</i>
     </span>
@@ -61,11 +61,6 @@
       </p>
       <p>
         Tryk på navn eller billedet for at se mere information omkring personen.
-      </p>
-      <p>
-        skift rolle
-        <br>
-        skift status
       </p>
     </div>
   </div>
