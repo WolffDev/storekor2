@@ -54,17 +54,6 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/backoffice\/images\/placeholder-user.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 78995,
-		"inputAbbreviatedPath": "\/backoffice\/images\/placeholder-user.png",
-		"outputAbbreviatedPath": "\/backoffice\/images\/placeholder-user.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
 	"\/backoffice\/images\/sort_asc.png": {
 		"fileType": 32768,
 		"ignore": 0,
@@ -161,15 +150,6 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/backoffice\/includes\/db.php",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/backoffice\/includes\/edit_member.php": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/backoffice\/includes\/edit_member.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
