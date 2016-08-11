@@ -3,6 +3,7 @@
     header("Location: ../../index.php");
     exit();
   }
+  $user_id = $_SESSION['user_id'];
 ?>
 <div class="navbar">
   <nav role="navigation" class="white">
@@ -14,7 +15,7 @@
         </ul>
 
         <ul id="dropdown-profile" class="dropdown-content">
-          <li><a href="#">Rediger Profil</a></li>
+          <li><a href="medlemmer.php?action=profile&bruger=<?php echo $user_id; ?>">Rediger Profil</a></li>
           <li><a href="#">...</a></li>
           <li><a href="includes/logout.php">Logud</a></li>
         </ul>
@@ -38,7 +39,7 @@
           <li><a href="#">Dirigent</a></li>
           <li><a href="#!">Om Storekoret</a></li>
           <div class="div hide-on-med-and-up">
-            <li><a href="#"><?php echo ucfirst($_SESSION['fornavn']); ?><i class="material-icons left">account_box</i></a></li>
+            <li><a href="medlemmer.php?action=profile&bruger=<?php echo $user_id; ?>"><?php echo ucfirst($_SESSION['fornavn']); ?><i class="material-icons left">account_box</i></a></li>
             <li><a href="includes/logout.php"><i class="material-icons left">power_settings_new</i>Logud</a></li>
             </ul>
         </ul>

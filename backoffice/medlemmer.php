@@ -23,6 +23,9 @@
       case 'edit':
         include "includes/edit_member.php";
         break;
+      case 'profile':
+        include "includes/profile.php";
+        break;
       default:
         include "includes/view_all_members.php";
     }

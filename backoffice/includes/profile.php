@@ -1,12 +1,12 @@
 <?php
-if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION['auth'] > 2){
-  header("Location: ../../index.php");
+if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION['auth'] > 4){
+  header("Location: index.php");
   exit();
 }
 ?>
 <?php
-  if(isset($_POST['edit_form'])) {
-    $user_id = $_GET['id'];
+  if(isset($_POST['edit_profile'])) {
+    $user_id = $_GET['bruger'];
     $fornavn = escape($_POST['fornavn']);
     $efternavn = escape($_POST['efternavn']);
     $adresse = escape($_POST['adresse']);
@@ -52,6 +52,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
       if(!$create_user_query) {
         die("Query Failed123: " . mysqli_error($conn));
       } else {
+        ///////
         $message = urlencode("success_edit_member");
         $edit_name = urlencode($fornavn . " " . $efternavn);
         header("Location: medlemmer.php?action=view_all&message=" . $message . "&edit_name=" . $edit_name);
@@ -82,7 +83,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
   if(isset($_GET['id'])) {
     $user_id = escape($_GET['id']);
   } else {
-    header("Location: ../medlemmer.php?action=view_all");
+    header("Location: ../index.php");
   }
 
   $query = "SELECT * FROM medlemmer WHERE id = $user_id";
@@ -224,7 +225,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
         <div class="row"></div>
       </div>
       <div class="row center">
-        <button class="btn waves-effect waves-light" type="submit" name="edit_form">Opdater medlem<i class="material-icons right">send</i>
+        <button class="btn waves-effect waves-light" type="submit" name="edit_profile">Opdater medlem<i class="material-icons right">send</i>
         </button>
       </div>
     </form>

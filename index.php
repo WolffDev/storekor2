@@ -22,7 +22,7 @@
     if ($_GET['message'] === 'unapproved') { ?>
       <div id="modal1" class="modal">
         <div class="modal-content black-text">
-          <h4>Ansøgning modtager</h4>
+          <h4>Ansøgning modtaget</h4>
           <p>Vi har modtaget din ansøgning, men den er endnu ikke blevet godkendt.<br>Hvis det er uden for sæssonen, så kan der gå op til 4 uger, før vi får gennemgået din ansøgning og fået sendt en email til dig.<br>Vi beklager ulejligheden og for snarest gennemgået din ansøgning.</p>
         </div>
         <div class="modal-footer">
