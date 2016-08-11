@@ -50,14 +50,53 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
       $query .="WHERE id = {$user_id} ";
 
       $create_user_query = mysqli_query($conn, $query);
+      if(!empty($_POST['old_password']) && !empty($_POST['new_password']) && !empty($_POST['new_validate_password'])) {
+
+        $old_password = escape($_POST['old_password']);
+        $new_password = escape($_POST['new_password']);
+        $new_validate_password = escape($_POST['new_validate_password']);
+        if($new_password !== $new_validate_password) {
+          $message = urlencode("password_mismatch");
+          header("Location: medlemmer.php?action=profile&id=$user_id&message=".$message);
+          die;
+        } else {
+
+          $query = "SELECT * FROM medlemmer WHERE brugernavn = '{$brugernavn}'";
+          $select_user_query = mysqli_query($conn, $query);
+          if(!$select_user_query) {
+            die("Query failed: ". mysqli_error($conn));
+          } else {
+            while($row = mysqli_fetch_array($select_user_query)) {
+              $db_password = $row['password'];
+            }
+            if(password_verify($old_password, $db_password)) {
+              $new_password = password_hash($new_password, PASSWORD_BCRYPT, array('cost' => 10));
+
+              $query_password_update = "UPDATE medlemmer SET password = '{$new_password}' WHERE id = {$user_id}";
+              $insert_password = mysqli_query($conn, $query_password_update);
+              $password_changed = 'true';
+            } else {
+              $message = urlencode("password_wrong");
+              header("Location: medlemmer.php?action=profile&id=$user_id&message=".$message);
+              die;
+            }
+          }
+        }
+      }
       if(!$create_user_query) {
         die("Query Failed123: " . mysqli_error($conn));
       } else {
-        ///////
-        $message = urlencode("success_edit_profile");
-        $edit_name = urlencode($fornavn . " " . $efternavn);
-        header("Location: index.php?message=" . $message . "&edit_name=" . $edit_name);
-        die;
+        if($password_changed == 'true') {
+          $message = urlencode("success_edit_profile_password");
+          $edit_name = urlencode($fornavn);
+          header("Location: index.php?message=" . $message . "&edit_name=" . $edit_name);
+          die;
+        } else {
+          $message = urlencode("success_edit_profile");
+          $edit_name = urlencode($fornavn);
+          header("Location: index.php?message=" . $message . "&edit_name=" . $edit_name);
+          die;
+        }
       }
     } else {
       $update_fail = "Du mangler at udfylde nogle felter der er påkrævet.<br>Udfyld venligst alle de vigtige felter.";
@@ -136,6 +175,31 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
   </section>
 
   <section>
+    <?php
+      if(isset($_GET['message']) && $_GET['message'] === 'password_mismatch') {
+        ?>
+          <div class="row">
+            <div class="col s12 teal white-text">
+              <p>
+                De to nye adgangskoder du har indtastet er ikke ens.<br>Prøv igen.
+              </p>
+            </div>
+          </div>
+        <?php
+      }
+
+      if(isset($_GET['message']) && $_GET['message'] === 'password_wrong') {
+        ?>
+          <div class="row">
+            <div class="col s12 teal white-text">
+              <p>
+                Din nuværrende adganskode du har indtastet er forkert - prøv igen.<br>Hvis du efter flere forsøg stadig ikke kan huske din nuværrende adganskode, så få tilsendt et nyt.<br>LINK HER!!!
+              </p>
+            </div>
+          </div>
+        <?php
+      }
+    ?>
     <div class="row">
       <div class="col s12"><p>Indtast oplysningerne på det nye medlem.<br><span class="red-text">Husk at godkende</span> det nye medlem du opretter, under "Alle medlemmer".</p><p>Alle nye medlemmer der bliver oprettet vil automatisk få tildelt adganskoden <span class="red-text">Storekor123</span>.</p><p>Efter godkendelse skal det nye medlem have en <span class="red-text">påmindelse om at ændre deres password!</span></p>
       </div>
@@ -235,17 +299,17 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
           </div>
           <div class="input-field col s12 m6">
             <input id="old_password" type="password" class="validate" name="old_password">
-            <label for="relate">Indtast din gamle adgangskode</label>
+            <label for="old_password">Indtast din gamle adgangskode</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col 12 m6">
             <input id="new_password" type="password" class="validate" name="new_password">
-            <label for="relate">Indtast ny adgangskode</label>
+            <label for="new_password">Indtast ny adgangskode</label>
           </div>
           <div class="input-field col 12 m6">
             <input id="new_validate_password" type="password" class="validate" name="new_validate_password">
-            <label for="relate">Gentag adgangskode</label>
+            <label for="new_validate_password">Gentag adgangskode</label>
           </div>
         </div>
 
