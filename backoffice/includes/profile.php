@@ -137,7 +137,8 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
 
   <section>
     <div class="row">
-      <div class="col s12"><p>Indtast oplysningerne på det nye medlem.<br><span class="red-text">Husk at godkende</span> det nye medlem du opretter, under "Alle medlemmer".</p><p>Alle nye medlemmer der bliver oprettet vil automatisk få tildelt adganskoden <span class="red-text">Storekor123</span>.</p><p>Efter godkendelse skal det nye medlem have en <span class="red-text">påmindelse om at ændre deres password!</span></p></div>
+      <div class="col s12"><p>Indtast oplysningerne på det nye medlem.<br><span class="red-text">Husk at godkende</span> det nye medlem du opretter, under "Alle medlemmer".</p><p>Alle nye medlemmer der bliver oprettet vil automatisk få tildelt adganskoden <span class="red-text">Storekor123</span>.</p><p>Efter godkendelse skal det nye medlem have en <span class="red-text">påmindelse om at ændre deres password!</span></p>
+      </div>
       <form class="col s12" action="" method="post" autocomplete="on" id="registration">
         <div class="row">
           <div class="input-field col s12 m6">
@@ -219,12 +220,35 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <textarea id="persona" class="materialize-textarea" name="persona"><?php if(isset($persona)){echo $persona;} ?></textarea>
+            <textarea id="persona" class="materialize-textarea" length="250" name="persona"><?php if(isset($persona)){echo $persona;} ?></textarea>
             <label for="persona">Skriv en kort introduktion af ham/hende</label>
           </div>
         </div>
         <div class="row"></div>
-      </div>
+
+        <div class="divider"></div>
+        <div class="row">
+          <div class="col s12 m6">
+            <p>
+              Hvis du vil ændre din adgangskode, så indtast din nuværrende og derefter den nye.
+            </p>
+          </div>
+          <div class="input-field col s12 m6">
+            <input id="old_password" type="password" class="validate" name="old_password">
+            <label for="relate">Indtast din gamle adgangskode</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col 12 m6">
+            <input id="new_password" type="password" class="validate" name="new_password">
+            <label for="relate">Indtast ny adgangskode</label>
+          </div>
+          <div class="input-field col 12 m6">
+            <input id="new_validate_password" type="password" class="validate" name="new_validate_password">
+            <label for="relate">Gentag adgangskode</label>
+          </div>
+        </div>
+
       <div class="row center">
         <button class="btn waves-effect waves-light" type="submit" name="edit_profile">Opdater medlem<i class="material-icons right">send</i>
         </button>
