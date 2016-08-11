@@ -1,12 +1,12 @@
 <?php
-if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION['auth'] > 4){
+if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION['auth'] > 4 || $_SESSION['user_id'] != $_GET['id']){
   header("Location: index.php");
   exit();
 }
 ?>
 <?php
   if(isset($_POST['edit_profile'])) {
-    $user_id = $_GET['bruger'];
+    $user_id = escape($_GET['id']);
     $fornavn = escape($_POST['fornavn']);
     $efternavn = escape($_POST['efternavn']);
     $adresse = escape($_POST['adresse']);
@@ -33,6 +33,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
     if(!empty($fornavn) && !empty($email) && !empty($efternavn)) {
       $query = "UPDATE medlemmer SET ";
       $query .="brugernavn = '{$brugernavn}', ";
+      $query .="fornavn = '{$fornavn}', ";
       $query .="efternavn = '{$efternavn}', ";
       $query .="adresse = '{$adresse}', ";
       $query .="postnr = '{$postnr}', ";
@@ -53,9 +54,9 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
         die("Query Failed123: " . mysqli_error($conn));
       } else {
         ///////
-        $message = urlencode("success_edit_member");
+        $message = urlencode("success_edit_profile");
         $edit_name = urlencode($fornavn . " " . $efternavn);
-        header("Location: medlemmer.php?action=view_all&message=" . $message . "&edit_name=" . $edit_name);
+        header("Location: index.php?message=" . $message . "&edit_name=" . $edit_name);
         die;
       }
     } else {
@@ -173,7 +174,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
         <br>
         <div class="row">
           <div class="input-field col s12 m6">
-            <input id="alder" required="required" type="date" class="datepicker" name="alder">
+            <input id="alder" required="required" type="date" class="datepicker" name="alder" data-value="<?php if(isset($alder)) {echo $alder;} ?>">
             <label for="alder">Fødselsdato</label>
           </div>
           <div class="input-field col s12 m6">

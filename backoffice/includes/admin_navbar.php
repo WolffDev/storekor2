@@ -15,7 +15,7 @@
         </ul>
 
         <ul id="dropdown-profile" class="dropdown-content">
-          <li><a href="medlemmer.php?action=profile&bruger=<?php echo $user_id; ?>">Rediger Profil</a></li>
+          <li><a href="medlemmer.php?action=profile&id=<?php echo $user_id; ?>">Rediger Profil</a></li>
           <li><a href="#">...</a></li>
           <li><a href="includes/logout.php">Logud</a></li>
         </ul>
