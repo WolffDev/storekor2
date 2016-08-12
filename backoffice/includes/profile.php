@@ -68,11 +68,12 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
           } else {
             while($row = mysqli_fetch_array($select_user_query)) {
               $db_password = $row['password'];
+              $changed_pass = $row['changed_pass'];
             }
             if(password_verify($old_password, $db_password)) {
               $new_password = password_hash($new_password, PASSWORD_BCRYPT, array('cost' => 10));
 
-              $query_password_update = "UPDATE medlemmer SET password = '{$new_password}' WHERE id = {$user_id}";
+              $query_password_update = "UPDATE medlemmer SET password = '{$new_password}', changed_pass = '1' WHERE id = {$user_id}";
               $insert_password = mysqli_query($conn, $query_password_update);
               $password_changed = 'true';
             } else {
@@ -150,6 +151,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
         $dato_oprettet  = $row['dato_oprettet'];
         $app_status     = $row['app_status'];
         $profil_billede = $row['profil_billede'];
+        $changed_pass   = $row['changed_pass'];
 
     }
 
@@ -200,6 +202,15 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
         <?php
       }
     ?>
+    <?php if($changed_pass == 0) { ?>
+      <div class="row">
+        <div class="col s12 red white-text">
+          <p class="center">
+            Du har endnu ikke ændret din adgangskode.<br>Gør venligst dette nederst på siden nu.
+          </p>
+        </div>
+      </div>
+    <?php } ?>
     <div class="row">
       <div class="col s12"><p>Indtast oplysningerne på det nye medlem.<br><span class="red-text">Husk at godkende</span> det nye medlem du opretter, under "Alle medlemmer".</p><p>Alle nye medlemmer der bliver oprettet vil automatisk få tildelt adganskoden <span class="red-text">Storekor123</span>.</p><p>Efter godkendelse skal det nye medlem have en <span class="red-text">påmindelse om at ændre deres password!</span></p>
       </div>
