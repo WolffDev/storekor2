@@ -20,15 +20,19 @@
         <ul class="">
           <li class="hide-on-med-and-up"><a href="../"><i class="material-icons left">home</i>Forside</a></li>
           <li><a href="./"><i class="material-icons left">dashboard</i>Oversigt</a></li>
-            <?php
-            if ($_SESSION['auth'] < 3) {
-            ?>
-          <li><a href="medlemmer.php?action=view_all"><i class="material-icons left">supervisor_account</i>Medlemmer</a></li>
-          <li><a href="medlemmer.php?action=add_member"><i class="material-icons left">person_add</i>Tilføj medlem</a></li>
+          <?php
+          if ($_SESSION['auth'] < 3) {
+          ?>
+            <li><a href="medlemmer.php?action=view_all"><i class="material-icons left">supervisor_account</i>Medlemmer</a></li>
+            <li><a href="medlemmer.php?action=add_member"><i class="material-icons left">person_add</i>Tilføj medlem</a></li>
           <?php } else { ?>
             <li><a href="medlemmer.php?action=view_all_single"><i class="material-icons left">supervisor_account</i>Medlemmer</a></li>
           <?php } ?>
-          <li><a href="#"><i class="material-icons left">music_note</i>Dirigent</a></li>
+          <?php
+          if ($_SESSION['auth'] < 4) {
+          ?>
+            <li><a href="#"><i class="material-icons left">music_note</i>Dirigent</a></li>
+          <?php } ?>
           <li><a href="#!">Om Storekoret</a></li>
           <ul class="div hide-on-med-and-up">
             <li><a href="medlemmer.php?action=profile&bruger=<?php echo $user_id; ?>"><?php echo ucfirst($_SESSION['fornavn']); ?><i class="material-icons left">account_box</i></a></li>
