@@ -2,7 +2,6 @@
     $(function() {
 
 
-
       // Login toggle
       $("#login-trigger").click(function(e) {
         e.preventDefault();
@@ -57,7 +56,7 @@
             clear: 'Ryd',
             close: 'Luk',
             min: new Date(1930, 1, 1),
-            max: new Date(2010, 11, 31),
+            max: new Date(2050, 11, 31),
             selectYears: 120,
             selectMonths: true,
             format: 'Dato: dddd, !d. d. mmm, yyyy',

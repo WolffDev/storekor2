@@ -15,7 +15,11 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
     $email = escape($_POST['email']);
     $telefon = escape($_POST['telefon']);
     // $brugernavn = substr($fornavn,0,2) . substr($efternavn,0,2) . substr($telefon,4,2);
-    $brugernavn = $email;
+    if($user_id == 59) {
+      $brugernavn = 'admin';
+    } else {
+      $brugernavn = $email;
+    }
     $alder = escape($_POST['alder']);
     $stemme = escape($_POST['stemme']);
     $erfaring = escape($_POST['erfaring']);
@@ -50,6 +54,14 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
       $query .="WHERE id = {$user_id} ";
 
       $create_user_query = mysqli_query($conn, $query);
+
+      $edit_by_id = $_SESSION['user_id'];
+      $edit_by_name = $_SESSION['fornavn'];
+      $date_now = date('Y-m-d H:i:s');
+
+      $update_edit = "INSERT INTO medlemmer_edit(member_id, edit_by_id, edit_by_name, edit_date) VALUES({$user_id}, {$edit_by_id}, '{$edit_by_name}', '{$date_now}')";
+      $query_edit = mysqli_query($conn, $update_edit);
+
       if(!$create_user_query) {
         die("Query Failed123: " . mysqli_error($conn));
       } else {

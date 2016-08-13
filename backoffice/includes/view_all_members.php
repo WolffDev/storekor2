@@ -181,7 +181,7 @@
               'orderable':false,
               'className': 'dt-body-center',
               'render': function (data, type, full, meta){
-                return '<input class=".checkBoxes" type="checkbox" name="checkBoxArray[]" value="'
+                return '<input class="checkBoxes" type="checkbox" name="checkBoxArray[]" value="'
                     + $('<div/>').text(data).html() + '">';
               },
             },
@@ -198,5 +198,6 @@
           var table= $(e.target).closest('table');
           $('td input:checkbox',table).prop('checked',this.checked);
         });
+        
 			}); // <---- Document.ready END
 		</script>

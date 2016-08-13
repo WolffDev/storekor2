@@ -12,36 +12,48 @@
   }
 
   $query = "SELECT * FROM medlemmer WHERE id = $user_id ";
-    $select_users_query = mysqli_query($conn,$query);
+  $select_users_query = mysqli_query($conn,$query);
 
-      while($row = mysqli_fetch_assoc($select_users_query)) {
+    while($row = mysqli_fetch_assoc($select_users_query)) {
 
-          $brugernavn     = $row['brugernavn'];
-          $fornavn        = $row['fornavn'];
-          $efternavn      = $row['efternavn'];
-          $adresse        = $row['adresse'];
-          $postnr         = $row['postnr'];
-          $bynavn         = $row['bynavn'];
-          $email          = $row['email'];
-          $telefon        = $row['telefon'];
-          $alder          = $row['alder'];
-          $stemme         = $row['stemme'];
-          $erfaring       = $row['erfaring'];
-          $kor_type       = $row['kor_type'];
-          $job            = $row['job'];
-          $relate         = $row['relate'];
-          $persona        = $row['persona'];
-          $bruger_rolle   = $row['bruger_rolle'];
-          $bruger_status  = $row['bruger_status'];
-          $dato_oprettet  = $row['dato_oprettet'];
-          $app_status     = $row['app_status'];
-          $profil_billede = $row['profil_billede'];
+        $brugernavn     = $row['brugernavn'];
+        $fornavn        = $row['fornavn'];
+        $efternavn      = $row['efternavn'];
+        $adresse        = $row['adresse'];
+        $postnr         = $row['postnr'];
+        $bynavn         = $row['bynavn'];
+        $email          = $row['email'];
+        $telefon        = $row['telefon'];
+        $alder          = $row['alder'];
+        $stemme         = $row['stemme'];
+        $erfaring       = $row['erfaring'];
+        $kor_type       = $row['kor_type'];
+        $job            = $row['job'];
+        $relate         = $row['relate'];
+        $persona        = $row['persona'];
+        $bruger_rolle   = $row['bruger_rolle'];
+        $bruger_status  = $row['bruger_status'];
+        $dato_oprettet  = $row['dato_oprettet'];
+        $app_status     = $row['app_status'];
+        $profil_billede = $row['profil_billede'];
 
-      }
+    }
 
-      if($profil_billede == '') {
-        $profil_billede = 'images/placeholder-user.png';
-      }
+    if($profil_billede == '') {
+      $profil_billede = 'images/placeholder-user.png';
+    }
+
+    $edit_query = "SELECT * FROM medlemmer_edit WHERE member_id = {$user_id} ORDER BY edit_date DESC LIMIT 1";
+    $get_last_edit = mysqli_query($conn, $edit_query);
+    if(!$get_last_edit) {
+      die("Query Failed123: " . mysqli_error($conn));
+    }
+    while($row = mysqli_fetch_assoc($get_last_edit)) {
+      $edit_by_id = $row['edit_by_id'];
+      $edit_by_name = $row['edit_by_name'];
+      $edit_date = $row['edit_date'];
+    }
+    $edit_date = date_create($edit_date);
 
 ?>
 
@@ -50,11 +62,11 @@
     <img class="activator" src="<?php echo $profil_billede ?>">
   </div>
   <div class="card-content">
-    <span class="card-title activator grey-text text-darken-4">
+    <div class="">Sidst redigeret af: <?php echo $edit_by_name; ?> den <?php echo date_format($edit_date, 'j\. M \k\l\. H:i - Y'); ?><br></div>
+    <div class="card-title activator grey-text text-darken-4">
       <?php echo $fornavn . " " . $efternavn . " || " . alderNu($alder) . " år || " . $bruger_status . " || " . $bruger_rolle; ?>
       <a href="medlemmer.php?action=edit&id=<?php echo $user_id; ?>">Rediger medlem</a>
-      <i class="material-icons right">more_vert</i>
-    </span>
+    </div>
     <div class="flow-text">
       <p>
         <?php echo $adresse . "<br>" . $postnr . " " . $bynavn . "<br>" . "Tlf: " . $telefon; ?>

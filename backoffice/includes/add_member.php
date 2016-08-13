@@ -115,7 +115,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
 
   <section>
     <div class="row">
-      <div class="col s12"><p>Indtast oplysningerne på det nye medlem.<br><span class="red-text">Husk at godkende</span> det nye medlem du opretter, under "Alle medlemmer".</p><p>Alle nye medlemmer der bliver oprettet vil automatisk få tildelt adganskoden <span class="red-text">Storekor123</span>.</p><p>Efter godkendelse skal det nye medlem have en <span class="red-text">påmindelse om at ændre deres password!</span></p></div>
+      <div class="col s12"><p>Indtast oplysningerne på det nye medlem.<br><span class="red-text">Husk at godkende</span> det nye medlem du opretter, under "Medlemmer".</p><p>Alle nye medlemmer der bliver oprettet vil automatisk få tildelt adganskoden <span class="red-text">Storekor123</span>.</p><p>Efter godkendelse skal det nye medlem have en <span class="red-text">påmindelse om at ændre deres password!</span></p></div>
       <form class="col s12" action="" method="post" autocomplete="on" id="registration">
         <div class="row">
           <div class="input-field col s12 m6">
@@ -156,7 +156,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
             <label for="alder">Fødselsdato</label>
           </div>
           <div class="input-field col s12 m4">
-            <input id="dato_oprettet" required="required" type="date" class="datepicker" name="dato_oprettet" data-value="<?php echo $alder ?>">
+            <input id="dato_oprettet" required="required" type="date" class="datepicker" name="dato_oprettet" data-value="<?php echo date('dd-mm-yyyy') ?>">
             <label for="dato_oprettet">Dato oprettet</label>
           </div>
           <div class="input-field col s12 m4">
