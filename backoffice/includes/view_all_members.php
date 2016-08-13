@@ -153,7 +153,7 @@
           "dom": 'fti',
           "language": {
             "search": "Indtast søgeord:",
-            "zeroRecords": "Der blev ikke fundet noget på det du søgte efter - prøv igen.",
+            "zeroRecords": "Intet resultat - prøv igen.",
             "info": "Viser _TOTAL_ medlemmer",
             "infoFiltered": "(filtreret fra _MAX_ medlemmer)",
           },

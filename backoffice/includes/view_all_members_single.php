@@ -10,14 +10,11 @@
       <tr>
         <th data-field="id">Navn</th>
         <th data-field="id">Efternavn</th>
-        <th data-field="price">Brugernavn</th>
+        <th data-field="id">email</th>
         <th data-field="id">Telefon</th>
         <th data-field="id">Stemme</th>
         <th data-field="id">Rolle</th>
         <th data-field="id">Status</th>
-        <th data-field="id">Tilmeldt</th>
-        <th data-field="id">Tilmelding</th>
-        <th data-field="id">Alder</th>
       </tr>
     </thead>
 
@@ -69,7 +66,7 @@
           "dom": 'fti',
           "language": {
             "search": "Indtast søgeord:",
-            "zeroRecords": "Der blev ikke fundet noget på det du søgte efter - prøv igen.",
+            "zeroRecords": "Intet resultat - prøv igen.",
             "info": "Viser _TOTAL_ medlemmer",
             "infoFiltered": "(filtreret fra _MAX_ medlemmer)",
           },

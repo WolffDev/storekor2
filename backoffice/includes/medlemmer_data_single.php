@@ -18,14 +18,11 @@ $columns = array(
 // datatable column index  => database column name
 	0 => 'fornavn',
 	1 => 'efternavn',
-	2 => 'brugernavn',
+	2 => 'email',
   3 => 'telefon',
   4 => 'stemme',
   5 => 'bruger_rolle',
-  6 => 'bruger_status',
-  7 => 'dato_oprettet',
-  8 => 'app_status',
-  9 => 'alder'
+  6 => 'bruger_status'
 );
 
 // getting total number records without any search
@@ -57,7 +54,7 @@ if( !empty($requestData['search']['value']) ) {
 
 } else {
 
-	$sql = "SELECT id, fornavn, efternavn, brugernavn, telefon, stemme, bruger_rolle, bruger_status, dato_oprettet, app_status, alder ";
+	$sql = "SELECT fornavn, efternavn, email, telefon, stemme, bruger_rolle, bruger_status ";
 	$sql.=" FROM medlemmer";
 	$sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]."   ".$requestData['order'][0]['dir']." LIMIT ".$requestData['start']." ,".$requestData['length']."   ";
 	$query=mysqli_query($conn, $sql) or die("medlemmer_data.php: get medlemmer");
@@ -68,25 +65,15 @@ if( !empty($requestData['search']['value']) ) {
 
 $data = array();
 while( $row=mysqli_fetch_array($query) ) {  // preparing an array
-  $dato_oprettet = $row['dato_oprettet'];
-  $date = date_create($dato_oprettet);
-  $date_show = date_format($date, 'd\. M - Y');
-
-  $tid = strtotime($row["alder"]);
-  $alder_nu = floor(((time()- $tid)  /(3600 * 24 * 365)));
-
 	$nestedData=array();
 
 	$nestedData[] = $row["fornavn"];
 	$nestedData[] = $row["efternavn"];
-	$nestedData[] = $row["brugernavn"];
+	$nestedData[] = $row["email"];
   $nestedData[] = $row["telefon"];
 	$nestedData[] = $row["stemme"];
 	$nestedData[] = $row["bruger_rolle"];
   $nestedData[] = $row["bruger_status"];
-	$nestedData[] = $date_show;
-	$nestedData[] = $row["app_status"];
-  $nestedData[] = $alder_nu;
 
 	$data[] = $nestedData;
 }
