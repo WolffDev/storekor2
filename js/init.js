@@ -60,8 +60,8 @@
             max: new Date(2010, 11, 31),
             selectYears: 120,
             selectMonths: true,
-            format: 'Du har valgt!: dddd, !d. d. mmm, yyyy',
-            formatSubmit: 'dd-mm-yyyy',
+            format: 'Dato: dddd, !d. d. mmm, yyyy',
+            formatSubmit: 'yyyy-mm-dd',
             hiddenName: true
         });
 

@@ -24,7 +24,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
     $job = escape($_POST['job']);
     $relate = escape($_POST['relate']);
     $persona = escape($_POST['persona']);
-    $dato_oprettet = date('Y-m-d H:i:s');
+    $dato_oprettet = escape($_POST['dato_oprettet']);
 
     $tid = strtotime($alder);
     // $alder = date('d-m/Y',$tid);
@@ -151,11 +151,15 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
         <div class="divider"></div>
         <br>
         <div class="row">
-          <div class="input-field col s12 m6">
+          <div class="input-field col s12 m4">
             <input id="alder" required="required" type="date" class="datepicker" name="alder">
             <label for="alder">Fødselsdato</label>
           </div>
-          <div class="input-field col s12 m6">
+          <div class="input-field col s12 m4">
+            <input id="dato_oprettet" required="required" type="date" class="datepicker" name="dato_oprettet" data-value="<?php echo $alder ?>">
+            <label for="dato_oprettet">Dato oprettet</label>
+          </div>
+          <div class="input-field col s12 m4">
             <select name="stemme" value="<?php if(isset($stemme)){echo $stemme;} ?>">
               <option value="1. Sopran">1. Sopran</option>
               <option value="2. Sopran">2. Sopran</option>
