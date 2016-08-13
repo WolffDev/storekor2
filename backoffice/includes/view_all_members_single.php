@@ -80,16 +80,16 @@
 
 						}
 					},
-          // "columnDefs": [
-          //   {
-          //     "render": function ( data, type, row ) {
-          //           return '<a href="medlemmer.php?action=view&id=' + row[0] + '">' + data +' '+ row[2] + ' ' + '</a>';
-          //       },
-          //     "targets": 1,
-          //
-          //   },
-          //   { "visible": false,  "targets": [ 2, 10 ] },
-          // ],
+          "columnDefs": [
+            {
+              "render": function ( data, type, row ) {
+                    return data +' '+ row[1];
+                },
+              "targets": 0,
+
+            },
+            { "visible": false,  "targets": [ 1 ] },
+          ],
           "fixedHeader": true
 				} );
 			}); // <---- Document.ready END

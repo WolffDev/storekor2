@@ -33,6 +33,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
     if(!empty($fornavn) && !empty($email) && !empty($efternavn)) {
       $query = "UPDATE medlemmer SET ";
       $query .="brugernavn = '{$brugernavn}', ";
+      $query .="fornavn = '{$fornavn}', ";
       $query .="efternavn = '{$efternavn}', ";
       $query .="adresse = '{$adresse}', ";
       $query .="postnr = '{$postnr}', ";
@@ -172,7 +173,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
         <br>
         <div class="row">
           <div class="input-field col s12 m6">
-            <input id="alder" required="required" type="date" class="datepicker" name="alder">
+            <input id="alder" required="required" type="date" class="datepicker" name="alder" data-value="<?php echo $alder ?>">
             <label for="alder">Fødselsdato</label>
           </div>
           <div class="input-field col s12 m6">

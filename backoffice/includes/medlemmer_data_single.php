@@ -26,7 +26,7 @@ $columns = array(
 );
 
 // getting total number records without any search
-$sql = "SELECT id, fornavn, efternavn, brugernavn, telefon, stemme, bruger_rolle, bruger_status, dato_oprettet, app_status ";
+$sql = "SELECT fornavn, efternavn, email, telefon, stemme, bruger_rolle, bruger_status ";
 $sql.=" FROM medlemmer";
 $query=mysqli_query($conn, $sql) or die("medlemmer_data.php: get medlemmer");
 $totalData = mysqli_num_rows($query);
@@ -35,7 +35,7 @@ $totalFiltered = $totalData;  // when there is no search parameter then total nu
 
 if( !empty($requestData['search']['value']) ) {
 	// if there is a search parameter
-	$sql = "SELECT id, fornavn, efternavn, brugernavn, telefon, stemme, bruger_rolle, bruger_status, dato_oprettet, app_status, alder ";
+	$sql = "SELECT fornavn, efternavn, email, telefon, stemme, bruger_rolle, bruger_status ";
 	$sql.=" FROM medlemmer";
 	$sql.=" WHERE fornavn LIKE '".$requestData['search']['value']."%' ";    // $requestData['search']['value'] contains search parameter
 	$sql.=" OR efternavn LIKE '".$requestData['search']['value']."%' ";
