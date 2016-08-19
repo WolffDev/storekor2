@@ -4,6 +4,41 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
   exit();
 }
 ?>
+
+<?php
+  if(isset($_GET['id'])) {
+    $user_id = escape($_GET['id']);
+  } else {
+    header("Location: ../index.php");
+  }
+
+  $query = "SELECT * FROM medlemmer WHERE id = $user_id";
+  $select_users_query = mysqli_query($conn,$query);
+    while($row = mysqli_fetch_assoc($select_users_query)) {
+        $brugernavn     = $row['brugernavn'];
+        $fornavn        = $row['fornavn'];
+        $efternavn      = $row['efternavn'];
+        $adresse        = $row['adresse'];
+        $postnr         = $row['postnr'];
+        $bynavn         = $row['bynavn'];
+        $email          = $row['email'];
+        $telefon        = $row['telefon'];
+        $alder          = $row['alder'];
+        $stemme         = $row['stemme'];
+        $erfaring       = $row['erfaring'];
+        $kor_type       = $row['kor_type'];
+        $job            = $row['job'];
+        $relate         = $row['relate'];
+        $persona        = $row['persona'];
+        $bruger_rolle   = $row['bruger_rolle'];
+        $bruger_status  = $row['bruger_status'];
+        $app_status     = $row['app_status'];
+        $db_profil_billede = $row['profil_billede'];
+        $changed_pass   = $row['changed_pass'];
+    }
+
+?>
+
 <?php
   if(isset($_POST['edit_profile'])) {
     $user_id = escape($_GET['id']);
@@ -15,7 +50,6 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
     $email = escape($_POST['email']);
     $telefon = escape($_POST['telefon']);
     // $brugernavn = substr($fornavn,0,2) . substr($efternavn,0,2) . substr($telefon,4,2);
-    $brugernavn = $email;
     $alder = escape($_POST['alder']);
     $stemme = escape($_POST['stemme']);
     $erfaring = escape($_POST['erfaring']);
@@ -23,12 +57,72 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
     $job = escape($_POST['job']);
     $relate = escape($_POST['relate']);
     $persona = escape($_POST['persona']);
-    $dato_oprettet = date('Y-m-d H:i:s');
+    if($user_id == 59) {
+      $brugernavn = 'admin';
+    } else {
+      $brugernavn = $email;
+    }
+
 
     $tid = strtotime($alder);
     // $alder = date('d-m/Y',$tid);
     // omregner alderen fra database til et tal.
     $alder_nu = floor(((time()- $tid)  /(3600 * 24 * 365)));
+
+
+    if(!empty($_FILES['profil_billede']['name'])) {
+      $target_dir = "uploads/";
+      $target_file = $target_dir . basename($_FILES["profil_billede"]["name"]);
+      $uploadOk = 1;
+      $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+      // Check if image file is a actual image or fake image
+      if(isset($_POST["submit"])) {
+          $check = getimagesize($_FILES["profil_billede"]["tmp_name"]);
+          if($check !== false) {
+              $uploadOk = 1;
+          } else {
+              $profil_billede = 'images/placeholder-user.png';
+              $file_up_msg = urlencode("false");
+              $uploadOk = 0;
+          }
+      }
+      // Check if file already exists
+      if (file_exists($target_file)) {
+          $profil_billede = 'images/placeholder-user.png';
+          $uploadOk = 0;
+      }
+      // Check file size
+      if ($_FILES["profil_billede"]["size"] > 200000) {
+          $profil_billede = 'images/placeholder-user.png';
+          $file_up_msg = urlencode("<p>Profil billede blev ikke opdateret.<br>Filen du prøver at uploade fylder for meget - maks 200kb.<br>Læs vilkårene for upload af profil billede og prøv igen.");
+
+          $uploadOk = 0;
+      }
+      // Allow certain file formats
+      if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+      && $imageFileType != "gif" ) {
+          $profil_billede = 'images/placeholder-user.png';
+          $uploadOk = 0;
+          $file_up_msg = urlencode("false");
+      }
+      // Check if $uploadOk is set to 0 by an error
+      if ($uploadOk == 0) {
+          $profil_billede = 'images/placeholder-user.png';
+          $file_up = 'false';
+      // if everything is ok, try to upload file
+      } else {
+        if (move_uploaded_file($_FILES["profil_billede"]["tmp_name"], $target_file)) {
+            $profil_billede = $target_file;
+
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+            $profil_billede = 'images/placeholder-user.png';
+        }
+      }
+    } else {
+      $profil_billede = $db_profil_billede;
+      $file_up = '';
+    }
 
     if(!empty($fornavn) && !empty($email) && !empty($efternavn)) {
       $query = "UPDATE medlemmer SET ";
@@ -46,7 +140,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
       $query .="job = '{$job}', ";
       $query .="relate = '{$relate}', ";
       $query .="persona = '{$persona}', ";
-      $query .="dato_oprettet = '{$dato_oprettet}' ";
+      $query .="profil_billede = '{$profil_billede}' ";
       $query .="WHERE id = {$user_id} ";
 
       $create_user_query = mysqli_query($conn, $query);
@@ -90,12 +184,12 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
         if($password_changed == 'true') {
           $message = urlencode("success_edit_profile_password");
           $edit_name = urlencode($fornavn);
-          header("Location: index.php?message=" . $message . "&edit_name=" . $edit_name);
+          header("Location: index.php?message=" . $message . "&edit_name=" . $edit_name."&file_up=".$file_up);
           die;
         } else {
           $message = urlencode("success_edit_profile");
           $edit_name = urlencode($fornavn);
-          header("Location: index.php?message=" . $message . "&edit_name=" . $edit_name);
+          header("Location: index.php?message=" . $message . "&edit_name=" . $edit_name."&file_up=".$file_up);
           die;
         }
       }
@@ -118,46 +212,6 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
       mysqli_close($conn);
     }
   }
-?>
-
-<?php
-  if(isset($_GET['id'])) {
-    $user_id = escape($_GET['id']);
-  } else {
-    header("Location: ../index.php");
-  }
-
-  $query = "SELECT * FROM medlemmer WHERE id = $user_id";
-  $select_users_query = mysqli_query($conn,$query);
-    while($row = mysqli_fetch_assoc($select_users_query)) {
-
-        $brugernavn     = $row['brugernavn'];
-        $fornavn        = $row['fornavn'];
-        $efternavn      = $row['efternavn'];
-        $adresse        = $row['adresse'];
-        $postnr         = $row['postnr'];
-        $bynavn         = $row['bynavn'];
-        $email          = $row['email'];
-        $telefon        = $row['telefon'];
-        $alder          = $row['alder'];
-        $stemme         = $row['stemme'];
-        $erfaring       = $row['erfaring'];
-        $kor_type       = $row['kor_type'];
-        $job            = $row['job'];
-        $relate         = $row['relate'];
-        $persona        = $row['persona'];
-        $bruger_rolle   = $row['bruger_rolle'];
-        $bruger_status  = $row['bruger_status'];
-        $dato_oprettet  = $row['dato_oprettet'];
-        $app_status     = $row['app_status'];
-        $profil_billede = $row['profil_billede'];
-        $changed_pass   = $row['changed_pass'];
-
-    }
-
-    if($profil_billede == '') {
-      $profil_billede = 'images/placeholder-user.png';
-    }
 ?>
 
 <div class="container">
@@ -214,7 +268,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
     <div class="row">
       <div class="col s12"><p>Indtast oplysningerne på det nye medlem.<br><span class="red-text">Husk at godkende</span> det nye medlem du opretter, under "Alle medlemmer".</p><p>Alle nye medlemmer der bliver oprettet vil automatisk få tildelt adganskoden <span class="red-text">Storekor123</span>.</p><p>Efter godkendelse skal det nye medlem have en <span class="red-text">påmindelse om at ændre deres password!</span></p>
       </div>
-      <form class="col s12" action="" method="post" autocomplete="on" id="registration">
+      <form class="col s12" action="" method="post" autocomplete="on" id="profile_edit" enctype="multipart/form-data">
         <div class="row">
           <div class="input-field col s12 m6">
             <input id="fornavn" required="required" type="text" class="validate" name="fornavn" value="<?php if(isset($fornavn)) {echo $fornavn;} ?>">
@@ -232,7 +286,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
             <input id="telefon" required="required" type="tel" class="validate" name="telefon" value="<?php if(isset($telefon)){echo $telefon;} ?>">
             <label for="telefon">Telefon nummer</label>
           </div>
-          <div class="input-field col s12">
+          <div class="input-field col s6">
             <input id="adresse" required="required" type="text" class="validate" name="adresse" value="<?php if(isset($adresse)){echo $adresse;} ?>">
             <label for="adresse">Adresse</label>
           </div>
@@ -243,6 +297,24 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
           <div class="input-field col s12 m6">
             <input id="bynavn" required="required" type="text" class="validate" name="bynavn" value="<?php if(isset($bynavn)){echo $bynavn;} ?>">
             <label for="bynavn">By</label>
+          </div>
+          <div class="file-field input-field col s12 m6">
+            <div class="btn">
+              <span>Billede</span>
+              <input type="file" name="profil_billede" value="<?php if(isset($profil_billede)){echo $profil_billede;} ?>">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" placeholder="<?php echo substr($db_profil_billede, 8); ?>" type="text">
+            </div>
+          </div>
+          <div class="col s12">
+            <p>
+              Når du uploader dit profil billede, skal følgende krav være opfyldt:
+              <br>
+              Billedet skal være et .jpg, .jpeg, .png eller .gif fil.
+              <br>
+              Billedet må maks fylde 200kb.
+            </p>
           </div>
         </div>
         <br>

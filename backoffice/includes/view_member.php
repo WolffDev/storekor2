@@ -39,9 +39,9 @@
 
     }
 
-    if($profil_billede == '') {
-      $profil_billede = 'images/placeholder-user.png';
-    }
+    // if($profil_billede == '') {
+    //   $profil_billede = 'images/placeholder-user.png';
+    // }
 
     $edit_query = "SELECT * FROM medlemmer_edit WHERE member_id = {$user_id} ORDER BY edit_date DESC LIMIT 1";
     $get_last_edit = mysqli_query($conn, $edit_query);
@@ -53,7 +53,6 @@
       $edit_by_name = $row['edit_by_name'];
       $edit_date = $row['edit_date'];
     }
-    $edit_date = date_create($edit_date);
 
 ?>
 
@@ -62,7 +61,9 @@
     <img class="activator" src="<?php echo $profil_billede ?>">
   </div>
   <div class="card-content">
-    <div class="">Sidst redigeret af: <?php echo $edit_by_name; ?> den <?php echo date_format($edit_date, 'j\. M \k\l\. H:i - Y'); ?><br></div>
+    <?php if(!empty($edit_by_id)) { $edit_date = date_create($edit_date); ?>
+      <div class="">Sidst redigeret af: <?php echo $edit_by_name; ?> den <?php echo date_format($edit_date, 'j\. M \k\l\. H:i - Y'); ?><br></div>
+    <?php } ?>
     <div class="card-title activator grey-text text-darken-4">
       <?php echo $fornavn . " " . $efternavn . " || " . alderNu($alder) . " år || " . $bruger_status . " || " . $bruger_rolle; ?>
       <a href="medlemmer.php?action=edit&id=<?php echo $user_id; ?>">Rediger medlem</a>
@@ -79,7 +80,7 @@
   <div class="card-reveal">
     <div class="row">
       <div class="col s12 m4 center">
-        <img src="images/placeholder-user.png" alt="" style="max-width:250px;"/>
+        <img src="<?php echo $profil_billede; ?>" alt="" style="max-width:250px;"/>
       </div>
       <div class="grey-text text-darken-4 col s12 m8">
         <span class="card-title"><?php echo $fornavn . " " . $efternavn . " - " . alderNu($alder) . " år"; ?>

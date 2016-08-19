@@ -124,10 +124,6 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
         $profil_billede = $row['profil_billede'];
 
     }
-
-    if($profil_billede == '') {
-      $profil_billede = 'images/placeholder-user.png';
-    }
 ?>
 
 <div class="container">
@@ -149,7 +145,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
   <section>
     <div class="row">
       <div class="col s12"><p>Indtast oplysningerne på det nye medlem.<br><span class="red-text">Husk at godkende</span> det nye medlem du opretter, under "Alle medlemmer".</p><p>Alle nye medlemmer der bliver oprettet vil automatisk få tildelt adganskoden <span class="red-text">Storekor123</span>.</p><p>Efter godkendelse skal det nye medlem have en <span class="red-text">påmindelse om at ændre deres password!</span></p></div>
-      <form class="col s12" action="" method="post" autocomplete="on" id="registration">
+      <form class="col s12" action="" method="post" autocomplete="on" id="edit_member" enctype="multipart/form-data">
         <div class="row">
           <div class="input-field col s12 m6">
             <input id="fornavn" required="required" type="text" class="validate" name="fornavn" value="<?php if(isset($fornavn)) {echo $fornavn;} ?>">
