@@ -25,7 +25,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
     $relate = escape($_POST['relate']);
     $persona = escape($_POST['persona']);
     $dato_oprettet = escape($_POST['dato_oprettet']);
-    $profil_billede = 'images/placeholder-user.png';
+    $profil_billede = 'uploads/placeholder-user.png';
 
     $tid = strtotime($alder);
     // $alder = date('d-m/Y',$tid);
