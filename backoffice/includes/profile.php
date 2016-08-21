@@ -81,19 +81,19 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
           if($check !== false) {
               $uploadOk = 1;
           } else {
-              $profil_billede = 'images/placeholder-user.png';
+              $profil_billede = 'uploads/placeholder-user.png';
               $file_up_msg = urlencode("false");
               $uploadOk = 0;
           }
       }
       // Check if file already exists
       if (file_exists($target_file)) {
-          $profil_billede = 'images/placeholder-user.png';
+          $profil_billede = 'uploads/placeholder-user.png';
           $uploadOk = 0;
       }
       // Check file size
       if ($_FILES["profil_billede"]["size"] > 200000) {
-          $profil_billede = 'images/placeholder-user.png';
+          $profil_billede = 'uploads/placeholder-user.png';
           $file_up_msg = urlencode("<p>Profil billede blev ikke opdateret.<br>Filen du prøver at uploade fylder for meget - maks 200kb.<br>Læs vilkårene for upload af profil billede og prøv igen.");
 
           $uploadOk = 0;
@@ -101,13 +101,13 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
       // Allow certain file formats
       if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
       && $imageFileType != "gif" ) {
-          $profil_billede = 'images/placeholder-user.png';
+          $profil_billede = 'uploads/placeholder-user.png';
           $uploadOk = 0;
           $file_up_msg = urlencode("false");
       }
       // Check if $uploadOk is set to 0 by an error
       if ($uploadOk == 0) {
-          $profil_billede = 'images/placeholder-user.png';
+          $profil_billede = 'uploads/placeholder-user.png';
           $file_up = 'false';
       // if everything is ok, try to upload file
       } else {
@@ -116,7 +116,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
 
         } else {
             echo "Sorry, there was an error uploading your file.";
-            $profil_billede = 'images/placeholder-user.png';
+            $profil_billede = 'uploads/placeholder-user.png';
         }
       }
     } else {

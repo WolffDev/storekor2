@@ -30,7 +30,7 @@ if (!empty($_FILES["profil_billede"])) {
   } else {
     $path_to_file = UPLOAD_DIR . $new_name;
     if(empty($path_to_file)) {
-      $path_to_file = 'images/placeholder-user.png';
+      $path_to_file = 'uploads/placeholder-user.png';
     }
   // set proper permissions on the new file
     chmod(UPLOAD_DIR . $new_name, 0644);

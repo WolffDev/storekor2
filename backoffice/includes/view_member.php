@@ -40,7 +40,7 @@
     }
 
     // if($profil_billede == '') {
-    //   $profil_billede = 'images/placeholder-user.png';
+    //   $profil_billede = 'uploads/placeholder-user.png';
     // }
 
     $edit_query = "SELECT * FROM medlemmer_edit WHERE member_id = {$user_id} ORDER BY edit_date DESC LIMIT 1";

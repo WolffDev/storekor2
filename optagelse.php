@@ -25,7 +25,7 @@
       $relate = escape($_POST['relate']);
       $persona = escape($_POST['persona']);
       $dato_oprettet = date('Y-m-d H:i:s');
-      $profil_billede = 'images/placeholder-user.png';
+      $profil_billede = 'uploads/placeholder-user.png';
 
       $tid = strtotime($alder);
       // $alder = date('d-m/Y',$tid);
