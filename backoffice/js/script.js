@@ -1,4 +1,10 @@
 $( document ).ready(function() {
-  // Handle click on checkbox to set state of "Select all" control
-  
+  $('#ovegange').datepicker({
+    todayBtn: "linked",
+    language: "da",
+    multidate: true,
+    multidateSeparator: ",",
+    calendarWeeks: true,
+    todayHighlight: true
+});
 });
