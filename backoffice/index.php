@@ -39,11 +39,11 @@
     }
 
     switch($action) {
+      case 'dashboard':
+        include "includes/dashboard.php";
+        break;
       case 'ovegange':
         include "includes/ovegange.php";
-        break;
-      case 'add_ovegange':
-        include "includes/add_ovegange.php";
         break;
       default:
         include "includes/dashboard.php";

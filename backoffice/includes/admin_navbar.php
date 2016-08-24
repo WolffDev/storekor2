@@ -34,7 +34,6 @@
             <li><a href="#"><i class="material-icons left">accessibility</i>Dirigent</a></li>
           <?php } ?>
           <li><a href="index.php?action=ovegange"><i class="material-icons left">music_note</i>Øvegange</a></li>
-          <li><a href="index.php?action=add_ovegange"><i class="material-icons left">note</i>Tilføj øvegange</a></li>
           <ul class="div hide-on-med-and-up">
             <li><a href="medlemmer.php?action=profile&bruger=<?php echo $user_id; ?>"><?php echo ucfirst($_SESSION['fornavn']); ?><i class="material-icons left">account_box</i></a></li>
             <li><a href="includes/logout.php"><i class="material-icons left">power_settings_new</i>Logud</a></li>
