@@ -1,4 +1,4 @@
-<?php   if (session_status() === PHP_SESSION_NONE){session_start();} ?>
+<?php if (session_status() === PHP_SESSION_NONE){session_start();} ?>
 <?php
   if(isset($_POST['add_ovegang'])) {
     $ove_dato = $_POST['ove_dato'];
@@ -16,7 +16,7 @@
 
     while($i < $count) {
       $start_date = $pieces[$i] .= " ".$ove_tid;
-      echo $end_date = $pieces_end[$i] .= " ".$ove_tid_slut;
+      $end_date = $pieces_end[$i] .= " ".$ove_tid_slut;
       $query = "INSERT INTO events(start_date, end_date, created) VALUES('{$start_date}','{$end_date}', '{$now}')";
       $create_ovegang = mysqli_query($conn, $query);
       $i++;
@@ -30,19 +30,18 @@
     }
   }
 ?>
-<?php
-  $query = "SELECT start_date FROM events";
-  $select = mysqli_query($conn, $query);
-  $count = mysqli_num_rows($select);
-  if($count != 0) {
-    while($row = mysqli_fetch_assoc($select)) {
-      $date_selected[] = date('Y/m/d', strtotime($row['start_date']));
-    }
-    $dates = json_encode($date_selected);
-  }
-?>
+
 <?php
   if(isset($_SESSION['auth']) && $_SESSION['auth'] < 3 ) {
+    $query = "SELECT start_date FROM events";
+    $select = mysqli_query($conn, $query);
+    $count = mysqli_num_rows($select);
+    if($count != 0) {
+      while($row = mysqli_fetch_assoc($select)) {
+        $date_selected[] = date('Y/m/d', strtotime($row['start_date']));
+      }
+      $dates = json_encode($date_selected);
+    }
 ?>
 <script type="text/javascript">
 $( document ).ready(function() {
@@ -80,3 +79,39 @@ $( document ).ready(function() {
   </div>
 </div>
 <?php } ?>
+
+<table class="centered highlight striped">
+  <thead>
+    <tr>
+      <th data-field="name">Type</th>
+      <th data-field="date">Start</th>
+      <th data-field="date">Slut</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php
+    $query = "SELECT * FROM events";
+    $select = mysqli_query($conn, $query);
+    $count = mysqli_num_rows($select);
+    if($count != 0) {
+      while($row = mysqli_fetch_assoc($select)) {
+        $start_date = $row['start_date'];
+        $end_date = $row['end_date'];
+        $title = $row['title'];
+        $e_id = $row['id'];
+        echo "<tr>";
+        if($_SESSION['auth'] < 3 ) {
+          echo "<td><a href='index.php?action=event&e_id=".$e_id."'>".$title."</a></td>";
+        } else {
+          echo "<td>".$title."</td>";
+        }
+        echo "<td>".date_format(new DateTime($start_date), 'D \d\. j\. M \k\l\. H:i')."</td>";
+        echo "<td>".date_format(new DateTime($end_date), 'D \d\. j\. M \k\l\. H:i')."</td>";
+        echo "</tr>";
+      }
+    } else {
+      echo "make error message = no events.";
+    }
+  ?>
+  </tbody>
+</table>

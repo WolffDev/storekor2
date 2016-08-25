@@ -185,7 +185,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
             <label for="alder">Fødselsdato</label>
           </div>
           <div class="input-field col s12 m4">
-            <input id="dato_oprettet" required="required" type="date" class="datepicker" name="dato_oprettet" data-value="<?php echo $alder ?>">
+            <input id="dato_oprettet" required="required" type="date" class="datepicker" name="dato_oprettet" data-value="<?php echo $dato_oprettet ?>">
             <label for="dato_oprettet">Dato oprettet</label>
           </div>
           <div class="input-field col s12 m4">

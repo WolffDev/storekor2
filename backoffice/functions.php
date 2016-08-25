@@ -22,5 +22,12 @@
     return $alder_nu = floor(((time()- $tid)  /(3600 * 24 * 365)));
   }
 
+  function checkAuth($auth) {
+    if (session_status() === PHP_SESSION_NONE){session_start();}
+    if(!isset($_SESSION['bruger_status']) || $_SESSION['bruger_status'] == 'ikke godkendt' || $_SESSION['auth'] > $auth) {
+      $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+      header("Location:".$root);
+    }
+  }
 
 ?>

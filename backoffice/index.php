@@ -45,6 +45,9 @@
       case 'ovegange':
         include "includes/ovegange.php";
         break;
+      case 'event':
+        include "includes/event.php";
+        break;
       default:
         include "includes/dashboard.php";
     }
