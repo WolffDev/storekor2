@@ -111,3 +111,17 @@ div.dataTables_wrapper span.select-item {
 .datepicker table tr td.disabled:hover {
   color: red !important;
 }
+
+.events > .row {
+  padding-top: 50px;
+  @media #{$small-and-down} {
+    form {
+      padding-bottom: 50px;
+    }
+  }
+  @media #{$medium-and-up} {
+    & > form.dotted {
+      border-right: 2px dotted grey;
+    }
+  }
+}

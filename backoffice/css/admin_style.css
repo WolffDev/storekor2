@@ -2517,7 +2517,7 @@ table {
   table.highlight > tbody > tr {
     transition: background-color .2s ease; }
     table.highlight > tbody > tr:hover {
-      background-color: #00e6e6;
+      background-color: #006767;
       color: white; }
   table.centered thead tr th, table.centered tbody tr td {
     text-align: center; }
@@ -2878,3 +2878,12 @@ div.dataTables_wrapper span.select-item {
 .datepicker table tr td.disabled,
 .datepicker table tr td.disabled:hover {
   color: red !important; }
+
+.events > .row {
+  padding-top: 50px; }
+  @media only screen and (max-width: 600px) {
+    .events > .row form {
+      padding-bottom: 50px; } }
+  @media only screen and (min-width: 601px) {
+    .events > .row > form.dotted {
+      border-right: 2px dotted grey; } }

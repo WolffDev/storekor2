@@ -22,7 +22,8 @@
     $modified = $row['modified'];
   }
 ?>
-<div class="row">
+<div class="container events">
+  <div class="row">
     <form class="col s12" action="" method="post">
       <div class="row">
         <div class="input-field col s12 m8">
@@ -56,3 +57,4 @@
       </div>
     </form>
   </div>
+</div>

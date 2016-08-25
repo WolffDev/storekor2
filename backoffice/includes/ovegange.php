@@ -3,21 +3,19 @@
   if(isset($_POST['add_event'])) {
     $start_date = escape($_POST['start_date']);
     $start_time = escape($_POST['start_time']);
-
-    $db_start_date = '';
-
+    $db_start_date = $start_date . " " . $start_time;
 
     $end_date = escape($_POST['end_date']);
     $end_time = escape($_POST['end_time']);
+    $db_end_date = $end_date . " " . $end_time;
 
-    $db_end_date = '';
-
-
+    $long_text = escape($_POST['long_text']);
     $e_title = escape($_POST['e_title']);
     $e_type = escape($_POST['e_type']);
     $e_text = escape($_POST['e_text']);
+    $now = date('Y-m-d H:i:s');
 
-    $query = "INSERT INTO events(start_date, end_date, title, type, text) VALUES('{$db_start_date}', '{$db_end_date}', '{$e_title}', '{$e_type}', '{$e_text}')";
+    $query = "INSERT INTO events(start_date, end_date, title, type, text, long_text, created) VALUES('{$db_start_date}', '{$db_end_date}', '{$e_title}', '{$e_type}', '{$e_text}', '{$long_text}', '$now')";
     $insert_event = mysqli_query($conn, $query);
     if(!$insert_event) {
       die("Query Failed: " . mysqli_error($conn));
@@ -59,7 +57,7 @@
   }
 ?>
 
-<div class="container">
+<div class="container events">
 <?php
   if(isset($_SESSION['auth']) && $_SESSION['auth'] < 3 ) {
     $query = "SELECT start_date FROM events";
@@ -88,8 +86,11 @@ $( document ).ready(function() {
 </script>
 
   <div class="row">
-    <form action="" method="post" class="col s12 m6">
-      <p>Tilføj en koncert og/eller en øvegang</p>
+    <form action="" method="post" class="col s12 m6 dotted">
+      <h5>Tilføj en enkelt koncert, øvegang etc.</h5>
+      <p class="flow-text">
+        Herunder kan du oprette et enkelt event og specificere flere detaljer for eventet.
+      </p>
 
       <div class="row">
         <div class="input-field col s6">
@@ -115,7 +116,7 @@ $( document ).ready(function() {
 
       <div class="row">
         <div class="input-field col s6">
-          <input id="e_title" type="text" name="e_title">
+          <input id="e_title" type="text" name="e_title" length="30">
           <label for="e_title">Titel på event</label>
         </div>
         <div class="input-field col s6">
@@ -126,8 +127,15 @@ $( document ).ready(function() {
 
       <div class="row">
         <div class="input-field col s12">
-          <input type="text" id="e_text" name="e_text" value="">
+          <input type="text" id="e_text" name="e_text" value="" length="50">
           <label for="e_text">Lidt tekst om eventet</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea type="text" id="long_text" name="long_text" value="" class="materialize-textarea"></textarea>
+          <label for="long_text">Her kan du tilføje en længere tekst som vil blive vist på forsiden, hvis det er en koncert du opretter</label>
         </div>
       </div>
 
@@ -142,7 +150,8 @@ $( document ).ready(function() {
     </form>
 
     <form action="" method="post" class="col s12 m6">
-      <p>Tilføj flere øvegange herunder</p>
+      <h5>Tilføj flere øvegange</h5>
+      <p class="flow-text">Her kan du tilføje flere datoer for øvegange på samme tid, hvor tidsrummet automatisk er sat til at være 19:00 - 21:30.</p>
 
       <div class="row">
         <div class="input-field col s12">
@@ -163,40 +172,54 @@ $( document ).ready(function() {
   </div>
 <?php } ?>
 
-<table class="centered highlight striped">
+<table class="centered highlight striped responsive-table">
   <div class="div center">
     <h5>Planlagte øvegange/koncerter mm.</h5>
   </div>
   <thead>
     <tr>
       <th data-field="name">Type</th>
+      <th data-field="name">Titel</th>
+      <th data-field="name">Info</th>
       <th data-field="date">Start</th>
       <th data-field="date">Slut</th>
     </tr>
   </thead>
   <tbody>
   <?php
-    $query = "SELECT * FROM events";
+    $query = "SELECT * FROM events WHERE start_date >= NOW() ORDER BY start_date ASC";
     $select = mysqli_query($conn, $query);
     $count = mysqli_num_rows($select);
     if($count != 0) {
       while($row = mysqli_fetch_assoc($select)) {
         $start_date = $row['start_date'];
         $end_date = $row['end_date'];
+        $title = $row['title'];
+        $text = $row['text'];
+        $start_date_format = date_format(new DateTime($start_date), 'D \d\. j\. M \k\l\. H:i');
+        $end_date_format = date_format(new DateTime($end_date), 'D \d\. j\. M \k\l\. H:i');
+        $start_date_check = date_format(new DateTime($start_date), 'd m Y');
+        $end_date_check = date_format(new DateTime($end_date), 'd m Y');
+        $end_date_time = date_format(new DateTime($end_date), '\k\l\. H:i');
         $type = $row['type'];
         $e_id = $row['id'];
-        echo "<tr>";
-        if($_SESSION['auth'] < 3 ) {
-          echo "<td><a href='index.php?action=event&e_id=".$e_id."'>".$type."</a></td>";
+        echo "<tr>";if($_SESSION['auth'] < 3 ) {
+          echo "<td><a href='index.php?action=event&e_id=" . $e_id . "'>" . $type . "</a></td>";
         } else {
-          echo "<td>".$type."</td>";
+          echo "<td>" . $type . "</td>";
         }
-        echo "<td>".date_format(new DateTime($start_date), 'D \d\. j\. M \k\l\. H:i')."</td>";
-        echo "<td>".date_format(new DateTime($end_date), 'D \d\. j\. M \k\l\. H:i')."</td>";
+        echo "<td>" . $title . "</td>";
+        echo "<td>" . $text . "</td>";
+        echo "<td>" . $start_date_format . "</td>";
+        if($start_date_check === $end_date_check) {
+          echo "<td>" . $end_date_time . "</td>";
+        } else {
+          echo "<td>" . $end_date_format . "</td>";
+        }
         echo "</tr>";
       }
     } else {
-      echo "make error message = no events.";
+      echo "Der er ikke blevet oprettet nogle events endnu.";
     }
   ?>
   </tbody>
