@@ -1,1 +1,1 @@
-$(document).ready(function(){});
+$(document).ready(function(){$(".timepicker").pickatime({autoclose:!0,twelvehour:!1,donetext:"Færdig"})});

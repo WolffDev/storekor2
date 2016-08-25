@@ -1,9 +1,13 @@
 <?php if (session_status() === PHP_SESSION_NONE){session_start();} ?>
 <?php
-  if(isset($_POST['add_ovegang'])) {
-    $ove_dato = $_POST['ove_dato'];
-    $pieces = explode(",", $ove_dato);
-    $pieces_end = explode(",", $ove_dato);
+  if(isset($_POST['add_event'])) {
+
+  }
+
+  if(isset($_POST['add_ovegange'])) {
+    $ove_datoer = escape($_POST['ove_datoer']);
+    $pieces = explode(",", $ove_datoer);
+    $pieces_end = explode(",", $ove_datoer);
     $count = count($pieces);
     $i = 0;
     $now = date("Y-m-d H:i:s");
@@ -45,7 +49,7 @@
 ?>
 <script type="text/javascript">
 $( document ).ready(function() {
-  $('#ove_dato').datepicker({
+  $('#ove_datoer').datepicker({
     language: "da",
     multidate: true,
     multidateSeparator: ",",
@@ -58,26 +62,80 @@ $( document ).ready(function() {
 });
 </script>
 
-<div class="container">
   <div class="row">
-    <form action="" method="post" class="col s12">
-      <h5>Tilføj flere øvegange herunder</h5>
+    <form action="" method="post" class="col s12 m6">
+      <p>Tilføj en koncert og/eller en øvegang</p>
+
       <div class="row">
-        <div class="input-field col s12">
-          <input id="ove_dato" type="text" class="validate" name="ove_dato">
-          <label for="ove_dato">Indtast datoer for øvegange</label>
+        <div class="input-field col s6">
+          <input id="start_date" type="date" name="start_date" class="datepicker">
+          <label for="start_date">Start dato</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="time" class="timepicker" id="start_time" name="start_time" value="">
+          <label for="start_time">Start tidspunkt</label>
         </div>
       </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="end_date" type="date" name="end_date" class="datepicker">
+          <label for="end_date">Slut dato</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="time" class="timepicker" id="end_time" name="end_time" value="">
+          <label for="end_time">Slut tidspunkt</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="e_title" type="text" name="e_title">
+          <label for="e_title">Titel på event</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="text" id="e_type" name="e_type" value="">
+          <label for="e_type">Type af event</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" id="e_text" name="e_text" value="">
+          <label for="e_text">Lidt tekst om eventet</label>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col s12">
-          <button class="btn waves-effect waves-light" type="submit" name="add_ovegang">Tilføj øvegange
+          <button class="btn waves-effect waves-light" type="submit" name="add_event">Tilføj event
             <i class="material-icons right">send</i>
           </button>
         </div>
       </div>
+
+    </form>
+
+    <form action="" method="post" class="col s12 m6">
+      <p>Tilføj flere øvegange herunder</p>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="ove_datoer" type="text" name="ove_datoer">
+          <label for="ove_datoer">Indtast datoer for øvegange</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s12">
+          <button class="btn waves-effect waves-light" type="submit" name="add_ovegange">Tilføj øvegange
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </div>
+
     </form>
   </div>
-</div>
 <?php } ?>
 
 <table class="centered highlight striped">
@@ -97,13 +155,13 @@ $( document ).ready(function() {
       while($row = mysqli_fetch_assoc($select)) {
         $start_date = $row['start_date'];
         $end_date = $row['end_date'];
-        $title = $row['title'];
+        $type = $row['type'];
         $e_id = $row['id'];
         echo "<tr>";
         if($_SESSION['auth'] < 3 ) {
-          echo "<td><a href='index.php?action=event&e_id=".$e_id."'>".$title."</a></td>";
+          echo "<td><a href='index.php?action=event&e_id=".$e_id."'>".$type."</a></td>";
         } else {
-          echo "<td>".$title."</td>";
+          echo "<td>".$type."</td>";
         }
         echo "<td>".date_format(new DateTime($start_date), 'D \d\. j\. M \k\l\. H:i')."</td>";
         echo "<td>".date_format(new DateTime($end_date), 'D \d\. j\. M \k\l\. H:i')."</td>";

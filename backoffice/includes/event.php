@@ -1,5 +1,8 @@
 <?php checkAuth('3'); ?>
 <?php
+/*
+ * https://github.com/chingyawhao/materialize-clockpicker#developing
+ */
   if(isset($_GET['e_id'])) {
     $e_id = escape($_GET['e_id']);
   } else {
@@ -10,6 +13,7 @@
   $select = mysqli_query($conn, $query);
 
   while($row = mysqli_fetch_assoc($select)) {
+    $type = $row['type'];
     $title = $row['title'];
     $text = $row['text'];
     $start_date = $row['start_date'];
@@ -18,25 +22,24 @@
     $modified = $row['modified'];
   }
 ?>
-
 <div class="row">
     <form class="col s12" action="" method="post">
       <div class="row">
-        <div class="input-field col s6">
-          <input id="title" type="text" value="<?php echo $title; ?>">
-          <label for="title">Type</label>
+        <div class="input-field col s12 m8">
+          <input id="title" type="text" value="<?php echo $type; ?>">
+          <label for="title">Type (øvegang, koncert etc.)</label>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s12 m8">
           <textarea id="textarea1" class="materialize-textarea"></textarea>
           <label for="textarea1">Info om event</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input disabled value="I am not editable" id="disabled" type="text" class="validate">
-          <label for="disabled">Disabled</label>
+          <input type="time" class="timepicker" id="timepicker" name="time" value="">
+          <label for="timepicker">Tidspunkt</label>
         </div>
       </div>
       <div class="row">

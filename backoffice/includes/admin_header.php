@@ -14,19 +14,17 @@
     <link href="../css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="../css/style.css" rel="stylesheet"/>
     <link href="css/dataTables.css" rel="stylesheet"/>
-    <link href="css/admin_style.css" rel="stylesheet"/>
+    <link href="css/timepicker.css" rel="stylesheet"/>
     <link href="css/bootstrap-datepicker.standalone.css" rel="stylesheet">
+    <link href="css/admin_style.css" rel="stylesheet"/>
     <!-- ****** SCRIPTS ******-->
     <script src="../js/min/jquery2.1.1.min.js"></script>
     <script src="js/dataTables.js"></script>
     <script src="../js/materialize.js"></script>
     <script src="js/dataTables.fixedHeader.min.js"></script>
     <script src="js/dataTables.checkboxes.min.js"></script>
-    <script src="js/bootstrap-datepicker.min.js">
-
-    </script>
-    <script src="js/script.js">
-
-    </script>
+    <script src="js/clockpicker.js"></script>
+    <script src="js/bootstrap-datepicker.min.js"></script>
+    <script src="js/script.js"></script>
   </head>
   <body class="admin-area">
