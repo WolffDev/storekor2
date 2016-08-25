@@ -259,7 +259,8 @@ $tabs-bg-color: #fff !default;
 
 $table-border-color: #d0d0d0 !default;
 $table-striped-color: #f2f2f2 !default;
-$table-hover-color: $primary-color-dark;
+$table-hover-color: lighten(teal, 20%);
+$table-text-hover-color: white;
 
 
 /* 19. Toasts

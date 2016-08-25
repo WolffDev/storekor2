@@ -1,7 +1,31 @@
 <?php if (session_status() === PHP_SESSION_NONE){session_start();} ?>
 <?php
   if(isset($_POST['add_event'])) {
+    $start_date = escape($_POST['start_date']);
+    $start_time = escape($_POST['start_time']);
 
+    $db_start_date = '';
+
+
+    $end_date = escape($_POST['end_date']);
+    $end_time = escape($_POST['end_time']);
+
+    $db_end_date = '';
+
+
+    $e_title = escape($_POST['e_title']);
+    $e_type = escape($_POST['e_type']);
+    $e_text = escape($_POST['e_text']);
+
+    $query = "INSERT INTO events(start_date, end_date, title, type, text) VALUES('{$db_start_date}', '{$db_end_date}', '{$e_title}', '{$e_type}', '{$e_text}')";
+    $insert_event = mysqli_query($conn, $query);
+    if(!$insert_event) {
+      die("Query Failed: " . mysqli_error($conn));
+    } else {
+      $message = urlencode('event_added');
+      header("Location: index.php?action=ovegange&message=".$message);
+      mysqli_close($conn);
+    }
   }
 
   if(isset($_POST['add_ovegange'])) {
@@ -35,6 +59,7 @@
   }
 ?>
 
+<div class="container">
 <?php
   if(isset($_SESSION['auth']) && $_SESSION['auth'] < 3 ) {
     $query = "SELECT start_date FROM events";
@@ -139,6 +164,9 @@ $( document ).ready(function() {
 <?php } ?>
 
 <table class="centered highlight striped">
+  <div class="div center">
+    <h5>Planlagte øvegange/koncerter mm.</h5>
+  </div>
   <thead>
     <tr>
       <th data-field="name">Type</th>
@@ -173,3 +201,4 @@ $( document ).ready(function() {
   ?>
   </tbody>
 </table>
+</div>
