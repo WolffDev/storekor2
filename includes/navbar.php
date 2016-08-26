@@ -59,7 +59,12 @@
         <li><a href="#!">Historie</a></li>
         <li><a href="#!">PR</a></li>
         <li><a href="./#kontakt">Kontakt</a></li>
-        <li><a href="login_mobile.php">Login</a></li>
+        <?php if($_SESSION['logged_in'] == 'true' && $_SESSION['auth'] < 5) { ?>
+          <li><a href="./backoffice/">Admin</a></li>
+          <li><a href="./backoffice/includes/logout.php">Logud</a></li>
+        <?php } else { ?>
+          <li><a href="login_mobile.php">Login</a></li>
+        <?php } ?>
       </ul><a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
