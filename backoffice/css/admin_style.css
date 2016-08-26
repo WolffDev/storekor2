@@ -2872,8 +2872,23 @@ div.dataTables_wrapper span.select-item {
   left: inherit;
   visibility: inherit; }
 
+/*****************************
+********* DASHBOARD **********
+*****************************/
 .dashboard-card {
-  border-radius: 5px; }
+  border-radius: 5px;
+  border: 2px solid white; }
+  .dashboard-card.new-apps ul > a > button {
+    margin-top: 5px !important; }
+  @media only screen and (max-width: 600px) {
+    .dashboard-card {
+      border-left: 4px solid white;
+      border-right: 4px solid white; } }
+  .dashboard-card > ul > a {
+    color: white; }
+
+.bold {
+  font-weight: 700; }
 
 .datepicker table tr td.disabled,
 .datepicker table tr td.disabled:hover {

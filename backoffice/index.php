@@ -51,6 +51,9 @@
       case 'old_ovegange':
         include "includes/old_ovegange.php";
         break;
+      case 'view_new_app':
+        include "includes/view_new_app.php";
+        break;
       default:
         include "includes/dashboard.php";
     }
