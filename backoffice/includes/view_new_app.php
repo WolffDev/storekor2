@@ -23,7 +23,8 @@
     if(!$update_app) {
       die("Query Failed123: " . mysqli_error($conn));
     } else {
-      echo "asdsd";
+      $message = urlencode('new_app_godkendt');
+      header("Location: index.php?action=dashbord&message=".$message);
     }
   }
 

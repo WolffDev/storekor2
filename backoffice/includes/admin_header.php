@@ -25,6 +25,7 @@
     <script src="js/dataTables.checkboxes.min.js"></script>
     <script src="js/clockpicker.js"></script>
     <script src="js/bootstrap-datepicker.min.js"></script>
+    <!-- <script src="js/chart.bundle.2.2.2.min.js"></script> -->
     <script src="js/script.js"></script>
   </head>
   <body class="admin-area">
