@@ -126,7 +126,9 @@ div.dataTables_wrapper span.select-item {
 .bold {
   font-weight: 700;
 }
-
+.new-app {
+  @include margin-top(35px);
+}
 
 
 
