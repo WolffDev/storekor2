@@ -2897,11 +2897,11 @@ div.dataTables_wrapper span.select-item {
 .datepicker table tr td.disabled:hover {
   color: red !important; }
 
-.events > .row {
+.events .collapsible-body > .row {
   padding-top: 50px; }
   @media only screen and (max-width: 600px) {
-    .events > .row form {
+    .events .collapsible-body > .row form {
       padding-bottom: 50px; } }
   @media only screen and (min-width: 601px) {
-    .events > .row > form.dotted {
+    .events .collapsible-body > .row > form.dotted {
       border-right: 2px dotted grey; } }

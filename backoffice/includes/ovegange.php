@@ -84,100 +84,109 @@
     });
   });
   </script>
+  <ul class="collapsible" data-collapsible="accordion">
+    <li>
+     <div class="collapsible-header"><i class="material-icons">filter_drama</i>Tryk her for at tilføje en øvegang, koncert m.m.</div>
+     <div class="collapsible-body">
 
-    <div class="row">
-      <form action="" method="post" class="col s12 m6 dotted">
-        <h5>Tilføj en enkelt koncert, øvegang etc.</h5>
-        <p class="flow-text">
-          Herunder kan du oprette et enkelt event og specificere flere detaljer for eventet.
-        </p>
-
+      <div class="container">
         <div class="row">
-          <div class="input-field col s6">
-            <input id="start_date" type="date" name="start_date" class="datepicker">
-            <label for="start_date">Start dato</label>
-          </div>
-          <div class="input-field col s6">
-            <input type="time" class="timepicker" id="start_time" name="start_time" value="">
-            <label for="start_time">Start tidspunkt</label>
-          </div>
+          <form action="" method="post" class="col s12 m6 dotted">
+            <h5>Tilføj en enkelt koncert, øvegang etc.</h5>
+            <p class="flow-text">
+              Herunder kan du oprette et enkelt event og specificere flere detaljer for eventet.
+            </p>
+
+            <div class="row">
+              <div class="input-field col s6">
+                <input id="start_date" type="date" name="start_date" class="datepicker">
+                <label for="start_date">Start dato</label>
+              </div>
+              <div class="input-field col s6">
+                <input type="time" class="timepicker" id="start_time" name="start_time" value="">
+                <label for="start_time">Start tidspunkt</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s6">
+                <input id="end_date" type="date" name="end_date" class="datepicker">
+                <label for="end_date">Slut dato</label>
+              </div>
+              <div class="input-field col s6">
+                <input type="time" class="timepicker" id="end_time" name="end_time" value="">
+                <label for="end_time">Slut tidspunkt</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s6">
+                <input id="e_title" type="text" name="e_title" length="30">
+                <label for="e_title">Titel på event</label>
+              </div>
+              <div class="input-field col s6">
+                <select name="e_type">
+                  <option value="koncert">Koncert</option>
+                  <option value="øvegang">Øvegang</option>
+                  <option value="korlørdag">Korlørdag</option>
+                  <option value="generalprøve">Generalprøve</option>
+                  <option value="generalforsamling">Generalforsamling</option>
+                  <option value="spisning">Spisning</option>
+                  <option value="evt">Eventuelt</option>
+                </select>
+                <label>Type af event</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input type="text" id="e_text" name="e_text" value="" length="50">
+                <label for="e_text">Lidt tekst om eventet</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea type="text" id="long_text" name="long_text" value="" class="materialize-textarea"></textarea>
+                <label for="long_text">Her kan du tilføje en længere tekst som vil blive vist på forsiden, hvis det er en koncert du opretter</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col s12">
+                <button class="btn waves-effect waves-light" type="submit" name="add_event">Tilføj event
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+            </div>
+
+          </form>
+
+          <form action="" method="post" class="col s12 m6">
+            <h5>Tilføj flere øvegange</h5>
+            <p class="flow-text">Her kan du tilføje flere datoer for øvegange på samme tid, hvor tidsrummet automatisk er sat til at være 19:00 - 21:30.</p>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="ove_datoer" type="text" name="ove_datoer">
+                <label for="ove_datoer">Indtast datoer for øvegange</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col s12">
+                <button class="btn waves-effect waves-light" type="submit" name="add_ovegange">Tilføj øvegange
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+            </div>
+
+          </form>
         </div>
-
-        <div class="row">
-          <div class="input-field col s6">
-            <input id="end_date" type="date" name="end_date" class="datepicker">
-            <label for="end_date">Slut dato</label>
-          </div>
-          <div class="input-field col s6">
-            <input type="time" class="timepicker" id="end_time" name="end_time" value="">
-            <label for="end_time">Slut tidspunkt</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="input-field col s6">
-            <input id="e_title" type="text" name="e_title" length="30">
-            <label for="e_title">Titel på event</label>
-          </div>
-          <div class="input-field col s6">
-            <select name="e_type">
-              <option value="koncert">Koncert</option>
-              <option value="øvegang">Øvegang</option>
-              <option value="korlørdag">Korlørdag</option>
-              <option value="generalprøve">Generalprøve</option>
-              <option value="generalforsamling">Generalforsamling</option>
-              <option value="spisning">Spisning</option>
-              <option value="evt">Eventuelt</option>
-            </select>
-            <label>Type af event</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="input-field col s12">
-            <input type="text" id="e_text" name="e_text" value="" length="50">
-            <label for="e_text">Lidt tekst om eventet</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="input-field col s12">
-            <textarea type="text" id="long_text" name="long_text" value="" class="materialize-textarea"></textarea>
-            <label for="long_text">Her kan du tilføje en længere tekst som vil blive vist på forsiden, hvis det er en koncert du opretter</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col s12">
-            <button class="btn waves-effect waves-light" type="submit" name="add_event">Tilføj event
-              <i class="material-icons right">send</i>
-            </button>
-          </div>
-        </div>
-
-      </form>
-
-      <form action="" method="post" class="col s12 m6">
-        <h5>Tilføj flere øvegange</h5>
-        <p class="flow-text">Her kan du tilføje flere datoer for øvegange på samme tid, hvor tidsrummet automatisk er sat til at være 19:00 - 21:30.</p>
-
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="ove_datoer" type="text" name="ove_datoer">
-            <label for="ove_datoer">Indtast datoer for øvegange</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col s12">
-            <button class="btn waves-effect waves-light" type="submit" name="add_ovegange">Tilføj øvegange
-              <i class="material-icons right">send</i>
-            </button>
-          </div>
-        </div>
-
-      </form>
+      </div>
     </div>
+  </li>
+  </ul>
   <?php } ?>
 
   <table class="centered highlight striped responsive-table">
@@ -191,15 +200,18 @@
         <th data-field="name">Info</th>
         <th data-field="date">Start</th>
         <th data-field="date">Slut</th>
+        <th data-field="date">Afbud</th>
       </tr>
     </thead>
     <tbody>
     <?php
+      $_SESSION['user_id'] = $user_id;
       $query = "SELECT * FROM events WHERE start_date >= NOW() ORDER BY start_date ASC";
       $select = mysqli_query($conn, $query);
       $count = mysqli_num_rows($select);
       if($count != 0) {
         while($row = mysqli_fetch_assoc($select)) {
+          $e_id = $row['id'];
           $start_date = $row['start_date'];
           $end_date = $row['end_date'];
           $title = $row['title'];
@@ -210,7 +222,6 @@
           $end_date_check = date_format(new DateTime($end_date), 'd m Y');
           $end_date_time = date_format(new DateTime($end_date), '\k\l\. H:i');
           $type = $row['type'];
-          $e_id = $row['id'];
           echo "<tr>";if($_SESSION['auth'] < 3 ) {
             echo "<td><a href='index.php?action=event&e_id=" . $e_id . "'>" . $type . "</a></td>";
           } else {
@@ -224,6 +235,7 @@
           } else {
             echo "<td>" . $end_date_format . "</td>";
           }
+          echo "<td><a href='index.php?action=afbud&cancel=true&e_id=" . $e_id . "&m_id=" . $user_id . "'><button class='btn red darken-3 white-text waves-effect waves-light'>Meld afbud</button></a></td>";
           echo "</tr>";
         }
       } else {

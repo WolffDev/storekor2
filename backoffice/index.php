@@ -42,6 +42,9 @@
       case 'dashboard':
         include "includes/dashboard.php";
         break;
+      case 'afbud':
+        include "includes/afbud.php";
+        break;
       case 'ovegange':
         include "includes/ovegange.php";
         break;

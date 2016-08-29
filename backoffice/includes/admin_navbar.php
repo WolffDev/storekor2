@@ -34,6 +34,11 @@
             <li><a href="#"><i class="material-icons left">accessibility</i>Dirigent</a></li>
           <?php } ?>
           <li><a href="index.php?action=ovegange"><i class="material-icons left">music_note</i>Korlender</a></li>
+          <?php
+          if ($_SESSION['auth'] < 4) {
+          ?>
+          <li><a href="index.php?action=afbud"><i class="material-icons left">alarm_off</i>Afbud</a></li>
+          <?php } ?>
           <ul class="div hide-on-med-and-up">
             <li><a href="medlemmer.php?action=profile&bruger=<?php echo $user_id; ?>"><?php echo ucfirst($_SESSION['fornavn']); ?><i class="material-icons left">account_box</i></a></li>
             <li><a href="includes/logout.php"><i class="material-icons left">power_settings_new</i>Logud</a></li>
