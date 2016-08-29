@@ -72,80 +72,119 @@ if(isset($_POST['status_close'])) {
       </div>
     </div>
 
-    <div class="row">
-      <?php
-        $voice_query = "SELECT stemme FROM medlemmer WHERE app_status = 'godkendt'"; //get array result
-        $voice_result = mysqli_query($conn, $voice_query);
-        while($row = mysqli_fetch_assoc($voice_result)) {
-          $stemmer[] = $row['stemme'];
-        }
-        $total_count = array_count_values($stemmer);
-        $total_count_1sopran = $total_count['1. Sopran'];
-        $total_count_2sopran = $total_count['2. Sopran'];
-        $total_count_1alt = $total_count['1. Alt'];
-        $total_count_2alt = $total_count['2. Alt'];
-        $total_count_1tenor = $total_count['1. Tenor'];
-        $total_count_2tenor = $total_count['2. Tenor'];
-        $total_count_1bass = $total_count['1. Bass'];
-        $total_count_2bass = $total_count['2. Bass'];
-      ?>
-
-      <?php
-      $s1 = 0;
-      $s2 = 0;
-      $a1 = 0;
-      $a2 = 0;
-      $t1 = 0;
-      $t2 = 0;
-      $b1 = 0;
-      $b2 = 0;
-      $count_query = "SELECT stemme, bruger_status FROM medlemmer WHERE app_status = 'godkendt'";
-      $count_result = mysqli_query($conn, $count_query);
-      while($row = mysqli_fetch_assoc($count_result)) {
-        $stemme = $row['stemme'];
-        $bruger_status = $row['bruger_status'];
-        if($stemme == '1. Sopran' && $bruger_status == 'orlov') {
-          $s1++;
-        }
-        if($stemme == '2. Sopran' && $bruger_status == 'orlov') {
-          $s2++;
-        }
-        if($stemme == '1. Alt' && $bruger_status == 'orlov') {
-          $a1++;
-        }
-        if($stemme == '2. Alt' && $bruger_status == 'orlov') {
-          $a2++;
-        }
-        if($stemme == '1. Tenor' && $bruger_status == 'orlov') {
-          $t1++;
-        }
-        if($stemme == '2. Tenor' && $bruger_status == 'orlov') {
-          $t2++;
-        }
-        if($stemme == '1. Bass' && $bruger_status == 'orlov') {
-          $b1++;
-        }
-        if($stemme == '2. Bass' && $bruger_status == 'orlov') {
-          $b2++;
-        }
+    <?php
+    $s1 = 0;
+    $s2 = 0;
+    $a1 = 0;
+    $a2 = 0;
+    $t1 = 0;
+    $t2 = 0;
+    $b1 = 0;
+    $b2 = 0;
+    $count_query = "SELECT stemme, bruger_status FROM medlemmer WHERE app_status = 'godkendt'";
+    $count_result = mysqli_query($conn, $count_query);
+    while($row = mysqli_fetch_assoc($count_result)) {
+      $stemmer[] = $row['stemme'];
+      $stemme = $row['stemme'];
+      $bruger_status = $row['bruger_status'];
+      if($stemme == '1. Sopran' && $bruger_status == 'orlov') {
+        $s1++;
       }
-      ?>
+      if($stemme == '2. Sopran' && $bruger_status == 'orlov') {
+        $s2++;
+      }
+      if($stemme == '1. Alt' && $bruger_status == 'orlov') {
+        $a1++;
+      }
+      if($stemme == '2. Alt' && $bruger_status == 'orlov') {
+        $a2++;
+      }
+      if($stemme == '1. Tenor' && $bruger_status == 'orlov') {
+        $t1++;
+      }
+      if($stemme == '2. Tenor' && $bruger_status == 'orlov') {
+        $t2++;
+      }
+      if($stemme == '1. Bass' && $bruger_status == 'orlov') {
+        $b1++;
+      }
+      if($stemme == '2. Bass' && $bruger_status == 'orlov') {
+        $b2++;
+      }
+    }
 
-      <div class="col s12 m3">
+    $total_count = array_count_values($stemmer);
+    $total_count_1sopran = $total_count['1. Sopran'];
+    $total_count_2sopran = $total_count['2. Sopran'];
+    $total_count_1alt = $total_count['1. Alt'];
+    $total_count_2alt = $total_count['2. Alt'];
+    $total_count_1tenor = $total_count['1. Tenor'];
+    $total_count_2tenor = $total_count['2. Tenor'];
+    $total_count_1bass = $total_count['1. Bass'];
+    $total_count_2bass = $total_count['2. Bass'];
 
+    $orlov = $s1.", ".$s2.", ".$a1.", ".$a2.", ".$t1.", ".$t2.", ".$b1.", ".$b2;
+    $aktive = ($total_count_1sopran - $s1).", ".($total_count_2sopran - $s2).", ".($total_count_1alt - $a1).", ".($total_count_2alt - $a2).", ".($total_count_1tenor - $t1).", ".($total_count_2tenor - $t2).", ".($total_count_1bass - $b1).", ".($total_count_2bass - $b2);
+    $total_orlov = $s1 + $s2 + $a1 + $a2 + $t1 + $t2 + $b1 + $b2;
+    $total_koret = array_sum($total_count);
+    $total_aktive = $total_koret - $total_orlov;
+    ?>
+
+    <div class="row">
+      <div class="col s12 m6 center">
+        <p class="flow-text">
+          Antal aktive medlemmer: <span class="bold"><?php echo $total_aktive; ?></span>
+        </p>
       </div>
-
-      <div class="col s12 m3">
-
+      <div class="col s12 m6 center">
+        <p class="flow-text">
+          Antal medlemmer på orlov: <span class="bold"><?php echo $total_orlov; ?></span>
+        </p>
       </div>
+    </div>
 
-      <div class="col s12 m3">
-
+    <div class="row">
+      <div class="col s12">
+        <canvas id="sang-stemmer" height="300"></canvas>
       </div>
+      <script type="text/javascript">
+      var aktive = [<?php echo $aktive ?>];
+      var orlov = [<?php echo $orlov ?>];
+      var ctx = document.getElementById("sang-stemmer");
+      var myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["1. Sopran", "2. Sopran", "1. Alt", "2. Alt", "1. Tenor", "2. Tenor", "1. Bass", "2. Bass"],
+            datasets: [{
+                data: aktive,
+                label: 'aktive',
+                backgroundColor: 'rgba(0, 150, 136, 1)',
+            },{
+                data: orlov,
+                label: 'orlov',
+                backgroundColor: 'rgba(255, 152, 0, 0.3)',
+            }]
+        },
 
-      <div class="col s12 m3">
-
-      </div>
+        options: {
+            scales: {
+                yAxes: [{
+                  stacked: true,
+                  ticks: {
+                    beginAtZero:true,
+                    stepSize: 1,
+                  }
+                }],
+                xAxes: [{
+                  stacked: true,
+                  gridLines: {
+                    display: false,
+                  },
+                }]
+            }
+        }
+      });
+      </script>
 
     </div>
 
