@@ -3,6 +3,18 @@
     $app_id = escape($_GET['app_id']);
   }
 
+  if(isset($_POST['afvis_app'])) {
+    $query = "DELETE FROM medlemmer WHERE id = '{$app_id}'";
+    $delete_app = mysqli_query($conn, $query);
+    if(!$delete_app) {
+      die("Query Failed123: " . mysqli_error($conn));
+    } else {
+      $message = urlencode('new_app_delete');
+      header("Location: index.php?action=dashbord&message=".$message);
+    }
+
+  }
+
   if(isset($_POST['approve_app'])) {
     $stemme = escape($_POST['new_voice']);
     $query = "UPDATE medlemmer SET ";
@@ -111,6 +123,17 @@
           </button>
         </div>
        </form>
+     </div>
+   </div>
+   <div class="row">
+     <div class="input-field col s12">
+       <div class="col s12 m6">
+         <form method="post">
+           <button class="btn waves-effect waves-light red darken-3" type="submit" name="afvis_app">Afvis ansøgning
+             <i class="material-icons right">send</i>
+           </button>
+         </form>
+       </div>
      </div>
    </div>
  </div>

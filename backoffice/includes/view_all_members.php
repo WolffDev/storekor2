@@ -44,6 +44,10 @@
           $query1 = "UPDATE medlemmer SET bruger_rolle = 'sanger' WHERE id = '{$checkbox_member_id}'";
           $update1 = mysqli_query($conn, $query1);
           break;
+        case 'inaktiv':
+          $query1 = "UPDATE medlemmer SET bruger_status = '{$bulk_options}' WHERE id = '{$checkbox_member_id}'";
+          $update1 = mysqli_query($conn, $query1);
+          break;
         case 'delete':
           $query = "DELETE FROM medlemmer WHERE id = '{$checkbox_member_id}'";
           $delete = mysqli_query($conn, $query);
@@ -78,8 +82,9 @@
         <option value="dirigent">Sæt dirigent</option>
         <option value="sanger">Sæt medlem til sanger</option>
         <option value="aktiv">Sæt medlem aktiv</option>
-        <option value="orlov">Sæt medlem orlov</option>
         <option value="godkendt">Sæt til godkendt</option>
+        <option value="orlov">Sæt medlem orlov</option>
+        <option value="inaktiv">Sæt medlem inaktiv</option>
         <option value="delete">Slet medlem</option>
       </select>
     </div>
@@ -198,6 +203,6 @@
           var table= $(e.target).closest('table');
           $('td input:checkbox',table).prop('checked',this.checked);
         });
-        
+
 			}); // <---- Document.ready END
 		</script>

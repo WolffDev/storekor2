@@ -81,7 +81,7 @@ if(isset($_POST['status_close'])) {
     $t2 = 0;
     $b1 = 0;
     $b2 = 0;
-    $count_query = "SELECT stemme, bruger_status FROM medlemmer WHERE app_status = 'godkendt'";
+    $count_query = "SELECT stemme, bruger_status FROM medlemmer WHERE app_status = 'godkendt' && bruger_status != 'inaktiv'";
     $count_result = mysqli_query($conn, $count_query);
     while($row = mysqli_fetch_assoc($count_result)) {
       $stemmer[] = $row['stemme'];
