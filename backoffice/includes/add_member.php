@@ -31,6 +31,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
     // $alder = date('d-m/Y',$tid);
     // omregner alderen fra database til et tal.
     $alder_nu = floor(((time()- $tid)  /(3600 * 24 * 365)));
+    $password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 10));
 
     if(!empty($fornavn) && !empty($email) && !empty($efternavn)) {
       $query = "SELECT * FROM medlemmer WHERE brugernavn = '$brugernavn'";

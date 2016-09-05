@@ -57,7 +57,7 @@
   }
 ?>
 
-<div class="container events">
+<div class="container events content-container">
   <?php
     if(isset($_SESSION['auth']) && $_SESSION['auth'] < 3 ) {
       $query = "SELECT start_date FROM events";

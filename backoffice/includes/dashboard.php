@@ -145,12 +145,13 @@ if(isset($_POST['status_close'])) {
 
     <div class="row">
       <div class="col s12">
-        <canvas id="sang-stemmer" height="300"></canvas>
+        <canvas id="sang-stemmer" height="500"></canvas>
       </div>
       <script type="text/javascript">
       var aktive = [<?php echo $aktive ?>];
       var orlov = [<?php echo $orlov ?>];
       var ctx = document.getElementById("sang-stemmer");
+      Chart.defaults.global.maintainAspectRatio = false;
       var myBarChart = new Chart(ctx, {
         type: 'bar',
         data: {

@@ -1,8 +1,5 @@
 <?php
-  if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION['bruger_status'] == 'ikke godkendt') {
-    header("Location: ../../index.php");
-    exit();
-  }
+  
   $user_id = $_SESSION['user_id'];
 ?>
 <div class="navbar">

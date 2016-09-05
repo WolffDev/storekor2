@@ -2,6 +2,7 @@
 <?php ob_start(); ?>
 <?php include "db.php"; ?>
 <?php include "functions.php"; ?>
+<?php checkAuth(4); ?>
 <!DOCTYPE html>
 <html lang="dk">
   <head>
