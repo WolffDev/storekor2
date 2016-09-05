@@ -3,7 +3,7 @@
     <div class="nav-wrapper container"><a id="logo-container" href="./" class="brand-logo"><img src="img/logo.svg"/></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="./">Forside</a></li>
-        <li><a href="./optagelse.php">Optagelse</a></li>
+        <li><a href="./optagelse">Optagelse</a></li>
         <li><a href="#">Dirigent</a></li>
         <li><a href="#" data-activates="dropdown1" class="dropdown-button">Om Os<i class="material-icons right">arrow_drop_down</i></a></li>
         <li><a href="./#kontakt">Kontakt</a></li>
