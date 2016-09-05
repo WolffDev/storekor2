@@ -206,11 +206,11 @@
     <?php
       $_SESSION['user_id'] = $user_id;
 
-    
 
 
 
-      $query = "SELECT * FROM events WHERE start_date >= NOW() ORDER BY start_date ASC";
+
+      $query = "SELECT events.id, events.start_date, events.end_date, events.title, events.text, events.type, afbud.e_id, afbud.m_id FROM events LEFT JOIN afbud ON events.id = afbud.e_id WHERE events.start_date >= NOW() ORDER BY events.start_date ASC";
       $select = mysqli_query($conn, $query);
       $count = mysqli_num_rows($select);
       if($count != 0) {
@@ -220,6 +220,8 @@
           $end_date = $row['end_date'];
           $title = $row['title'];
           $text = $row['text'];
+          $afbud_e_id = $row['e_id'];
+          $afbud_m_id = $row['m_id'];
 
           $start_date_format = date_format(new DateTime($start_date), 'D \d\. j\. M \k\l\. H:i');
           $end_date_format = date_format(new DateTime($end_date), 'D \d\. j\. M \k\l\. H:i');
@@ -244,7 +246,11 @@
             echo "<td>" . $end_date_format . "</td>";
           }
 
-          echo "<td><a href='index.php?action=afbud&cancel=true&e_id=" . $e_id . "&m_id=" . $user_id . "'><button class='btn red darken-3 white-text waves-effect waves-light'>Meld afbud</button></a></td>";
+          if($user_id == $afbud_m_id && $e_id == $afbud_e_id) {
+            echo "<td>TEST</td>";
+          } else {
+            echo "<td><a href='index.php?action=afbud&cancel=true&e_id=" . $e_id . "&m_id=" . $user_id . "'><button class='btn red darken-3 white-text waves-effect waves-light'>Meld afbud</button></a></td>";
+          }
 
           echo "</tr>";
         }
