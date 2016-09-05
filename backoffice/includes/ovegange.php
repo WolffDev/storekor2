@@ -1,4 +1,11 @@
 <?php
+  if(isset($_POST['cancel_afbud'])) {
+     $afbud_id = escape($_POST['afbud_id']);
+
+     $query = "DELETE FROM afbud WHERE a_id = '{$afbud_id}'";
+     $delete_afbud = mysqli_query($conn, $query);
+  }
+
   if(isset($_POST['add_event'])) {
     $start_date = escape($_POST['start_date']);
     $start_time = escape($_POST['start_time']);
@@ -210,7 +217,7 @@
 
 
 
-      $query = "SELECT events.id, events.start_date, events.end_date, events.title, events.text, events.type, afbud.e_id, afbud.m_id FROM events LEFT JOIN afbud ON events.id = afbud.e_id WHERE events.start_date >= NOW() ORDER BY events.start_date ASC";
+      $query = "SELECT events.id, events.start_date, events.end_date, events.title, events.text, events.type, afbud.e_id, afbud.m_id, afbud.a_id FROM events LEFT JOIN afbud ON events.id = afbud.e_id WHERE events.start_date >= NOW() ORDER BY events.start_date ASC";
       $select = mysqli_query($conn, $query);
       $count = mysqli_num_rows($select);
       if($count != 0) {
@@ -222,6 +229,7 @@
           $text = $row['text'];
           $afbud_e_id = $row['e_id'];
           $afbud_m_id = $row['m_id'];
+          $afbud_a_id = $row['a_id'];
 
           $start_date_format = date_format(new DateTime($start_date), 'D \d\. j\. M \k\l\. H:i');
           $end_date_format = date_format(new DateTime($end_date), 'D \d\. j\. M \k\l\. H:i');
@@ -246,8 +254,14 @@
             echo "<td>" . $end_date_format . "</td>";
           }
 
-          if($user_id == $afbud_m_id && $e_id == $afbud_e_id) {
-            echo "<td>TEST</td>";
+          if($user_id == $afbud_m_id && $e_id == $afbud_e_id) { ?>
+            <td>
+              <form method="post" action="">
+                <input type="hidden" name="afbud_id" value="<?php echo $afbud_a_id;?>">
+                <button class="btn waves-effect waves-light" type="submit" name="cancel_afbud">Fortryd afbud</button>
+              </form>
+            </td>
+          <?php
           } else {
             echo "<td><a href='index.php?action=afbud&cancel=true&e_id=" . $e_id . "&m_id=" . $user_id . "'><button class='btn red darken-3 white-text waves-effect waves-light'>Meld afbud</button></a></td>";
           }

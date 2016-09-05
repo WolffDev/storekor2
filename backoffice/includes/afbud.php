@@ -65,7 +65,7 @@
                 </button>
               </div>
               <div class="col s6 m3">
-                <a href="index.php?action=ovegange"><button class="btn waves-effect waves-light white-text">Annuller</button></a>
+                <a href="index.php?action=ovegange" class="btn waves-effect waves-light white-text">Annuller</a>
               </div>
             </div>
           </form>
