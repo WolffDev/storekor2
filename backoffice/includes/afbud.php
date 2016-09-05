@@ -23,7 +23,6 @@
             </script>
           <?php
         } else {
-          $date_cancel = date('Y-m-d H:i:s');
           $query = "INSERT INTO afbud(m_id, e_id, date_cancel, reason) VALUES('{$m_id}', '{$e_id}', now(), '{$reason}')";
           $insert_afmeld = mysqli_query($conn, $query);
 

@@ -1,4 +1,3 @@
-<?php if (session_status() === PHP_SESSION_NONE){session_start();} ?>
 <?php
   if(isset($_POST['add_event'])) {
     $start_date = escape($_POST['start_date']);
@@ -206,6 +205,11 @@
     <tbody>
     <?php
       $_SESSION['user_id'] = $user_id;
+
+    
+
+
+
       $query = "SELECT * FROM events WHERE start_date >= NOW() ORDER BY start_date ASC";
       $select = mysqli_query($conn, $query);
       $count = mysqli_num_rows($select);
@@ -216,30 +220,36 @@
           $end_date = $row['end_date'];
           $title = $row['title'];
           $text = $row['text'];
+
           $start_date_format = date_format(new DateTime($start_date), 'D \d\. j\. M \k\l\. H:i');
           $end_date_format = date_format(new DateTime($end_date), 'D \d\. j\. M \k\l\. H:i');
           $start_date_check = date_format(new DateTime($start_date), 'd m Y');
           $end_date_check = date_format(new DateTime($end_date), 'd m Y');
           $end_date_time = date_format(new DateTime($end_date), '\k\l\. H:i');
+
           $type = $row['type'];
           echo "<tr>";if($_SESSION['auth'] < 3 ) {
             echo "<td><a href='index.php?action=event&e_id=" . $e_id . "'>" . $type . "</a></td>";
           } else {
             echo "<td>" . $type . "</td>";
           }
+
           echo "<td>" . $title . "</td>";
           echo "<td>" . $text . "</td>";
           echo "<td>" . $start_date_format . "</td>";
+
           if($start_date_check === $end_date_check) {
             echo "<td>" . $end_date_time . "</td>";
           } else {
             echo "<td>" . $end_date_format . "</td>";
           }
+
           echo "<td><a href='index.php?action=afbud&cancel=true&e_id=" . $e_id . "&m_id=" . $user_id . "'><button class='btn red darken-3 white-text waves-effect waves-light'>Meld afbud</button></a></td>";
+
           echo "</tr>";
         }
       } else {
-        echo "Der er ikke blevet oprettet nogle events endnu.";
+        echo "Der er ikke blevet oprettet fremtidige events endnu.";
       }
     ?>
     </tbody>
