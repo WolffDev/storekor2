@@ -9,7 +9,7 @@
     header("Location: index.php?action=ovegange");
   }
 
-  $query = "SELECT * FROM events WHERE id = {$e_id}";
+  $query = "SELECT * FROM events WHERE event_id = {$e_id}";
   $select = mysqli_query($conn, $query);
 
   while($row = mysqli_fetch_assoc($select)) {
