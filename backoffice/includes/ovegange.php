@@ -217,12 +217,12 @@
 
 
 
-      $query = "SELECT events.id, events.start_date, events.end_date, events.title, events.text, events.type, afbud.e_id, afbud.m_id, afbud.a_id FROM events LEFT JOIN afbud ON events.id = afbud.e_id WHERE events.start_date >= NOW() ORDER BY events.start_date ASC";
+      $query = "SELECT events.event_id, events.start_date, events.end_date, events.title, events.text, events.type, afbud.e_id, afbud.m_id, afbud.a_id FROM events LEFT JOIN afbud ON events.event_id = afbud.e_id WHERE events.start_date >= NOW() ORDER BY events.start_date ASC";
       $select = mysqli_query($conn, $query);
       $count = mysqli_num_rows($select);
       if($count != 0) {
         while($row = mysqli_fetch_assoc($select)) {
-          $e_id = $row['id'];
+          $e_id = $row['event_id'];
           $start_date = $row['start_date'];
           $end_date = $row['end_date'];
           $title = $row['title'];

@@ -2,7 +2,7 @@
 $e_id = escape($_GET['e_id']);
 $m_id = escape($_GET['m_id']);
 
-$query = "SELECT type, start_date FROM events WHERE id = {$e_id}";
+$query = "SELECT type, start_date FROM events WHERE event_id = {$e_id}";
 $get_event = mysqli_query($conn, $query);
 
 while($row = mysqli_fetch_assoc($get_event)) {

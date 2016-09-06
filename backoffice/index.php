@@ -45,6 +45,9 @@
       case 'afbud':
         include "includes/afbud.php";
         break;
+      case 'afbud_detail':
+        include "includes/afbud_detail.php";
+        break;
       case 'ovegange':
         include "includes/ovegange.php";
         break;
