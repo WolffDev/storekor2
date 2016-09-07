@@ -47,7 +47,7 @@
       $query .="start_date = '{$db_start_date}', ";
       $query .="end_date = '{$db_end_date}', ";
       $query .="modified = '{$now}' ";
-      $query .="WHERE id = {$e_id} ";
+      $query .="WHERE event_id = {$e_id} ";
       $update_event = mysqli_query($conn, $query);
       if(!$update_event) {
         die("Query Failed123: " . mysqli_error($conn));
@@ -64,7 +64,7 @@
   }
 
   if(isset($_POST['delete_event'])) {
-    $query = "DELETE FROM events WHERE id = {$e_id}";
+    $query = "DELETE FROM events WHERE event_id = {$e_id}";
     $delete_event = mysqli_query($conn, $query);
     if(!$delete_event) {
       die("Query Failed123: " . mysqli_error($conn));

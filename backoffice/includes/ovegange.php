@@ -213,10 +213,6 @@
     <?php
       $_SESSION['user_id'] = $user_id;
 
-
-
-
-
       $query = "SELECT events.event_id, events.start_date, events.end_date, events.title, events.text, events.type, afbud.e_id, afbud.m_id, afbud.a_id FROM events LEFT JOIN afbud ON events.event_id = afbud.e_id WHERE events.start_date >= NOW() ORDER BY events.start_date ASC";
       $select = mysqli_query($conn, $query);
       $count = mysqli_num_rows($select);
@@ -254,17 +250,16 @@
             echo "<td>" . $end_date_format . "</td>";
           }
 
-          if($user_id == $afbud_m_id && $e_id == $afbud_e_id) { ?>
+          if($user_id != $afbud_m_id && $e_id != $afbud_e_id) {
+            echo "<td><a href='index.php?action=afbud&cancel=true&e_id=" . $e_id . "&m_id=" . $user_id . "'><button class='btn red darken-3 white-text waves-effect waves-light'>Meld afbud</button></a></td>";
+          } else { ?>
             <td>
               <form method="post" action="">
                 <input type="hidden" name="afbud_id" value="<?php echo $afbud_a_id;?>">
                 <button class="btn waves-effect waves-light" type="submit" name="cancel_afbud">Fortryd afbud</button>
               </form>
             </td>
-          <?php
-          } else {
-            echo "<td><a href='index.php?action=afbud&cancel=true&e_id=" . $e_id . "&m_id=" . $user_id . "'><button class='btn red darken-3 white-text waves-effect waves-light'>Meld afbud</button></a></td>";
-          }
+          <?php }
 
           echo "</tr>";
         }

@@ -60,7 +60,7 @@
                     echo '<tr>';
                       echo '<td><a href="index.php?action=afbud_detail&event=' . $event_id . '">' . $start_date_format . '</a></td>';
                       echo '<td>' . $antal_afbud . '</td>';
-                      echo '<td><a href="index.php?action=afbud_detail&event=' . $event_id . '">' . $type . '</a></td>';
+                      echo '<td>' . $type . '</td>';
                       echo '<td>' . $title . '</td>';
                     echo '</tr>';
                   }
