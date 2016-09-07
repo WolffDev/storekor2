@@ -250,16 +250,17 @@
             echo "<td>" . $end_date_format . "</td>";
           }
 
-          if($user_id != $afbud_m_id && $e_id != $afbud_e_id) {
+          if($user_id != $afbud_m_id) {
             echo "<td><a href='index.php?action=afbud&cancel=true&e_id=" . $e_id . "&m_id=" . $user_id . "'><button class='btn red darken-3 white-text waves-effect waves-light'>Meld afbud</button></a></td>";
-          } else { ?>
-            <td>
-              <form method="post" action="">
-                <input type="hidden" name="afbud_id" value="<?php echo $afbud_a_id;?>">
-                <button class="btn waves-effect waves-light" type="submit" name="cancel_afbud">Fortryd afbud</button>
-              </form>
-            </td>
-          <?php }
+          } else {
+            echo "<td>";
+            echo "<form method='post'>";
+            echo "<input type='hidden' name='afbud_id' value='" . $afbud_a_id . ">'>";
+            echo "<button class='btn waves-effect waves-light' type='submit' name='cancel_afbud'>Fortryd afbud";
+            echo "</button>";
+            echo "</form>";
+            echo "</td>";
+          }
 
           echo "</tr>";
         }
