@@ -12,6 +12,7 @@
         </div>
         <thead>
           <tr>
+            <th>Stemme</th>
             <th data-field="name">Navn</th>
             <th data-field="name">Begrundelse</th>
             <th data-field="name">Date for afbud</th>
@@ -19,24 +20,28 @@
         </thead>
         <tbody>
     <?php
-    $query = "SELECT a.e_id, a.m_id, a.date_cancel, a.reason, m.id, m.fornavn, m.efternavn
+    $query = "SELECT a.e_id, a.m_id, a.date_cancel, a.reason, m.id, m.fornavn, m.efternavn, m.stemme
     FROM afbud AS a
     LEFT JOIN medlemmer AS m ON a.m_id = m.id
-    WHERE a.e_id = $event_id";
+    WHERE a.e_id = $event_id
+    ORDER BY stemme ASC";
     $result = mysqli_query($conn, $query);
     while($row = mysqli_fetch_assoc($result)) {
       $fornavn = $row['fornavn'];
       $efternavn = $row['efternavn'];
       $navn = $fornavn . " " . $efternavn;
+      $stemme = $row['stemme'];
       $date_cancel= $row['date_cancel'];
       $reason = $row['reason'];
       $date_format = date_format(new DateTime($date_cancel), 'D \d\. j\. M \k\l\. H:i');
 
 
       echo "<tr>";
+      echo "<td>" . $stemme . "</td>";
       echo "<td>" . $navn . "</td>";
       echo "<td>" . $reason . "</td>";
       echo "<td>" . $date_format . "</td>";
+      echo "</tr>";
     }
   ?>
 </tbody>

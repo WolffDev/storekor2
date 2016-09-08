@@ -29,7 +29,7 @@
           $end_date_check = date_format(new DateTime($end_date), 'd m Y');
           $end_date_time = date_format(new DateTime($end_date), '\k\l\. H:i');
           $type = $row['type'];
-          $e_id = $row['id'];
+          $e_id = $row['event_id'];
           echo "<tr>";if($_SESSION['auth'] < 3 ) {
             echo "<td><a href='index.php?action=event&e_id=" . $e_id . "'>" . $type . "</a></td>";
           } else {
