@@ -4,6 +4,34 @@
     return mysqli_real_escape_string($conn, trim($string));
   }
 
+  function brugerAfbud($user_id, $event_id) {
+    global $conn;
+
+    $afbudSQL = "
+    SELECT
+      m_id,
+      e_id,
+      a_id
+    FROM
+      afbud
+    WHERE
+      m_id = {$user_id}
+    AND
+      e_id = {$event_id}
+    ";
+
+    $afbudR = mysqli_query($conn, $afbudSQL);
+    while($afbudA = mysqli_fetch_assoc($afbudR)) {
+      $a_id = $afbudA['a_id'];
+    }
+    $afbud_count = mysqli_num_rows($afbudR);
+    if($afbud_count > 0) {
+      return array('true', $a_id);
+    }
+    return false;
+  }
+
+
   function replaceChars123($string) {
     return str_replace(array("Ã¦","Ã¸","Ã¥","Ã†","Ã˜","Ã…"),array("æ","ø","å","Æ","Ø","Å"),$string);
   }

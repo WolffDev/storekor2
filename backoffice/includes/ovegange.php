@@ -210,12 +210,18 @@
       </tr>
     </thead>
     <tbody>
+
+
     <?php
       $_SESSION['user_id'] = $user_id;
 
-      $query = "SELECT events.event_id, events.start_date, events.end_date, events.title, events.text, events.type, afbud.e_id, afbud.m_id, afbud.a_id FROM events LEFT JOIN afbud ON events.event_id = afbud.e_id WHERE events.start_date >= NOW() ORDER BY events.start_date ASC";
+      $query = "SELECT event_id, start_date, end_date, title, text, type
+      FROM events
+      WHERE start_date >= NOW()
+      ORDER BY start_date ASC";
       $select = mysqli_query($conn, $query);
       $count = mysqli_num_rows($select);
+
       if($count != 0) {
         while($row = mysqli_fetch_assoc($select)) {
           $e_id = $row['event_id'];
@@ -223,9 +229,7 @@
           $end_date = $row['end_date'];
           $title = $row['title'];
           $text = $row['text'];
-          $afbud_e_id = $row['e_id'];
-          $afbud_m_id = $row['m_id'];
-          $afbud_a_id = $row['a_id'];
+          $type = $row['type'];
 
           $start_date_format = date_format(new DateTime($start_date), 'D \d\. j\. M \k\l\. H:i');
           $end_date_format = date_format(new DateTime($end_date), 'D \d\. j\. M \k\l\. H:i');
@@ -233,8 +237,8 @@
           $end_date_check = date_format(new DateTime($end_date), 'd m Y');
           $end_date_time = date_format(new DateTime($end_date), '\k\l\. H:i');
 
-          $type = $row['type'];
-          echo "<tr>";if($_SESSION['auth'] < 3 ) {
+          echo "<tr>";
+          if($_SESSION['auth'] < 3 ) {
             echo "<td><a href='index.php?action=event&e_id=" . $e_id . "'>" . $type . "</a></td>";
           } else {
             echo "<td>" . $type . "</td>";
@@ -250,9 +254,9 @@
             echo "<td>" . $end_date_format . "</td>";
           }
 
-          if($user_id != $afbud_m_id) {
-            echo "<td><a href='index.php?action=afbud&cancel=true&e_id=" . $e_id . "&m_id=" . $user_id . "'><button class='btn red darken-3 white-text waves-effect waves-light'>Meld afbud</button></a></td>";
-          } else {
+
+
+          if (list($val1, $afbud_a_id) = brugerAfbud($user_id, $e_id)) {
             echo "<td>";
             echo "<form method='post'>";
             echo "<input type='hidden' name='afbud_id' value='" . $afbud_a_id . ">'>";
@@ -260,6 +264,10 @@
             echo "</button>";
             echo "</form>";
             echo "</td>";
+
+          } else {
+            echo "<td><a href='index.php?action=afbud&cancel=true&e_id=" . $e_id . "&m_id=" . $user_id . "'><button class='btn red darken-3 white-text waves-effect waves-light'>Meld afbud</button></a></td>";
+
           }
 
           echo "</tr>";

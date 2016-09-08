@@ -58,7 +58,7 @@
                     $start_date_format = date_format(new DateTime($start_date), 'j\. M');
 
                     echo '<tr>';
-                      echo '<td><a href="index.php?action=afbud_detail&event=' . $event_id . '">' . $start_date_format . '</a></td>';
+                      echo '<td><a href="index.php?action=afbud_detail&event=' . $event_id . '&type=' . $type . '&date=' . $start_date_format . '">' . $start_date_format . '</a></td>';
                       echo '<td>' . $antal_afbud . '</td>';
                       echo '<td>' . $type . '</td>';
                       echo '<td>' . $title . '</td>';
