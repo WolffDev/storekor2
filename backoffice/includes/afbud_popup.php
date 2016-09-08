@@ -35,7 +35,7 @@ if(isset($_POST['meld_afbud'])) {
   }
 }
 ?>
-<div class="container">
+<div class="container content-container">
   <h5>Melde afbud</h5>
 
   <div class="row">

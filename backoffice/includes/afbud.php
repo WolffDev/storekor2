@@ -6,7 +6,7 @@
   if(isset($_GET['state']) && $_GET['state'] == 'overview') {
 ?>
 
-    <div class="container">
+    <div class="container content-container">
           <?php
             $query = "
             SELECT

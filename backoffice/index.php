@@ -42,6 +42,12 @@
       case 'dashboard':
         include "includes/dashboard.php";
         break;
+      case 'protocol':
+        include "includes/protocol.php";
+        break;
+      case 'protocol_detail':
+        include "includes/protocol_detail.php";
+        break;
       case 'afbud':
         include "includes/afbud.php";
         break;

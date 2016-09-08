@@ -1,4 +1,4 @@
-<div class="container div">
+<div class="container div content-container">
   <?php
     if(isset($_GET['action']) && $_GET['action'] == 'afbud_detail') {
       $event_id = escape($_GET['event']);
