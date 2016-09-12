@@ -2876,8 +2876,8 @@ div.dataTables_wrapper span.select-item {
   visibility: inherit; }
 
 /*****************************
-********* DASHBOARD **********
-*****************************/
+ ********* DASHBOARD *********
+ ****************************/
 .dashboard-card {
   border-radius: 5px;
   border: 2px solid white; }
@@ -2908,3 +2908,30 @@ div.dataTables_wrapper span.select-item {
   @media only screen and (min-width: 601px) {
     .events .collapsible-body .row > form.dotted {
       border-right: 2px dotted grey; } }
+
+/*****************************
+ ********* Protocol *********
+ ****************************/
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+  position: absolute;
+  left: -9999px;
+  visibility: hidden; }
+
+[type="checkbox"] + label {
+  padding-left: 25px; }
+
+.fixedElement {
+  position: fixed;
+  width: 100%;
+  z-index: 100; }
+
+.checkbox-info {
+  width: 120px;
+  min-height: 80px;
+  border: 2px dotted teal;
+  border-radius: 3px;
+  display: inline-block; }
+
+.protocol_detail .protocol-entry {
+  padding-top: 60px; }

@@ -58,4 +58,63 @@
     }
   }
 
+function protocol_detail($var1, $var2) {
+  global $conn;
+  if(isset($_GET['action']) && $_GET['action'] == 'protocol_detail') {
+    $e_id = escape($_GET['e_id']);
+  }
+  ?>
+  <div id="<?php echo $var1; ?>" class="section scrollspy">
+    <div class="row protocol-entry">
+      <h5 class="center"><?php echo $var2;?></h5>
+      <?php
+      $alt1_query = "SELECT
+        m.id,
+        m.fornavn,
+        m.efternavn,
+        m.stemme,
+        a.m_id,
+        a.e_id
+      FROM
+        medlemmer AS m
+      LEFT JOIN
+        afbud AS a
+      ON
+        m.id = a.m_id
+      WHERE
+        (
+          a.e_id != $e_id
+        OR
+          a.e_id IS NULL
+        )
+      AND
+        m.stemme = '{$var2}'
+      AND
+        bruger_status = 'aktiv'
+      GROUP BY m.id";
+
+      $alt1_result = mysqli_query($conn, $alt1_query);
+      while($alt1_array = mysqli_fetch_assoc($alt1_result)) {
+        $id = $alt1_array['id'];
+        $fornavn = $alt1_array['fornavn'];
+        $efternavn = $alt1_array['efternavn'];
+        $navn = $fornavn . " " . $efternavn;
+
+        echo "<div class='col s6 m3'>";
+        echo "<input type='checkbox' id='" . $id . "'/>";
+        echo "<label for='" . $id . "'>";
+        echo "<div class='checkbox-info center-align flow-text'>";
+        echo $navn;
+        echo "</div>";
+        echo "</label>";
+        echo "</div>";
+      }
+
+
+      ?>
+    </div>
+  </div>
+
+<?php }
+
 ?>

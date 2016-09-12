@@ -1,1 +1,1 @@
-$(document).ready(function(){$(".timepicker").pickatime({autoclose:!0,twelvehour:!1,donetext:"Færdig"})});
+$(document).ready(function(){$(".timepicker").pickatime({autoclose:!0,twelvehour:!1,donetext:"Færdig"}),$(".scrollspy").scrollSpy(),$(window).scroll(function(o){var i=$(".fixedElement"),e="fixed"==i.css("position");$(this).scrollTop()>105&&!e&&$(".fixedElement").css({position:"fixed",top:"0px"}),$(this).scrollTop()<105&&e&&$(".fixedElement").css({position:"static",top:"0px"})})});

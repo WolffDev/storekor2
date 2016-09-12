@@ -32,7 +32,7 @@
           $end_date = $row['end_date'];
           $title = $row['title'];
           $text = $row['text'];
-          $type = $row['type'];
+          $type = replaceChars123($row['type']);
 
           $start_date_format = date_format(new DateTime($start_date), 'D \d\. j\. M \k\l\. H:i');
           $end_date_format = date_format(new DateTime($end_date), 'D \d\. j\. M \k\l\. H:i');
