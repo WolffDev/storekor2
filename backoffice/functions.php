@@ -67,6 +67,7 @@ function protocol_detail($var1, $var2) {
   <div id="<?php echo $var1; ?>" class="section scrollspy">
     <div class="row protocol-entry">
       <h5 class="center"><?php echo $var2;?></h5>
+      <hr>
       <?php
       $alt1_query = "SELECT
         m.id,
@@ -100,9 +101,9 @@ function protocol_detail($var1, $var2) {
         $efternavn = $alt1_array['efternavn'];
         $navn = $fornavn . " " . $efternavn;
 
-        echo "<div class='col s6 m3'>";
-        echo "<input type='checkbox' id='" . $id . "'/>";
-        echo "<label for='" . $id . "'>";
+        echo "<div class='col s6 m4 l3'>";
+        echo "<input type='checkbox' id='" . $id . "' name='checkboxDeltagerArray[]' value='" . $id . "'/>";
+        echo "<label for='" . $id . "' style='margin-top:15px;'>";
         echo "<div class='checkbox-info center-align flow-text'>";
         echo $navn;
         echo "</div>";

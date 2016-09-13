@@ -35,7 +35,7 @@
       if(!empty($fornavn) && !empty($email) && !empty($efternavn) && !empty($password)) {
         if(($password == $password_validate)) {
           $password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 10));
-          $query = "SELECT * FROM medlemmer WHERE brugernavn = '$brugernavn'";
+          $query = "SELECT brugernavn FROM medlemmer WHERE brugernavn = '$brugernavn'";
           $check_conn = mysqli_query($conn, $query);
           $count = mysqli_num_rows($check_conn);
           if($count == 0) {

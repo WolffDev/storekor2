@@ -157,8 +157,8 @@ div.dataTables_wrapper span.select-item {
 /*****************************
  ********* Protocol *********
  ****************************/
-[type="checkbox"]:not(:checked),
-[type="checkbox"]:checked {
+.protocol-entry input[type="checkbox"]:not(:checked),
+.protocol-entry input[type="checkbox"]:checked {
   position: absolute;
   left: -9999px;
   visibility: hidden;
@@ -174,15 +174,19 @@ div.dataTables_wrapper span.select-item {
 }
 
 .checkbox-info {
-  width: 120px;
-  min-height: 80px;
+  @media #{$small-and-down} {
+    width: 120px;
+  }
+  width: 130px;
+  min-height: 30px;
   border: 2px dotted teal;
   border-radius: 3px;
   display: inline-block;
+  padding: 5px;
 }
 
 .protocol_detail {
   .protocol-entry {
-    padding-top: 60px;
+    padding-top: 20px;
   }
 }

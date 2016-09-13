@@ -43,7 +43,6 @@
                     <th>Afbud antal</th>
                     <th>Type</th>
                     <th>Titel</th>
-
                   </tr>
                 </thead>
                 <tbody>
