@@ -14,9 +14,9 @@ $query_count = mysqli_num_rows($check_conn);
 if($query_count > 0) {
   echo "<div class='container content-container'>";
   echo "<div class='row'>";
-  echo "<div class='col s12 teal white-text center flow-text'>";
+  echo "<div class='col s12 teal darken-2 white-text center flow-text'>";
   echo "Protokol listen er blevet opdateret for i dag.<br>";
-  echo "Hvis der skal rettes i protokollen, så kun hak af i de nye tilkommende, eller de personer som ikke er hakket af første gang.";
+  echo "Hvis der skal rettes i protokollen, så skal der kun hakkkes af i de nye tilkommende, eller de personer som ikke blev hakket af første gang.";
   echo "</div>";
   echo "</div>";
   echo "</div>";
@@ -36,9 +36,9 @@ if(isset($_POST['checkboxDeltagerArray'])) {
   } else {
     echo "<div class='container content-container'>";
     echo "<div class='row'>";
-    echo "<div class='col s12 teal white-text center flow-text'>";
+    echo "<div class='col s12 teal darken-2 white-text center flow-text'>";
     echo "Protokol listen er blevet opdateret for i dag.<br>";
-    echo "Hvis der skal rettes i protokollen, så kun hak af i de nye tilkommende, eller de personer som ikke er hakket af første gang.";
+    echo "Hvis der skal rettes i protokollen, så skal der kun hakkkes af i de nye tilkommende, eller de personer som ikke blev hakket af første gang.";
     echo "</div>";
     echo "</div>";
     echo "</div>";
@@ -49,6 +49,7 @@ if(isset($_POST['checkboxDeltagerArray'])) {
   <form action="" method="post">
     <div class="row">
       <div class="col s12 m9 l10">
+        <h5 class="center">Dagens Protokol</h5>
 
         <?php protocol_detail('1sopran', '1. Sopran'); ?>
         <?php protocol_detail('2sopran', '2. Sopran'); ?>

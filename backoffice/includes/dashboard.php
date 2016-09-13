@@ -15,7 +15,7 @@ if(isset($_POST['status_close'])) {
     <div class="divider"></div>
   </div>
 </div>
-<div class="container dashboard">
+<div class="container dashboard content-container">
   <?php
   $status_query = "SELECT * FROM optagelse_status WHERE id = 1";
   $get_status = mysqli_query($conn, $status_query);
