@@ -48,6 +48,9 @@
       case 'protocol_detail':
         include "includes/protocol_detail.php";
         break;
+      case 'absence':
+        include "includes/absence.php";
+        break;
       case 'afbud':
         include "includes/afbud.php";
         break;
