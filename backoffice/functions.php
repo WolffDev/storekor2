@@ -70,51 +70,42 @@ function protocol_detail($var1, $var2) {
       <h5 class="center"><?php echo $var2;?></h5>
       <hr>
       <?php
-      $alt1_query = "SELECT
+      $query = "SELECT
         m.id,
         m.fornavn,
         m.efternavn,
         m.stemme,
-        a.m_id,
-        a.e_id,
-        d.d_id,
-        d.d_e_id
+        a.absence_id,
+        a.absence_member_id,
+        a.absence_event_id,
+        a.absence_status
       FROM
         medlemmer AS m
       LEFT JOIN
-        afbud AS a
+        absence AS a
       ON
-        m.id = a.m_id
-      LEFT JOIN
-      	deltagere AS d
-      ON
-      	d.d_m_id = m.id
+        a.absence_member_id = m.id
       WHERE
-        (
-          a.e_id != $e_id
-        OR
-          a.e_id IS NULL
-        )
+        a.absence_event_id = $e_id
       AND
         m.stemme = '{$var2}'
       AND
-        bruger_status = 'aktiv'
-      GROUP BY m.id";
+        bruger_status = 'aktiv'";
 
-      $alt1_result = mysqli_query($conn, $alt1_query);
-      while($alt1_array = mysqli_fetch_assoc($alt1_result)) {
-        $id = $alt1_array['id'];
-        $fornavn = $alt1_array['fornavn'];
-        $efternavn = $alt1_array['efternavn'];
+      $result = mysqli_query($conn, $query);
+      while($arrayR = mysqli_fetch_assoc($result)) {
+        $id = $arrayR['id'];
+        $fornavn = $arrayR['fornavn'];
+        $efternavn = $arrayR['efternavn'];
         $navn = $fornavn . " " . $efternavn;
-        $deltager_aktiv = $alt1_array['d_e_id'];
-        $deltager_id = $alt1_array['d_id'];
+        $absence_id = $arrayR['absence_id'];
+        $absence_status = $arrayR['absence_status'];
 
         echo "<div class='col s6 m4 l3'>";
-        if($deltager_aktiv == $e_id) {
-          echo "<input type='checkbox' data-deltager_id='" . $deltager_id . "' data-event_id='" . $e_id . "' data-member_id='" . $id . "' id='" . $id . "' value='" . $id . "' checked/>";
+        if($absence_status == 0) {
+          echo "<input type='checkbox' data-absence_id='" . $absence_id . "'  id='" . $id . "' checked/>";
         } else {
-          echo "<input type='checkbox' data-deltager_id='" . $deltager_id . "' data-event_id='" . $e_id . "' data-member_id='" . $id . "' id='" . $id . "' name='checkboxDeltagerArray[]' value='" . $id . "'/>";
+          echo "<input type='checkbox' data-absence_id='" . $absence_id . "'  id='" . $id . "'/>";
         }
         echo "<label for='" . $id . "' style='margin-top:15px;'>";
         echo "<div class='checkbox-info flow-text'>";

@@ -1,7 +1,7 @@
 <div class="container content-container">
   <table class="centered highlight striped responsive-table">
     <div class="div center">
-      <h5>Planlagte øvegange/koncerter mm.</h5>
+      <h5>Protokol for planlagte øvegange/koncerter mm.</h5>
     </div>
     <thead>
       <tr>

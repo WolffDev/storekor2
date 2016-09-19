@@ -20,19 +20,18 @@ $( document ).ready(function() {
 
   $('.checkbox-info').on('click', function() {
     var check_member = $(this).parent().parent().find("input");
-    var member_id = check_member.data('member_id');
-    var event_id = check_member.data('event_id');
-    var deltager_id = check_member.data('deltager_id');
+    var absence_id = check_member.data('absence_id');
 
     if(check_member.prop('checked') === false) {
       $.ajax
       ({
-          url: "includes/json/deltager.php",
+          url: "includes/json/absence.php",
           data:
             {
-              "deltager": "add",
-              "member_id": member_id,
-              "event_id": event_id
+              "absence": "update",
+              "absence_id": absence_id,
+              "absence_status": 0
+
             },
           type: "post",
       });
@@ -41,11 +40,12 @@ $( document ).ready(function() {
 
       $.ajax
       ({
-          url: "includes/json/deltager.php",
+          url: "includes/json/absence.php",
           data:
             {
-              "deltager": "remove",
-              "deltager_id": deltager_id
+              "absence": "update",
+              "absence_id": absence_id,
+              "absence_status": 1
             },
           type: "post"
       });

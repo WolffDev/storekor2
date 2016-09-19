@@ -1,3 +1,39 @@
+<?php
+  if(isset($_GET['action']) && $_GET['action'] == 'protocol_detail') {
+    $e_id = escape($_GET['e_id']);
+  }
+
+  $check_status_query = "SELECT
+    status
+  FROM
+    events
+  WHERE
+  event_id = $e_id";
+
+  $check_status_result = mysqli_query($conn, $check_status_query);
+
+  while($check_status = mysqli_fetch_assoc($check_status_result)) {
+    $event_status = $check_status['status'];
+  }
+  if($event_status == 0) {
+    $insert_query = "INSERT INTO
+      absence(
+        absence_member_id,
+        absence_event_id
+      )
+    SELECT
+      medlemmer.id,
+      $e_id
+    FROM
+      medlemmer
+    WHERE
+      medlemmer.bruger_status = 'aktiv'";
+    $result_insert = mysqli_query($conn, $insert_query);
+
+    $update_status = "UPDATE events SET status = 1 WHERE event_id = {$e_id}";
+    $result_update = mysqli_query($conn, $update_status);
+  }
+?>
 <div class="container content-container protocol_detail">
   <form action="" method="post">
     <div class="row">
