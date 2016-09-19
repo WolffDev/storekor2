@@ -8,8 +8,7 @@
 
     <div class="container content-container">
           <?php
-            $query = "
-            SELECT
+            $query = "SELECT
               afbud.e_id,
               events.event_id,
               events.type,
