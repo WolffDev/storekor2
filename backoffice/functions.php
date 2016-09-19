@@ -76,13 +76,19 @@ function protocol_detail($var1, $var2) {
         m.efternavn,
         m.stemme,
         a.m_id,
-        a.e_id
+        a.e_id,
+        d.d_id,
+        d.d_e_id
       FROM
         medlemmer AS m
       LEFT JOIN
         afbud AS a
       ON
         m.id = a.m_id
+      LEFT JOIN
+      	deltagere AS d
+      ON
+      	d.d_m_id = m.id
       WHERE
         (
           a.e_id != $e_id
@@ -101,18 +107,22 @@ function protocol_detail($var1, $var2) {
         $fornavn = $alt1_array['fornavn'];
         $efternavn = $alt1_array['efternavn'];
         $navn = $fornavn . " " . $efternavn;
+        $deltager_aktiv = $alt1_array['d_e_id'];
+        $deltager_id = $alt1_array['d_id'];
 
         echo "<div class='col s6 m4 l3'>";
-        echo "<input type='checkbox' id='" . $id . "' name='checkboxDeltagerArray[]' value='" . $id . "'/>";
+        if($deltager_aktiv == $e_id) {
+          echo "<input type='checkbox' data-deltager_id='" . $deltager_id . "' data-event_id='" . $e_id . "' data-member_id='" . $id . "' id='" . $id . "' name='checkboxDeltagerArray[]' value='" . $id . "' checked/>";
+        } else {
+          echo "<input type='checkbox' data-deltager_id='" . $deltager_id . "' data-event_id='" . $e_id . "' data-member_id='" . $id . "' id='" . $id . "' name='checkboxDeltagerArray[]' value='" . $id . "'/>";
+        }
         echo "<label for='" . $id . "' style='margin-top:15px;'>";
-        echo "<div class='checkbox-info center-align flow-text'>";
+        echo "<div class='checkbox-info flow-text'>";
         echo $navn;
         echo "</div>";
         echo "</label>";
         echo "</div>";
       }
-
-
       ?>
     </div>
   </div>

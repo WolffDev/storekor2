@@ -97,16 +97,6 @@ div.dataTables_wrapper span.select-item {
   }
 }
 
-[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
-  position: relative;
-  left: inherit;
-  visibility: inherit;
-}
-[type="checkbox"]+label:before {
-  border: none;
-  top: -2px;
-  left: 25px;
-}
 
 /*****************************
  ********* DASHBOARD *********
@@ -168,9 +158,6 @@ div.dataTables_wrapper span.select-item {
   left: -9999px;
   visibility: hidden;
 }
-[type="checkbox"]+label {
-  padding-left: 25px;
-}
 
 .fixedElement {
     position:fixed;
@@ -184,8 +171,8 @@ div.dataTables_wrapper span.select-item {
   }
   width: 130px;
   min-height: 30px;
-  border: 2px dotted teal;
-  border-radius: 3px;
+  // border: 2px dotted teal;
+  // border-radius: 3px;
   display: inline-block;
   padding: 5px;
 }
@@ -194,4 +181,22 @@ div.dataTables_wrapper span.select-item {
   .protocol-entry {
     padding-top: 20px;
   }
+}
+
+[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+  position: relative;
+  left: inherit;
+  visibility: inherit;
+}
+[type="checkbox"] + label {
+  padding-left: 15px;
+  &:before {
+    border: none;
+    top: 0px;
+    left: -10px;
+  }
+}
+[type="checkbox"]:checked+label:before {
+  left: -10px;
+  top: 0;
 }

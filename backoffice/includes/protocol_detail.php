@@ -1,49 +1,3 @@
-<?php
-$e_id = escape($_GET['e_id']);
-
-$check_query = "SELECT
-  d_e_id
-FROM
-  deltagere
-WHERE
-  d_e_id = {$e_id}
-GROUP BY
-  d_e_id";
-$check_conn = mysqli_query($conn, $check_query);
-$query_count = mysqli_num_rows($check_conn);
-if($query_count > 0) {
-  echo "<div class='container content-container'>";
-  echo "<div class='row'>";
-  echo "<div class='col s12 teal darken-2 white-text center flow-text'>";
-  echo "Protokol listen er blevet opdateret for i dag.<br>";
-  echo "Hvis der skal rettes i protokollen, så skal der kun hakkkes af i de nye tilkommende, eller de personer som ikke blev hakket af første gang.";
-  echo "</div>";
-  echo "</div>";
-  echo "</div>";
-}
-
-if(isset($_POST['checkboxDeltagerArray'])) {
-  foreach($_POST['checkboxDeltagerArray'] as $checkbox_deltager_id) {
-    $deltager_query = "INSERT INTO
-      deltagere(d_m_id, d_e_id, d_date)
-    VALUES(
-      {$checkbox_deltager_id}, {$e_id}, NOW()
-    )";
-    $deltager_conn = mysqli_query($conn, $deltager_query);
-  }
-  if(!$deltager_conn) {
-    die("Query Failed: " . mysqli_error($conn));
-  } else {
-    echo "<div class='container content-container'>";
-    echo "<div class='row'>";
-    echo "<div class='col s12 blue darken-3 white-text center flow-text'>";
-    echo "Protokol listen er blevet opdateret.<br>";
-    echo "</div>";
-    echo "</div>";
-    echo "</div>";
-  }
-}
-?>
 <div class="container content-container protocol_detail">
   <form action="" method="post">
     <div class="row">
@@ -71,11 +25,6 @@ if(isset($_POST['checkboxDeltagerArray'])) {
           <li><a href="#2tenor">2. Tenor</a></li>
           <li><a href="#1bass">1. Bass</a></li>
           <li><a href="#2bass">2. Bass</a></li>
-          <li>
-            <button class="btn waves-effect waves-light" type="submit" name="submit">Indsend
-              <i class="material-icons right">send</i>
-            </button>
-          </li>
         </ul>
       </div>
 
