@@ -34,7 +34,7 @@ $( document ).ready(function() {
               "member_id": member_id,
               "event_id": event_id
             },
-          type: "post"
+          type: "post",
       });
 
     } else if(check_member.prop('checked') === true) {

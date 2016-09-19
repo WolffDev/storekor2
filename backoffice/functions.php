@@ -112,7 +112,7 @@ function protocol_detail($var1, $var2) {
 
         echo "<div class='col s6 m4 l3'>";
         if($deltager_aktiv == $e_id) {
-          echo "<input type='checkbox' data-deltager_id='" . $deltager_id . "' data-event_id='" . $e_id . "' data-member_id='" . $id . "' id='" . $id . "' name='checkboxDeltagerArray[]' value='" . $id . "' checked/>";
+          echo "<input type='checkbox' data-deltager_id='" . $deltager_id . "' data-event_id='" . $e_id . "' data-member_id='" . $id . "' id='" . $id . "' value='" . $id . "' checked/>";
         } else {
           echo "<input type='checkbox' data-deltager_id='" . $deltager_id . "' data-event_id='" . $e_id . "' data-member_id='" . $id . "' id='" . $id . "' name='checkboxDeltagerArray[]' value='" . $id . "'/>";
         }

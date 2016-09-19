@@ -15,6 +15,7 @@
       </div>
       <ul id="nav-mobile" class="side-nav fixed">
         <ul class="">
+          <li><img src="" alt="" /></li>
           <li class="hide-on-med-and-up"><a href="../"><i class="material-icons left">home</i>Forside</a></li>
           <li><a href="./"><i class="material-icons left">dashboard</i>Oversigt</a></li>
           <?php
