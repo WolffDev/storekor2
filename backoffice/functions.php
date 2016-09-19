@@ -4,6 +4,7 @@
     return mysqli_real_escape_string($conn, trim($string));
   }
 
+
   function brugerAfbud($user_id, $event_id) {
     global $conn;
 

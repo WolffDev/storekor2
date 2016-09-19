@@ -34,7 +34,7 @@
 
             <li><a href="index.php?action=protocol"><i class="material-icons left">playlist_add_check</i>Protokol</a></li>
 
-            <li><a href="index.php?action=absence"><i class="material-icons left">playlist_add_check</i>Fravær</a></li>
+            <li><a href="index.php?action=absence"><i class="material-icons left">not_interested</i>Fravær</a></li>
 
             <li><a href="index.php?action=afbud&state=overview"><i class="material-icons left">alarm_off</i>Afbud</a></li>
           <?php } ?>

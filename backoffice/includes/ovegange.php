@@ -217,7 +217,7 @@
 
       $query = "SELECT event_id, start_date, end_date, title, text, type
       FROM events
-      WHERE start_date >= NOW()
+      WHERE start_date >= SUBDATE( NOW(), INTERVAL 12 HOUR)
       ORDER BY start_date ASC";
       $select = mysqli_query($conn, $query);
       $count = mysqli_num_rows($select);

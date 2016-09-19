@@ -36,9 +36,8 @@ if(isset($_POST['checkboxDeltagerArray'])) {
   } else {
     echo "<div class='container content-container'>";
     echo "<div class='row'>";
-    echo "<div class='col s12 teal darken-2 white-text center flow-text'>";
-    echo "Protokol listen er blevet opdateret for i dag.<br>";
-    echo "Hvis der skal rettes i protokollen, så skal der kun hakkkes af i de nye tilkommende, eller de personer som ikke blev hakket af første gang.";
+    echo "<div class='col s12 blue darken-3 white-text center flow-text'>";
+    echo "Protokol listen er blevet opdateret.<br>";
     echo "</div>";
     echo "</div>";
     echo "</div>";
