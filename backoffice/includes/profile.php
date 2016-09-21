@@ -133,13 +133,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
       $query .="postnr = '{$postnr}', ";
       $query .="email = '{$email}', ";
       $query .="telefon = '{$telefon}', ";
-      $query .="alder = '{$alder}', ";
-      $query .="stemme = '{$stemme}', ";
-      $query .="erfaring = '{$erfaring}', ";
-      $query .="kor_type = '{$kor_type}', ";
       $query .="job = '{$job}', ";
-      $query .="relate = '{$relate}', ";
-      $query .="persona = '{$persona}', ";
       $query .="profil_billede = '{$profil_billede}' ";
       $query .="WHERE id = {$user_id} ";
 
@@ -202,13 +196,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
       $bynavn = escape($_POST['bynavn']);
       $email = escape($_POST['email']);
       $telefon = escape($_POST['telefon']);
-      $alder = escape($_POST['alder']);
-      $stemme = escape($_POST['stemme']);
-      $erfaring = escape($_POST['erfaring']);
-      $kor_type = escape($_POST['kor_type']);
       $job = escape($_POST['job']);
-      $relate = escape($_POST['relate']);
-      $persona = escape($_POST['persona']);
       mysqli_close($conn);
     }
   }
@@ -298,6 +286,43 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
             <input id="bynavn" required="required" type="text" class="validate" name="bynavn" value="<?php if(isset($bynavn)){echo $bynavn;} ?>">
             <label for="bynavn">By</label>
           </div>
+
+          <div class="input-field col s12 m6">
+            <select name="job">
+              <option value="Studerende" <?php if($job = '') {echo "selected='selected'";} ?>>Studerende</option>
+
+              <option value="Selvstændig"<?php if($job = 'Selvstændig') {echo "selected='selected'";} ?>>Selvstændig</option>
+
+              <option value="I arbejde"<?php if($job = 'I arbejde') {echo "selected='selected'";} ?>>I arbejde</option>
+
+              <option value="Ledig"<?php if($job = 'Ledig') {echo "selected='selected'";} ?>>Ledig</option>
+
+              <option value="Studerende ved SDU"<?php if($job = 'Studerende ved SDU') {echo "selected='selected'";} ?>>Studerende ved SDU</option>
+
+              <option value="Arbejder ved SDU"<?php if($job = 'Arbejder ved SDU') {echo "selected='selected'";} ?>>Arbejder ved SDU</option>
+
+              <option value="Pensionist"<?php if($job = 'Pensionist') {echo "selected='selected'";} ?>>Pensionist</option>
+
+              <option value="Ønsker ikke at oplyse"<?php if($job = 'Ønsker ikke at oplyse') {echo "selected='selected'";} ?>>Ønsker ikke at oplyse</option>
+
+            </select>
+            <label>Beskæftigelse?</label>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="row">
+          <div class="col s12 m6">
+            <p>
+              Når du uploader dit profil billede, skal følgende krav være opfyldt:
+              <br>
+              Billedet skal være et .jpg, .jpeg, .png eller .gif fil.
+              <br>
+              Billedet må maks fylde 200kb.
+            </p>
+          </div>
+
           <div class="file-field input-field col s12 m6">
             <div class="btn">
               <span>Billede</span>
@@ -307,73 +332,10 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
               <input class="file-path validate" placeholder="<?php echo substr($db_profil_billede, 8); ?>" type="text">
             </div>
           </div>
-          <div class="col s12">
-            <p>
-              Når du uploader dit profil billede, skal følgende krav være opfyldt:
-              <br>
-              Billedet skal være et .jpg, .jpeg, .png eller .gif fil.
-              <br>
-              Billedet må maks fylde 200kb.
-            </p>
-          </div>
         </div>
-        <br>
-        <div class="divider"></div>
-        <br>
-        <div class="row">
-          <div class="input-field col s12 m6">
-            <input id="alder" required="required" type="date" class="datepicker" name="alder" data-value="<?php if(isset($alder)) {echo $alder;} ?>">
-            <label for="alder">Fødselsdato</label>
-          </div>
-          <div class="input-field col s12 m6">
-            <select name="stemme" value="<?php if(isset($stemme)){echo $stemme;} ?>">
-              <option value="1. Sopran">1. Sopran</option>
-              <option value="2. Sopran">2. Sopran</option>
-              <option value="1. Alt">1. Alt</option>
-              <option value="2. Alt">2. Alt</option>
-              <option value="1. Tenor">1. Tenor</option>
-              <option value="2. Tenor">2. Tenor</option>
-              <option value="1. Bass">1. Bass</option>
-              <option value="2. Bass">2. Bass</option>
-              <option value="Ved ikke">Jeg ved ikke hvad han/hun synger</option>
-            </select>
-            <label for="stemme">Vælg stemme</label>
-          </div>
-          <div class="input-field col s12 m6">
-            <input id="erfaring" required="required" type="text" class="validate" name="erfaring" value="<?php if(isset($erfaring)){echo $erfaring;} ?>">
-            <label for="erfaring">Hvilken stemme/r har han/hun sunget før?</label>
-          </div>
-          <div class="input-field col s12 m6">
-            <input id="kor_type" required="required" type="text" class="validate" name="kor_type" value="<?php if(isset($kor_type)){echo $kor_type;} ?>">
-            <label for="kor_type">Hviklet type kor har han/hun sunget i før?</label>
-          </div>
-          <div class="input-field col s12 m6">
-            <select name="job" value="<?php if(isset($job)){echo $job;} ?>">
-              <option value="Studerende">Studerende</option>
-              <option value="Selvstændig">Selvstændig</option>
-              <option value="I arbejde">I arbejde</option>
-              <option value="Ledig">Ledig</option>
-              <option value="Studerende ved SDU">Studerende ved SDU</option>
-              <option value="Arbejder ved SDU">Arbejder ved SDU</option>
-              <option value="Pensionist">Pensionist</option>
-              <option value="Ønsker ikke at oplyse">Ønsker ikke at oplyse</option>
-            </select>
-            <label>Beskæftigelse?</label>
-          </div>
-          <div class="input-field col s12 m6">
-            <input id="relate" type="text" class="validate" name="relate" value="<?php if(isset($relate)){echo $relate;} ?>">
-            <label for="relate">Hvor har han/hun hørt på Storekoret?</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <textarea id="persona" class="materialize-textarea" length="250" name="persona"><?php if(isset($persona)){echo $persona;} ?></textarea>
-            <label for="persona">Skriv en kort introduktion af ham/hende</label>
-          </div>
-        </div>
-        <div class="row"></div>
 
         <div class="divider"></div>
+
         <div class="row">
           <div class="col s12 m6">
             <p>
