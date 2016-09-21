@@ -26,13 +26,12 @@
           <?php } else { ?>
             <li><a href="medlemmer.php?action=view_all_single"><i class="material-icons left">supervisor_account</i>Medlemmer</a></li>
           <?php } ?>
+            <li><a href="#"><i class="material-icons left">accessibility</i>Dirigent</a></li>
+
+          <li><a href="index.php?action=ovegange"><i class="material-icons left">music_note</i>Korlender</a></li>
           <?php
           if ($_SESSION['auth'] < 4) {
           ?>
-            <li><a href="#"><i class="material-icons left">accessibility</i>Dirigent</a></li>
-
-            <li><a href="index.php?action=ovegange"><i class="material-icons left">music_note</i>Korlender</a></li>
-
             <li><a href="index.php?action=protocol"><i class="material-icons left">playlist_add_check</i>Protokol</a></li>
 
             <li><a href="index.php?action=absence"><i class="material-icons left">not_interested</i>Fravær</a></li>

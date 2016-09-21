@@ -18,6 +18,7 @@ if(isset($_POST['status_close'])) {
 </div>
 <div class="container dashboard content-container">
   <?php
+  if ($_SESSION['auth'] < 3) {
   $status_query = "SELECT * FROM optagelse_status WHERE id = 1";
   $get_status = mysqli_query($conn, $status_query);
   while($row = mysqli_fetch_assoc($get_status)) {
@@ -72,6 +73,7 @@ if(isset($_POST['status_close'])) {
       <div class="col s12 m4 dashboard-card">
       </div>
     </div>
+    <?php } ?>
 
     <?php
     $s1 = 0;
