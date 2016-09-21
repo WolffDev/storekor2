@@ -4,6 +4,37 @@
     return mysqli_real_escape_string($conn, trim($string));
   }
 
+  function resetAbsence() {
+    global $conn;
+    $reset_date_start = strtotime("2016-08-01");
+  	$reset_date_end = strtotime("2016-08-08");
+    $reset_date_start_format = date("d-F", $reset_date_start);
+  	$reset_date_end_format = date("d-F", $reset_date_end);
+
+    $reset_date_start2 = strtotime("2016-01-01");
+    $reset_date_end2 = strtotime("2016-01-08");
+    $reset_date_start_format2 = date("d-F", $reset_date_start2);
+    $reset_date_end_format2 = date("d-F", $reset_date_end2);
+
+
+    $current_date = date("d-F");
+
+  	if(($current_date > $reset_date_start_format && $current_date < $reset_date_end_format) || ($current_date > $reset_date_start_format2 && $current_date < $reset_date_end_format2)) {
+  		$update_old_events_query =
+  		"UPDATE
+  			events
+  		SET
+  			old_event = 1
+  		WHERE
+  			start_date < NOW()
+  		AND
+  			old_event = 0";
+  		$update_old_events = mysqli_query($conn, $update_old_events_query);
+
+  		$delete_absence_query = "TRUNCATE TABLE absence";
+  		$delete_absence = mysqli_query($conn, $delete_absence_query);
+  	}
+  }
 
   function brugerAfbud($user_id, $event_id) {
     global $conn;

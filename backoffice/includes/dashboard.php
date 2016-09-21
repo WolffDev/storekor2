@@ -1,5 +1,6 @@
 <script src="js/chart.bundle.2.2.2.min.js"></script>
 <?php
+resetAbsence();
 if(isset($_POST['status_open'])) {
   $query = "UPDATE optagelse_status SET status = 1 WHERE id = 1";
   $upate_status = mysqli_query($conn, $query);
