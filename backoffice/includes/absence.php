@@ -1,3 +1,8 @@
+<?php
+  $reset_date_string = strtotime("2016-02-02");
+  $reset_date = date("d-F", $reset_date_string);
+  $current_date = date("d-F");
+?>
 <div class="container content-container">
   <table class="centered highlight striped responsive-table">
     <div class="div center">
