@@ -26,7 +26,7 @@
           <?php } else { ?>
             <li><a href="medlemmer.php?action=view_all_single"><i class="material-icons left">supervisor_account</i>Medlemmer</a></li>
           <?php } ?>
-            <li><a href="#"><i class="material-icons left">accessibility</i>Dirigent</a></li>
+            <li><a href="index.php?action=dirigent"><i class="material-icons left">accessibility</i>Dirigent</a></li>
 
           <li><a href="index.php?action=ovegange"><i class="material-icons left">music_note</i>Korlender</a></li>
           <?php
