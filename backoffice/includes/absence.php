@@ -1,12 +1,31 @@
 <?php
-  $reset_date_string = strtotime("2016-02-02");
-  $reset_date = date("d-F", $reset_date_string);
+  $reset_date_start = strtotime("2016-02-02");
+	$reset_date_end = strtotime("2016-02-17");
+  $reset_date_start_format = date("d-F", $reset_date_start);
+	$reset_date_end_format = date("d-F", $reset_date_end);
   $current_date = date("d-F");
+
+	if(($current_date > $reset_date_start_format && $current_date < $reset_date_end_format)) {
+		$update_old_events_query =
+		"UPDATE
+			events
+		SET
+			old_event = 1
+		WHERE
+			start_date < NOW()
+		AND
+			old_event = 0";
+		$update_old_events = mysqli_query($conn, $update_old_events_query);
+
+		$delete_absence_query = "DELETE FROM absence";
+		$delete_absence = mysqli_query($conn, $delete_absence_query);
+	}
+
 ?>
 <div class="container content-container">
   <table class="centered highlight striped responsive-table">
     <div class="div center">
-      <h5>Protokol for planlagte øvegange/koncerter mm.</h5>
+      <h5>Oversigt over fravær i koret.<br>Listen bliver nulstillet når sæsonen slutter.</h5>
     </div>
     <thead>
       <tr>
