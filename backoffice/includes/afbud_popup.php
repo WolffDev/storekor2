@@ -21,7 +21,7 @@ if(isset($_POST['meld_afbud'])) {
       </script>
     <?php
   } else {
-    $query = "INSERT INTO afbud(m_id, e_id, date_cancel, reason) VALUES('{$m_id}', '{$e_id}', now(), '{$reason}')";
+    $query = "INSERT INTO afbud(m_id, e_id, date_cancel, reason, afbud_start_date) VALUES('{$m_id}', '{$e_id}', now(), '{$reason}', '{$start_date}')";
     $insert_afmeld = mysqli_query($conn, $query);
 
     if(!$insert_afmeld) {

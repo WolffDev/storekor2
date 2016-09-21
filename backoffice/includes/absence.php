@@ -64,7 +64,9 @@
 			WHERE
 				absence_status = 1
 			GROUP BY
-				absence_member_id";
+				absence_member_id
+			ORDER BY
+				absence_member_percent DESC";
 
 			$select = mysqli_query($conn, $query);
 			$query_test = mysqli_num_rows($select);

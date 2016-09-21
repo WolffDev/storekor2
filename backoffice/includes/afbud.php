@@ -21,6 +21,8 @@
               events
             ON
               afbud.e_id = events.event_id
+            WHERE
+            	afbud.afbud_start_date >= SUBDATE( NOW(), INTERVAL 12 HOUR)
             GROUP BY
               afbud.e_id
             ";
