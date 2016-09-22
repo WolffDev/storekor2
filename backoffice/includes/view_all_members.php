@@ -110,7 +110,7 @@
       </tr>
     </thead>
 
-    <!-- <tbody> -->
+    <tbody>
       <?php
         // global $conn;
         // $query = "SELECT * FROM medlemmer ORDER BY id DESC";

@@ -84,7 +84,7 @@
           mysqli_close($conn);
         }
       } else {
-        $login_fail = "Du mangler at udfylde nogle felter der er påkrævet.<br>Udfyld venligst alle de vigtie felter.";
+        $login_fail = "Du mangler at udfylde nogle felter der er påkrævet.<br>Udfyld venligst alle de vigtige felter.";
         $fornavn = escape($_POST['fornavn']);
         $efternavn = escape($_POST['efternavn']);
         $adresse = escape($_POST['adresse']);

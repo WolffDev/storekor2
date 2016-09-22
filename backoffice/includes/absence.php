@@ -46,7 +46,7 @@
 
 			$select = mysqli_query($conn, $query);
 			$query_test = mysqli_num_rows($select);
-			if($query_test > 1) {
+			if($query_test >= 1) {
 				while($row = mysqli_fetch_assoc($select)) {
 					$member_id = $row['absence_member_id'];
 					$fornavn = $row['fornavn'];
