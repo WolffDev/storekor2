@@ -27,6 +27,41 @@ if(isset($_POST['upload_files'])){
     echo "asdasd";
   }
 }
+
+if(isset($_POST['checkBoxArray'])) {
+  foreach($_POST['checkBoxArray'] as $checkbox_upload_id) {
+    $bulk_options = $_POST['bulk_options'];
+
+    switch ($bulk_options) {
+      case 'noder':
+        $query = "UPDATE uploads SET upload_category = '{$bulk_options}' WHERE upload_id = '{$checkbox_upload_id}'";
+        $update = mysqli_query($conn, $query);
+        break;
+      case 'øvefiler':
+        $query = "UPDATE uploads SET upload_category = '{$bulk_options}' WHERE upload_id = '{$checkbox_upload_id}'";
+        $update = mysqli_query($conn, $query);
+        break;
+      case 'koncert programmer':
+        $query = "UPDATE uploads SET upload_category = '{$bulk_options}' WHERE upload_id = '{$checkbox_upload_id}'";
+        $update = mysqli_query($conn, $query);
+        break;
+      case 'pr materiale':
+        $query = "UPDATE uploads SET upload_category = '{$bulk_options}' WHERE upload_id = '{$checkbox_upload_id}'";
+        $update = mysqli_query($conn, $query);
+        break;
+      case 'delete':
+        $query = "UPDATE uploads SET upload_status = 0 WHERE upload_id = '{$checkbox_upload_id}'";
+        $update = mysqli_query($conn, $query);
+        break;
+    }
+  }
+}
+
+if(isset($_POST['rename'])) {
+  var_dump($_POST['rename']);
+  var_dump($_POST['rename_id']);
+
+}
 ?>
 <div class="container content-container">
   <?php if ($_SESSION['auth'] < 4) { ?>
@@ -61,10 +96,11 @@ if(isset($_POST['upload_files'])){
         </select>
       </div>
       <div class="col s12">
-        <button class="btn waves-effect waves-light blue darken-2" type="submit" name="upload_files">Upload
+        <button class="btn waves-effect waves-light blue darken-2" type="submit" name="upload_files" id="upload_btn_activate_spinner">Upload
         <i class="material-icons right">send</i>
         </button>
       </div>
+
     </form>
   </div>
   <hr>
@@ -78,8 +114,8 @@ if(isset($_POST['upload_files'])){
         <select class="form-control" name="bulk_options">
           <option disabled selected value="">Vælg handling</option>
           <option value="noder" >Kategory: Noder</option>
-          <option value="oevefiler">Kategory: Øvefiler</option>
-          <option value="pr">Kategory: PR Materiale</option>
+          <option value="øvefiler">Kategory: Øvefiler</option>
+          <option value="pr materiale">Kategory: PR Materiale</option>
           <option value="koncert">Kategory: Koncert Programmer</option>
           <option value="delete">Slet fil</option>
         </select>
@@ -138,7 +174,10 @@ if(isset($_POST['upload_files'])){
               echo "<td>" . $new_upload_type . "</td>";
               echo "<td>" . $upload_category . "</td>";
               echo "<td>" . $upload_date . "</td>";
-              echo "<td><a href='" . $upload_path . "' target='_blank'><div class='btn waves-effect waves-light'>Download</div></a>";if ($_SESSION['auth'] < 4) {echo "<a href=''><div class='btn waves-effect waves-light blue darken-3'>Omdøb filen</div></a>";}"</td>";
+              echo "<td><a href='" . $upload_path . "' target='_blank'><div class='btn waves-effect waves-light'>Download</div></a>";if ($_SESSION['auth'] < 4) {
+                echo "<input type='hidden' value='". $upload_id . "' name='rename_id'>";
+                echo "<button class='btn waves-effect waves-light teal darken-3' type='submit' name='rename'>Omdøb filen</button>";
+              }"</td>";
               echo "</tr>";
             }
           ?>
