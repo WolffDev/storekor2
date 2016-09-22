@@ -1,6 +1,6 @@
-<?php include "./includes/header.php"; ?>
+<?php include "includes/header.php"; ?>
 <!-- ****** Navbar *****-->
-<?php include "./includes/navbar.php"; ?>
+<?php include "includes/navbar.php"; ?>
 <!-- ****** INTRO ******-->
 <?php
   if(isset($_GET['message'])) {
@@ -36,7 +36,7 @@
   if ($_GET['message'] === 'invalid_login') { ?>
     <script type="text/javascript">
       var $toastContent = $('<span>Email og/eller password er forkert.</span>');
-      Materialize.toast($toastContent, 5000, 'toastInvalidUser');
+      Materialize.toast($toastContent, 4000, 'toastInvalidUser');
     </script>
 <?php } }?>
 <div id="index-banner" class="parallax-container">
@@ -72,12 +72,12 @@
           </h2>
           <h5 class="center green-text">Åben for optagelse</h5>
           <p>Vi holder løbende optagelseprøver og lige nu søger vi nye medlemmer til Storekoret.<br>Vi øver hver mandag fra kl. 19.00 til 21.30, ofte i lokale U77 på Syddansk Universitet.</p>
-          <?php mysqli_close($conn); } else { ?>
+          <?php } else { ?>
             <h2 class="center red-text"><i class="material-icons">power_settings_new</i>
             </h2>
             <h5 class="center red-text">Lukket for optagelse</h5>
             <p>Vores medlemsantal er på nuværrende tidspunkt <strong><em>opfyldt</em></strong>, så vi søger ikke nye medlemmer.<br>Du er altid velkommen til at skrive til os og vi vil gemmen din ansøgning, hvis der opstår en åben plads.</p>
-            <?php mysqli_close($conn); } ?>
+            <?php } ?>
         </div>
       </div>
       <div class="col s12 m4">
@@ -114,20 +114,65 @@
         </h4>
       </div>
     </div>
-    <div class="row">
-      <div class="col s12 l6">
-        <h5 class="left-align">Titel på Koncert</h5>
-        <p class="left-align">Dette afsnit bliver kun vist så fremt det ønskes. Dette ville kunne ændres inde på admin siden.</p>
-      </div>
-      <div class="col s12 l6"><a href="#"><img src="img/background1.jpg"/></a></div>
-    </div>
-    <div class="row">
-      <div class="col s12 l6">
-        <h5 class="left-align">Titel på Koncert</h5>
-        <p class="left-align">Dette afsnit bliver kun vist så fremt det ønskes. Dette ville kunne ændres inde på admin siden.</p>
-      </div>
-      <div class="col s12 l6"><a href="#"><img src="img/background1.jpg"/></a></div>
-    </div>
+    <?php
+      $query = "SELECT
+        title,
+        long_text,
+        event_img,
+        start_date,
+        end_date
+      FROM
+        events
+      WHERE
+        old_event = 0
+      AND
+        type = 'koncert'
+      AND
+        start_date >= SUBDATE( NOW(), INTERVAL 12 HOUR)
+      ORDER BY
+        start_date
+      LIMIT
+       3";
+      $koncert_result = mysqli_query($conn, $query);
+      if(mysqli_num_rows($koncert_result) > 0) {
+        while($row = mysqli_fetch_assoc($koncert_result)) {
+          $title = $row['title'];
+          $long_text = $row['long_text'];
+          $start_date = $row['start_date'];
+          $end_date = $row['end_date'];
+          $event_img = $row['event_img'];
+
+          $start_date_format = date_format(new DateTime($start_date), '\d\. j\. M\, \k\l\. H:i');
+          $end_date_format = date_format(new DateTime($end_date), '\d\. j\. M\, \k\l\. H:i');
+          $start_date_check = date_format(new DateTime($start_date), 'd m Y');
+          $end_date_check = date_format(new DateTime($end_date), 'd m Y');
+          $end_date_time = date_format(new DateTime($end_date), '\k\l\. H:i');
+
+        ?>
+          <div class="row">
+            <div class="col s12 l6">
+              <h5 class="left-align"><?php echo $title; ?></h5>
+              <span class="span">
+                Start: <? echo $start_date_format . "<br>Slut: ";
+
+                if($start_date_check === $end_date_check) {
+                  echo $end_date_time;
+                } else {
+                  echo $end_date_format;
+                } ?>
+              </span>
+              <p class="left-align"><?php echo $long_text; ?></p>
+            </div>
+            <div class="col s12 l6"><img src="img/background1.jpg"/></div>
+          </div>
+        <?php } ?>
+      <?php } else { ?>
+        <div class="row">
+          <div class="col s12">
+            <h5 class="center">Der er ingen planlagte koncerter på programmet.</h5>
+          </div>
+        </div>
+      <?php } ?>
   </div>
 </div>
 <!-- ****** KONTAKT******-->

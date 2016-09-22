@@ -124,26 +124,30 @@ if(isset($_POST['rename'])) {
   <div class="row content-container">
 
     <form method="post">
-      <div class="col m3"></div>
-      <div id="bulkOptionContainer" class="col s12 m3">
-        <select class="form-control" name="bulk_options">
-          <option disabled selected value="">Vælg handling</option>
-          <option value="noder" >Kategory: Noder</option>
-          <option value="øvefiler">Kategory: Øvefiler</option>
-          <option value="pr materiale">Kategory: PR Materiale</option>
-          <option value="koncert">Kategory: Koncert Programmer</option>
-          <option value="delete">Slet fil permanent</option>
-        </select>
-      </div>
-      <div class="col s12 m3">
-        <button class="btn waves-effect waves-light" type="submit" name="update_files">Opdater</button>
-      </div>
-      <div class="col m3"></div>
+      <?php if ($_SESSION['auth'] < 4) { ?>
+        <div class="col m3"></div>
+        <div id="bulkOptionContainer" class="col s12 m3">
+          <select class="form-control" name="bulk_options">
+            <option disabled selected value="">Vælg handling</option>
+            <option value="noder" >Kategory: Noder</option>
+            <option value="øvefiler">Kategory: Øvefiler</option>
+            <option value="pr materiale">Kategory: PR Materiale</option>
+            <option value="koncert">Kategory: Koncert Programmer</option>
+            <option value="delete">Slet fil permanent</option>
+          </select>
+        </div>
+        <div class="col s12 m3">
+          <button class="btn waves-effect waves-light" type="submit" name="update_files">Opdater</button>
+        </div>
+        <div class="col m3"></div>
+      <?php } ?>
 
       <table class="striped" id="medlemmer_table">
         <thead>
           <tr>
-            <th><input name="select_all" value="" id="selectAllBoxes" type="checkbox" /></th>
+            <?php if ($_SESSION['auth'] < 4) { ?>
+              <th><input name="select_all" value="" id="selectAllBoxes" type="checkbox" /></th>
+            <?php } ?>
             <th>Filnavn</th>
             <th>Filtype</th>
             <th>Kategory</th>
@@ -182,7 +186,9 @@ if(isset($_POST['rename'])) {
               $upload_date = date_format(new DateTime($upload_date), 'j\. M \k\l\. H:i');
 
               echo "<tr>";
-              echo "<td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='" . $upload_id . "'></td>";
+              if ($_SESSION['auth'] < 4) {
+                echo "<td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='" . $upload_id . "'></td>";
+              }
               echo "<td>" . $upload_name . "</td>";
               echo "<td>" . $new_upload_type . "</td>";
               echo "<td>" . $upload_category . "</td>";

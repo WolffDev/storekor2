@@ -104,7 +104,7 @@ form {
 
 // Login-content
 .toastInvalidUser {
-  @extend .teal, .lighten-1;
+  @extend .red, .darken-1;
 }
 #login-content {
   display: none;
