@@ -50,7 +50,17 @@ if(isset($_POST['checkBoxArray'])) {
         $update = mysqli_query($conn, $query);
         break;
       case 'delete':
-        $query = "UPDATE uploads SET upload_status = 0 WHERE upload_id = '{$checkbox_upload_id}'";
+        $file_query = "SELECT upload_path FROM uploads WHERE upload_id = '{$checkbox_upload_id}'";
+        $get_file = mysqli_query($conn, $file_query);
+        while($row = mysqli_fetch_assoc($get_file)) {
+          $file_path = $row['upload_path'];
+        }
+        $script_path = $_SERVER['DOCUMENT_ROOT'];
+        $path = $script_path . "/" . "backoffice" . "/" . $file_path;
+
+        unlink($path);
+
+        $query = "DELETE FROM uploads WHERE upload_id = '{$checkbox_upload_id}'";
         $update = mysqli_query($conn, $query);
         break;
     }
@@ -100,7 +110,6 @@ if(isset($_POST['rename'])) {
         <i class="material-icons right">send</i>
         </button>
       </div>
-
     </form>
   </div>
   <hr>
@@ -117,7 +126,7 @@ if(isset($_POST['rename'])) {
           <option value="øvefiler">Kategory: Øvefiler</option>
           <option value="pr materiale">Kategory: PR Materiale</option>
           <option value="koncert">Kategory: Koncert Programmer</option>
-          <option value="delete">Slet fil</option>
+          <option value="delete">Slet fil permanent</option>
         </select>
       </div>
       <div class="col s12 m3">
@@ -143,8 +152,6 @@ if(isset($_POST['rename'])) {
               *
             FROM
               uploads
-            WHERE
-              upload_status = 1
             ORDER BY
               upload_date ASC";
             $download_result = mysqli_query($conn, $download_query);
@@ -174,10 +181,7 @@ if(isset($_POST['rename'])) {
               echo "<td>" . $new_upload_type . "</td>";
               echo "<td>" . $upload_category . "</td>";
               echo "<td>" . $upload_date . "</td>";
-              echo "<td><a href='" . $upload_path . "' target='_blank'><div class='btn waves-effect waves-light'>Download</div></a>";if ($_SESSION['auth'] < 4) {
-                echo "<input type='hidden' value='". $upload_id . "' name='rename_id'>";
-                echo "<button class='btn waves-effect waves-light teal darken-3' type='submit' name='rename'>Omdøb filen</button>";
-              }"</td>";
+              echo "<td><a href='" . $upload_path . "' target='_blank'><div class='btn teal darken-2 waves-effect waves-light'>Download</div></a></td>";
               echo "</tr>";
             }
           ?>
