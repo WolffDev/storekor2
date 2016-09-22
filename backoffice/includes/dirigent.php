@@ -1,4 +1,5 @@
 <?php
+$uploaded = false;
 if(isset($_POST['upload_files'])){
   if(!empty($_POST['category']) && !empty($_FILES['files'])) {
     $upload_category = $_POST['category'];
@@ -21,7 +22,7 @@ if(isset($_POST['upload_files'])){
       $query="INSERT into uploads (upload_name, upload_size, upload_type, upload_date, upload_category, upload_status, upload_path) VALUES('$file_name','$file_size','$file_type', NOW(), '$upload_category', 1, '$file_path'); ";
 
       $upload_files = mysqli_query($conn, $query);
-  		echo "Success";
+  		$uploaded = true;
     }
   } else {
     echo "asdasd";
@@ -78,6 +79,11 @@ if(isset($_POST['rename'])) {
 
   <div class="row">
     <div class="col s12 m4 flow-text">
+      <?php if($uploaded) { ?>
+        <p class="teal darken-2 center white-text">
+          Filen er nu uploadet
+        </p>
+      <?php } ?>
       <p>
         Her kan du uploade filer som resten af koret kan se.
       </p>
