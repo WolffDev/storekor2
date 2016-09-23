@@ -189,7 +189,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
             <label for="dato_oprettet">Dato oprettet</label>
           </div>
           <div class="input-field col s12 m4">
-            <select name="stemme" value="<?php if(isset($stemme)){echo $stemme;} ?>">
+            <select name="stemme">
               <option value="1. Sopran">1. Sopran</option>
               <option value="2. Sopran">2. Sopran</option>
               <option value="1. Alt">1. Alt</option>

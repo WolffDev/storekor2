@@ -289,21 +289,21 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
 
           <div class="input-field col s12 m6">
             <select name="job">
-              <option value="Studerende" <?php if($job = '') {echo "selected='selected'";} ?>>Studerende</option>
+              <option value="Studerende" <?php if($job == '') {echo "selected='selected'";} ?>>Studerende</option>
 
-              <option value="Selvstændig"<?php if($job = 'Selvstændig') {echo "selected='selected'";} ?>>Selvstændig</option>
+              <option value="Selvstændig"<?php if($job == 'Selvstændig') {echo "selected='selected'";} ?>>Selvstændig</option>
 
-              <option value="I arbejde"<?php if($job = 'I arbejde') {echo "selected='selected'";} ?>>I arbejde</option>
+              <option value="I arbejde"<?php if($job == 'I arbejde') {echo "selected='selected'";} ?>>I arbejde</option>
 
-              <option value="Ledig"<?php if($job = 'Ledig') {echo "selected='selected'";} ?>>Ledig</option>
+              <option value="Ledig"<?php if($job == 'Ledig') {echo "selected='selected'";} ?>>Ledig</option>
 
-              <option value="Studerende ved SDU"<?php if($job = 'Studerende ved SDU') {echo "selected='selected'";} ?>>Studerende ved SDU</option>
+              <option value="Studerende ved SDU"<?php if($job == 'Studerende ved SDU') {echo "selected='selected'";} ?>>Studerende ved SDU</option>
 
-              <option value="Arbejder ved SDU"<?php if($job = 'Arbejder ved SDU') {echo "selected='selected'";} ?>>Arbejder ved SDU</option>
+              <option value="Arbejder ved SDU"<?php if($job == 'Arbejder ved SDU') {echo "selected='selected'";} ?>>Arbejder ved SDU</option>
 
-              <option value="Pensionist"<?php if($job = 'Pensionist') {echo "selected='selected'";} ?>>Pensionist</option>
+              <option value="Pensionist"<?php if($job == 'Pensionist') {echo "selected='selected'";} ?>>Pensionist</option>
 
-              <option value="Ønsker ikke at oplyse"<?php if($job = 'Ønsker ikke at oplyse') {echo "selected='selected'";} ?>>Ønsker ikke at oplyse</option>
+              <option value="Ønsker ikke at oplyse"<?php if($job == 'Ønsker ikke at oplyse') {echo "selected='selected'";} ?>>Ønsker ikke at oplyse</option>
 
             </select>
             <label>Beskæftigelse?</label>
