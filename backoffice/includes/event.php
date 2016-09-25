@@ -76,7 +76,7 @@
       $msg .= "Der vil komme mere information på et senere tidspunkt, hvis dette event bliver oprettet igen.<br><br>Hold øje med korlenderen på hjemmesiden, så er du altid opdateret.<br><br>";
       $msg .= "Hilsen<br>";
       $msg .= "Korbestyrelsen";
-      mail_utf8('davidbkwolff@gmail.com', 'Korbestyrelsen', 'korbestyrelsen@gmail.com', 'Aflysning: ' . $e_type . ", " . $e_title . ", " . $start_date, $msg);
+      mail_utf8('davidbkwolff@gmail.com', 'Korbestyrelsen', 'no-reply@storekor.dk', 'Aflysning: ' . $e_type . ", " . $e_title . ", " . $start_date, $msg);
       $message = urlencode('event_delete');
       header("Location: index.php?action=ovegange&message=".$message);
       mysqli_close($conn);
@@ -118,9 +118,9 @@
         </div>
         <div class="input-field col s6">
           <select name="e_type">
-            <option value="koncert" <?php if($type == 'koncert') {echo "selected";} ?> selected>Koncert</option>
+            <option value="koncert" <?php if($type == 'koncert') {echo "selected='selected'";} ?> selected>Koncert</option>
 
-            <option value="øvegang" <?php if($type == 'øvegang') {echo "selected";} ?>>Øvegang</option>
+            <option value="øvegang" <?php if($type == 'øvegang') {echo "selected='selected'";} ?>>Øvegang</option>
 
             <option value="korlørdag" <?php if($type == 'korlørdag') {echo "selected='selected'";} ?>>Korlørdag</option>
 

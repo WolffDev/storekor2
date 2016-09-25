@@ -25,8 +25,16 @@ if(isset($_POST['upload_files'])){
   		$uploaded = true;
     }
   } else {
-    echo "asdasd";
+    echo "Upload fejl";
   }
+}
+
+if(isset($_POST['new_files'])) {
+  $msg = "Kære medlemmer,<br><br>Der er blevet uploadet nye filer på storekorets hjemmeside, <a href='http://www.storekor.dk'>Storekor.dk</a>.<br><br>Log ind på siden og find de nye filer under menupunktet \"filer\".<br><br>Hilsen,<br>Korbestyrelsen";
+
+  $subject ="Nye filer uploadet til Storekor";
+
+  mail_utf8('davidbkwolff@gmail.com', 'Korbestyrelsen', 'info@davidwolff.dk', $subject, $msg);
 }
 
 if(isset($_POST['checkBoxArray'])) {
@@ -68,11 +76,6 @@ if(isset($_POST['checkBoxArray'])) {
   }
 }
 
-if(isset($_POST['rename'])) {
-  var_dump($_POST['rename']);
-  var_dump($_POST['rename_id']);
-
-}
 ?>
 <div class="container content-container">
   <?php if ($_SESSION['auth'] < 4) { ?>
@@ -85,7 +88,7 @@ if(isset($_POST['rename'])) {
         </p>
       <?php } ?>
       <p>
-        Her kan du uploade filer som resten af koret kan se.
+        Her kan du uploade filer til resten af koret.
       </p>
       <p>
         Husk at slette de filer der ikke længere er nødvendige, da filerne vil optage unødvendig plads på serveren.
@@ -117,6 +120,20 @@ if(isset($_POST['rename'])) {
         </button>
       </div>
     </form>
+
+    <form class="col s12 m8" method="post">
+      <div class="col s12">
+        <p class="flow-text">
+          Informer medlemmer om, at der er blevet uploadet nye filer på hjemmesiden.
+        </p>
+      </div>
+      <div class="col s12">
+        <button class="btn waves-effect waves-light orange darken-3" type="submit" name="new_files">Informer Medlemmer
+        <i class="material-icons right">send</i>
+        </button>
+      </div>
+    </form>
+
   </div>
   <hr>
   <?php } ?>

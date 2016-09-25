@@ -125,7 +125,7 @@
 
 <div id="index-banner" class="parallax-container">
   <div class="section no-pad-bot">
-    <div class="container">
+    <div class="container content-container">
       <h1 class="header center white-text text-lighten-2">Storekor || Optagelse</h1>
       <div class="row center">
         <h5 class="header col s12">Optagelse og optagelseskrav</h5>
@@ -135,7 +135,7 @@
   </div>
   <div class="parallax"><img src="img/people3.jpg" alt="Unsplashed background img 1"/></div>
 </div>
-<div class="container">
+<div class="container content-container">
   <section>
     <div class="row">
       <div class="col s12"><h4>Optagelse</h4></div>

@@ -7,9 +7,13 @@
   function mail_utf8($to, $from_user, $from_email, $subject, $message) {
     $from_user = "=?UTF-8?B?".base64_encode($from_user)."?=";
     $subject = "=?UTF-8?B?".base64_encode($subject)."?=";
-    $headers = "From: $from_user <$from_email>\r\n".
-               "MIME-Version: 1.0" . "\r\n" .
-               "Content-type: text/html; charset=UTF-8" . "\r\n";
+    $headers = "From: $from_user <$from_email>" . "\r\n";
+    $headers .= "Reply-To: ".($from_mail) . "\r\n";
+    $headers .= "Return-Path: ".($from_mail) . "\r\n";
+    $headers .= "MIME-Version: 1.0" . "\r\n";
+    $headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
+    $headers .= "X-Mailer: PHP". phpversion() ."\r\n";
+
     return mail($to, $subject, $message, $headers);
   }
 

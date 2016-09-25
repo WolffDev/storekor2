@@ -190,15 +190,24 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
           </div>
           <div class="input-field col s12 m4">
             <select name="stemme">
-              <option value="1. Sopran">1. Sopran</option>
-              <option value="2. Sopran">2. Sopran</option>
-              <option value="1. Alt">1. Alt</option>
-              <option value="2. Alt">2. Alt</option>
-              <option value="1. Tenor">1. Tenor</option>
-              <option value="2. Tenor">2. Tenor</option>
-              <option value="1. Bass">1. Bass</option>
-              <option value="2. Bass">2. Bass</option>
-              <option value="Ved ikke">Jeg ved ikke hvad han/hun synger</option>
+              <option value="1. Sopran" <?php if($stemme == 'generalforsamling') {echo "selected='selected'";} ?>>1. Sopran</option>
+
+              <option value="2. Sopran" <?php if($stemme == 'generalforsamling') {echo "selected='selected'";} ?>>2. Sopran</option>
+
+              <option value="1. Alt" <?php if($stemme == '1. Alt') {echo "selected='selected'";} ?>>1. Alt</option>
+
+              <option value="2. Alt" <?php if($stemme == '2. Alt') {echo "selected='selected'";} ?>>2. Alt</option>
+
+              <option value="1. Tenor" <?php if($stemme == '1. Tenor') {echo "selected='selected'";} ?>>1. Tenor</option>
+
+              <option value="2. Tenor" <?php if($stemme == '2. Tenor') {echo "selected='selected'";} ?>>2. Tenor</option>
+
+              <option value="1. Bass" <?php if($stemme == '1. Bass') {echo "selected='selected'";} ?>>1. Bass</option>
+
+              <option value="2. Bass" <?php if($stemme == '2. Bass') {echo "selected='selected'";} ?>>2. Bass</option>
+
+              <option value="Ved ikke" <?php if($stemme == 'Ved ikke') {echo "selected='selected'";} ?>>Jeg ved ikke hvad han/hun synger</option>
+
             </select>
             <label for="stemme">Vælg stemme</label>
           </div>
@@ -211,15 +220,23 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
             <label for="kor_type">Hviklet type kor har han/hun sunget i før?</label>
           </div>
           <div class="input-field col s12 m6">
-            <select name="job" value="<?php if(isset($job)){echo $job;} ?>">
-              <option value="Studerende">Studerende</option>
-              <option value="Selvstændig">Selvstændig</option>
-              <option value="I arbejde">I arbejde</option>
-              <option value="Ledig">Ledig</option>
-              <option value="Studerende ved SDU">Studerende ved SDU</option>
-              <option value="Arbejder ved SDU">Arbejder ved SDU</option>
-              <option value="Pensionist">Pensionist</option>
-              <option value="Ønsker ikke at oplyse">Ønsker ikke at oplyse</option>
+            <select name="job">
+              <option value="Studerende" <?php if($job == '') {echo "selected='selected'";} ?>>Studerende</option>
+
+              <option value="Selvstændig"<?php if($job == 'Selvstændig') {echo "selected='selected'";} ?>>Selvstændig</option>
+
+              <option value="I arbejde"<?php if($job == 'I arbejde') {echo "selected='selected'";} ?>>I arbejde</option>
+
+              <option value="Ledig"<?php if($job == 'Ledig') {echo "selected='selected'";} ?>>Ledig</option>
+
+              <option value="Studerende ved SDU"<?php if($job == 'Studerende ved SDU') {echo "selected='selected'";} ?>>Studerende ved SDU</option>
+
+              <option value="Arbejder ved SDU"<?php if($job == 'Arbejder ved SDU') {echo "selected='selected'";} ?>>Arbejder ved SDU</option>
+
+              <option value="Pensionist"<?php if($job == 'Pensionist') {echo "selected='selected'";} ?>>Pensionist</option>
+
+              <option value="Ønsker ikke at oplyse"<?php if($job == 'Ønsker ikke at oplyse') {echo "selected='selected'";} ?>>Ønsker ikke at oplyse</option>
+
             </select>
             <label>Beskæftigelse?</label>
           </div>
