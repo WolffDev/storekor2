@@ -25,7 +25,7 @@ if(isset($_POST['upload_files'])){
   		$uploaded = true;
     }
   } else {
-    echo "Upload fejl";
+    echo "Upload fejl, prøv igen";
   }
 }
 
@@ -35,6 +35,7 @@ if(isset($_POST['new_files'])) {
   $subject ="Nye filer uploadet til Storekor";
 
   mail_utf8('davidbkwolff@gmail.com', 'Korbestyrelsen', 'info@davidwolff.dk', $subject, $msg);
+  header("Location: index.php?action=dirigent&mail=true");
 }
 
 if(isset($_POST['checkBoxArray'])) {
@@ -85,6 +86,11 @@ if(isset($_POST['checkBoxArray'])) {
       <?php if($uploaded) { ?>
         <p class="teal darken-2 center white-text">
           Filen er nu uploadet
+        </p>
+      <?php } ?>
+      <?php if($_GET['mail'] == true) { ?>
+        <p class="teal darken-2 center white-text">
+          Mail sendt til korets medlemmer
         </p>
       <?php } ?>
       <p>
