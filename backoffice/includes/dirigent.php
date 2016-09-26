@@ -88,7 +88,7 @@ if(isset($_POST['checkBoxArray'])) {
           Filen er nu uploadet
         </p>
       <?php } ?>
-      <?php if($_GET['mail'] == true) { ?>
+      <?php if(isset($_GET['mail']) && $_GET['mail'] == true) { ?>
         <p class="teal darken-2 center white-text">
           Mail sendt til korets medlemmer
         </p>

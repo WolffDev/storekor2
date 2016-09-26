@@ -42,6 +42,9 @@
       case 'dashboard':
         include "includes/dashboard.php";
         break;
+      case 'send_mail':
+        include "includes/mail.php";
+        break;
       case 'dirigent':
         include "includes/dirigent.php";
         break;

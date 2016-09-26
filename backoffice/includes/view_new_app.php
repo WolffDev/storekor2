@@ -3,15 +3,17 @@
     $app_id = escape($_GET['app_id']);
   }
 
-  if(isset($_POST['afvis_app'])) {
-    $query = "DELETE FROM medlemmer WHERE id = '{$app_id}'";
-    $delete_app = mysqli_query($conn, $query);
-    if(!$delete_app) {
-      die("Query Failed123: " . mysqli_error($conn));
-    } else {
+  if(isset($_POST['deny_app'])) {
+    // $query = "DELETE FROM medlemmer WHERE id = '{$app_id}'";
+    // $delete_app = mysqli_query($conn, $query);
+    // if(!$delete_app) {
+    //   die("Query Failed123: " . mysqli_error($conn));
+    // } else {
+      $mail_name = $_POST['mail_name'];
+      $mail_email = $_POST['mail_email'];
       $message = urlencode('new_app_delete');
-      header("Location: index.php?action=dashbord&message=".$message);
-    }
+      header("Location: index.php?action=send_mail&app=deny&name=" . $mail_name . "&mail=" . $mail_email . "");
+    // }
 
   }
 
@@ -29,6 +31,9 @@
     $edit_by_name = $_SESSION['fornavn'];
     $date_now = date('Y-m-d H:i:s');
 
+    $mail_name = $_POST['mail_name'];
+    $mail_email = $_POST['mail_email'];
+
     $update_edit = "INSERT INTO medlemmer_edit(member_id, edit_by_id, edit_by_name, edit_date) VALUES({$app_id}, {$edit_by_id}, '{$edit_by_name}', '{$date_now}')";
     $query_edit = mysqli_query($conn, $update_edit);
 
@@ -36,7 +41,7 @@
       die("Query Failed123: " . mysqli_error($conn));
     } else {
       $message = urlencode('new_app_godkendt');
-      header("Location: index.php?action=dashbord&message=".$message);
+      header("Location: index.php?action=send_mail&app=approved&name=" . $mail_name . "&mail=" . $mail_email . "");
     }
   }
 
@@ -106,7 +111,7 @@
        <form method="post">
          <div class="input-field col s12">
           <select name="new_voice">
-            <option value="" disabled selected>Vælg stemme</option>
+            <option value="" disabled selected>Vælg stemme og godkend ansøgningen</option>
             <option value="1. Sopran">1. Sopran</option>
             <option value="2. Sopran">2. Sopran</option>
             <option value="1. Alt">1. Alt</option>
@@ -117,23 +122,21 @@
             <option value="2. Bass">2. Bass</option>
             <option value="Ved ikke">Stemmevalg er ikke besluttet endnu</option>
           </select>
-          <label>Vælg stemme og godkend ansøgningen</label>
+
+          <input type="hidden" name="mail_name" value="<?php echo $name; ?>">
+          <input type="hidden" name="mail_email" value="<?php echo $email; ?>">
+
           <button class="btn waves-effect waves-light" type="submit" name="approve_app">Godkend ansøgning
             <i class="material-icons right">send</i>
           </button>
         </div>
+
+        <div class="col s12">
+          <button class="btn waves-effect waves-light red darken-3" type="submit" name="deny_app">Afvis ansøgning
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
        </form>
-     </div>
-   </div>
-   <div class="row">
-     <div class="input-field col s12">
-       <div class="col s12 m6">
-         <form method="post">
-           <button class="btn waves-effect waves-light red darken-3" type="submit" name="afvis_app">Afvis ansøgning
-             <i class="material-icons right">send</i>
-           </button>
-         </form>
-       </div>
      </div>
    </div>
  </div>
