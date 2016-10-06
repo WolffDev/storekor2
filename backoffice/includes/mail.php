@@ -1,6 +1,7 @@
 <?php
 if(isset($_POST['send_mail_deny'])) {
   $mail_name = $_POST['mail_name'];
+  $mail_name = $_POST['mail_asdas'];
   $mail_email = $_POST['mail_email'];
   $message_mail = "Kære " . $mail_name . ",<br>";
   $message_mail .="<br>Vi har gennemgået din ansøgning og vi ser os nødsaget til at afvise din ansøgning.<br><br>";
