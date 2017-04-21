@@ -32,6 +32,7 @@ $columns = array(
 // getting total number records without any search
 $sql = "SELECT id, fornavn, efternavn, brugernavn, telefon, stemme, bruger_rolle, bruger_status, dato_oprettet, app_status ";
 $sql.=" FROM medlemmer";
+$sql.=" WHERE id != 1";
 $query=mysqli_query($conn, $sql) or die("medlemmer_data.php: get medlemmer");
 $totalData = mysqli_num_rows($query);
 $totalFiltered = $totalData;  // when there is no search parameter then total number rows = total number filtered rows.
@@ -41,7 +42,8 @@ if( !empty($requestData['search']['value']) ) {
 	// if there is a search parameter
 	$sql = "SELECT id, fornavn, efternavn, brugernavn, telefon, stemme, bruger_rolle, bruger_status, dato_oprettet, app_status, alder ";
 	$sql.=" FROM medlemmer";
-	$sql.=" WHERE fornavn LIKE '".$requestData['search']['value']."%' ";    // $requestData['search']['value'] contains search parameter
+	$sql.=" WHERE id != 1";
+	$sql.=" and fornavn LIKE '".$requestData['search']['value']."%' ";    // $requestData['search']['value'] contains search parameter
 	$sql.=" OR efternavn LIKE '".$requestData['search']['value']."%' ";
   $sql.=" OR brugernavn LIKE '".$requestData['search']['value']."%' ";
   $sql.=" OR telefon LIKE '".$requestData['search']['value']."%' ";
@@ -60,6 +62,7 @@ if( !empty($requestData['search']['value']) ) {
 
 	$sql = "SELECT id, fornavn, efternavn, brugernavn, telefon, stemme, bruger_rolle, bruger_status, dato_oprettet, app_status, alder ";
 	$sql.=" FROM medlemmer";
+	$sql.=" WHERE id != 1";
 	$sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]."   ".$requestData['order'][0]['dir']." LIMIT ".$requestData['start']." ,".$requestData['length']."   ";
 	$query=mysqli_query($conn, $sql) or die("medlemmer_data.php: get medlemmer");
 

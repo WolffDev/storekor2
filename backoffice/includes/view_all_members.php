@@ -146,7 +146,7 @@
           "sPaginationType": "full_numbers",
           "dom": 'fti',
           "language": {
-            "search": "Søg i medlemmer",
+            "search": "<label>Søg i medlemmer</label>",
             "zeroRecords": "Intet resultat - prøv igen.",
             "info": "Viser _TOTAL_ medlemmer",
             "infoFiltered": "(filtreret fra _MAX_ medlemmer)",
@@ -189,8 +189,8 @@
 
         // Handle click on checkbox to set state of "Select all" control
         $('#medlemmer_table #selectAllBoxes').click(function(e){
-          var table= $(e.target).closest('table');
-          $('td input:checkbox',table).prop('checked',this.checked);
+          var table = $(e.target).closest('table');
+          $('td input:checkbox', table).prop('checked',this.checked);
         });
 
 			}); // <---- Document.ready END

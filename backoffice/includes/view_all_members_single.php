@@ -65,7 +65,7 @@
           "sPaginationType": "full_numbers",
           "dom": 'fti',
           "language": {
-            "search": "Indtast søgeord:",
+            "search": "<label>Søg i medlemmer</label>",
             "zeroRecords": "Intet resultat - prøv igen.",
             "info": "Viser _TOTAL_ medlemmer",
             "infoFiltered": "(filtreret fra _MAX_ medlemmer)",
