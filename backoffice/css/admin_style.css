@@ -2885,6 +2885,7 @@ div.dataTables_wrapper span.select-item {
  ****************************/
 .dashboard-card {
   border-radius: 5px;
+  height: 150.83px;
   border: 2px solid white; }
   .dashboard-card.new-apps ul > a > button {
     margin-top: 5px !important; }

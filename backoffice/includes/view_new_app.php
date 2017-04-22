@@ -94,8 +94,8 @@
      <div class="col s12 m4 flow-text">
        <p>
          Ønsker at synge:<br><span class="bold"><?php echo $stemme; ?></span><br>
-         <br>Har tidligere sunget:<br><span class="bold"><?php echo $erfaring; ?></span><br>
-         <br>Har tidligere kor erfaring:<br><span class="bold"><?php echo $kor_type; ?></span>
+         <br>Plejer at synge:<br><span class="bold"><?php echo $erfaring; ?></span><br>
+         <br>Tidligere kor:<br><span class="bold"><?php echo $kor_type; ?></span>
        </p>
      </div>
      <div class="col s12 m4 flow-text">

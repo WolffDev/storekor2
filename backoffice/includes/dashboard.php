@@ -48,27 +48,17 @@ if(isset($_POST['status_close'])) {
       </div>
   <?php } ?>
       <div class="col s12 m4 dashboard-card new-apps blue darken-2 white-text center">
-        <p class="flow-text">
-          Nye anøsninger
-        </p>
-        <ul>
+        <p>Nye anøsninger</p>
           <?php
-            $query = "SELECT id, fornavn, efternavn, app_status FROM medlemmer WHERE app_status = 'ny' || app_status = 'oprettet af bestyrelsen' LIMIT 4";
+            $query = "SELECT id FROM medlemmer WHERE app_status = 'ny' || app_status = 'oprettet af bestyrelsen'";
             $get_new_apps = mysqli_query($conn, $query);
             $row_count = mysqli_num_rows($get_new_apps);
             if($row_count > 0) {
-              while($row = mysqli_fetch_assoc($get_new_apps)) {
-                $app_id = $row['id'];
-                $fornavn = $row['fornavn'];
-                $efternavn = $row['efternavn'];
-                $name = $fornavn . " " . $efternavn;
-                echo "<a href='index.php?action=view_new_app&app_id=$app_id'><button class='btn waves-effect teal waves-light'>$name</button></a>";
-              }
+              echo "<div class='row'><h5>Der er " . $row_count . " nye ansøninger.</h5><a href='index.php?action=list_new_app' class='btn waves-effect waves-light'>Se dem her</a></div>";
             } else {
-              echo "<p>Ingen nye ansøgninger</p>";
+              echo "<div class='row'><h5>Ingen nye ansøgninger</h5></div>";
             }
           ?>
-        </ul>
       </div>
       <div class="col s12 m4 dashboard-card">
       </div>

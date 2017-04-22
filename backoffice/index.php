@@ -75,6 +75,9 @@
       case 'view_new_app':
         include "includes/view_new_app.php";
         break;
+      case 'list_new_app':
+        include "includes/list_new_app.php";
+        break;
       default:
         include "includes/dashboard.php";
     }
