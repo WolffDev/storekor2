@@ -77,7 +77,7 @@
             </h2>
             <h5 class="center red-text">Lukket for optagelse</h5>
             <p>Vores medlemsantal er på nuværrende tidspunkt <strong><em>opfyldt</em></strong>, så vi søger ikke nye medlemmer.<br>Du er altid velkommen til at skrive til os og vi vil gemmen din ansøgning, hvis der opstår en åben plads.</p>
-            <?php } ?>
+          <?php } ?>
         </div>
       </div>
       <div class="col s12 m4">
@@ -142,29 +142,27 @@
           $end_date = $row['end_date'];
           $event_img = $row['event_img'];
 
-          $start_date_format = date_format(new DateTime($start_date), '\d\. j\. M\, \k\l\. H:i');
-          $end_date_format = date_format(new DateTime($end_date), '\d\. j\. M\, \k\l\. H:i');
-          $start_date_check = date_format(new DateTime($start_date), 'd m Y');
-          $end_date_check = date_format(new DateTime($end_date), 'd m Y');
-          $end_date_time = date_format(new DateTime($end_date), '\k\l\. H:i');
+          $start_date_format = date_format(new DateTime($start_date), '\, \d\. j\. F ');
+          $start_date_time = date_format(new DateTime($start_date), 'H:i');
+          $end_date_time = date_format(new DateTime($end_date), 'H:i');
 
         ?>
           <div class="row">
-            <div class="col s12 l6">
-              <h5 class="left-align"><?php echo $title; ?></h5>
-              <span class="span">
-                Start: <? echo $start_date_format . "<br>Slut: ";
-
-                if($start_date_check === $end_date_check) {
-                  echo $end_date_time;
-                } else {
-                  echo $end_date_format;
-                } ?>
-              </span>
-              <p class="left-align"><?php echo $long_text; ?></p>
-            </div>
             <div class="col s12 l6"><img src="img/background1.jpg"/></div>
+            <div class="col s12 l6 concert-details">
+              <div class="col m7 s12 left-align">
+                <h5><?php echo $title; ?></h5>
+              </div>
+              <div class="col m5 s12 left-align">
+                <span class="concert-time">klokken <?php echo $start_date_time; ?> - <?php echo $end_date_time .  $start_date_format; ?> </span>
+              </div>
+              <div class="col s12 left-align">
+                <p class="left-align"><?php echo $long_text; ?></p>
+              </div>
+            </div>
           </div>
+          <hr class="style14">
+          <!-- https://codepen.io/ibrahimjabbari/pen/ozinB -->
         <?php } ?>
       <?php } else { ?>
         <div class="row">

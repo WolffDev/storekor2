@@ -132,11 +132,11 @@ if(isset($_POST['checkBoxArray'])) {
         <p class="flow-text">
           Informer medlemmer om, at der er blevet uploadet nye filer på hjemmesiden.
         </p>
-      </div>
-      <div class="col s12">
-        <button class="btn waves-effect waves-light orange darken-3" type="submit" name="new_files">Informer Medlemmer
-        <i class="material-icons right">send</i>
-        </button>
+        <P>
+          <button class="btn waves-effect waves-light orange darken-3" type="submit" name="new_files">Informer Medlemmer
+          <i class="material-icons right">send</i>
+          </button>
+        </p>
       </div>
     </form>
 

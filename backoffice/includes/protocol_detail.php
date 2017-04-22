@@ -27,7 +27,8 @@
     FROM
       medlemmer
     WHERE
-      medlemmer.bruger_status = 'aktiv'";
+      medlemmer.bruger_status = 'aktiv'
+    AND id != 1";
     $result_insert = mysqli_query($conn, $insert_query);
 
     $update_status = "UPDATE events SET status = 1 WHERE event_id = {$e_id}";

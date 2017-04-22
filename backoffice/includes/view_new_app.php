@@ -86,9 +86,9 @@
      <div class="col s12 m4 flow-text">
        <p>
          Adresse:<?php echo "<br>" . $adresse . "<br>" . $postnr . " " . $bynavn; ?><br><br>
-         <?php echo "<a href='mailto:".$email."'>".$email."</a>"; ?>
+         <?php echo "Email: <a href='mailto:".$email."'>".$email."</a>"; ?>
          <br>
-         <?php echo "<a href='tel:".$telefon."'>".$telefon."</a>"; ?>
+         <?php echo "Tlf: <a href='tel:".$telefon."'>".$telefon."</a>"; ?>
        </p>
      </div>
      <div class="col s12 m4 flow-text">
@@ -129,12 +129,14 @@
           <button class="btn waves-effect waves-light" type="submit" name="approve_app">Godkend ansøgning
             <i class="material-icons right">send</i>
           </button>
-        </div>
-
-        <div class="col s12">
+          <br>
+          <br>
           <button class="btn waves-effect waves-light red darken-3" type="submit" name="deny_app">Afvis ansøgning
             <i class="material-icons right">send</i>
           </button>
+        </div>
+
+        <div class="col s12">
         </div>
        </form>
      </div>

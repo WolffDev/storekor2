@@ -64,7 +64,11 @@
   }
 
   if(isset($_POST['delete_event'])) {
-    $query = "DELETE FROM events WHERE event_id = {$e_id}";
+    $query = "DELETE events, afbud, absence
+      FROM events
+      LEFT JOIN afbud ON (afbud.e_id=events.event_id)
+      LEFT JOIN absence ON (absence.absence_event_id=events.event_id)
+      WHERE events.event_id = {$e_id}";
     $delete_event = mysqli_query($conn, $query);
     if(!$delete_event) {
       die("Query Failed123: " . mysqli_error($conn));

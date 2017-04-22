@@ -34,7 +34,7 @@ nav ul a {
 }
 
 p {
-  line-height: 2rem;
+  line-height: 1.6rem;
 }
 
 .button-collapse {
@@ -139,4 +139,19 @@ form {
 
 .mobil-login {
   margin: 40px auto 30px;
+}
+
+.concert-time {
+  font-size: 12px;
+  color: rgb(255,171,64);
+}
+
+hr.style14 { 
+  border: 0; 
+  height: 1px; 
+  margin-bottom: 27.5px;
+  background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); 
 }

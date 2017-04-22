@@ -92,7 +92,7 @@
   </script>
   <ul class="collapsible" data-collapsible="accordion">
     <li>
-     <div class="collapsible-header"><i class="material-icons ">add_to_queue</i>Tryk her for at tilføje en øvegang, koncert m.m.</div>
+     <div class="collapsible-header" id="add-concert"><i class="material-icons ">add_to_queue</i>Tryk her for at tilføje en øvegang, koncert m.m.</div>
      <div class="collapsible-body">
 
       <div class="container">

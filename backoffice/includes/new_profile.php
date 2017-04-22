@@ -78,7 +78,9 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
       // Check if image file is a actual image or fake image
       if(isset($_POST["edit_profile"])) {
           $check = getimagesize($_FILES["profil_billede"]["tmp_name"]);
-          if($check == false) {
+          if($check != false) {
+              $uploadOk = 1;
+          } else {
               $profil_billede = 'uploads/placeholder-user.png';
               $file_up_msg = urlencode("false");
               $uploadOk = 0;
@@ -86,7 +88,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
       }
       // Check if file already exists
       if (file_exists($target_file)) {
-          $profil_billede = $target_dir . mt_rand(10000,99999) . basename($_FILES["profil_billede"]["name"]);
+          $db_profil_billede = $target_dir . mt_rand(10000,99999) . basename($_FILES["profil_billede"]["name"]);
           $uploadOk = 1;
       }
       // Check file size
@@ -109,8 +111,8 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
           $file_up = 'false';
       // if everything is ok, try to upload file
       } else {
-        if (move_uploaded_file($_FILES["profil_billede"]["tmp_name"], $profil_billede)) {
-            $profil_billede = $profil_billede;
+        if (move_uploaded_file($_FILES["profil_billede"]["tmp_name"], $target_file)) {
+            $profil_billede = $target_file;
 
         } else {
             echo "Sorry, there was an error uploading your file.";
