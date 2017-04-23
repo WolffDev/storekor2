@@ -256,7 +256,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
     
     <div class="row">
       <div class="col s12">
-        <p>Her kan du redigerer dine personlige informationer.</p>
+        <p>Her kan du redigere dine personlige informationer.<br>Husk at holde det opdateret, hvis du fx flytter adresse, skifter telefon nummer eller email.<br>Din email er også dit login, så hvis du skifter den, så bliver dit login også ændret til næste gang du vil logge ind.</p>
       </div>
       <form class="col s12" action="" method="post" autocomplete="on" id="profile_edit" enctype="multipart/form-data">
         <div class="row">
