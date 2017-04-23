@@ -190,9 +190,9 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) && $_SESSION
           </div>
           <div class="input-field col s12 m4">
             <select name="stemme">
-              <option value="1. Sopran" <?php if($stemme == 'generalforsamling') {echo "selected='selected'";} ?>>1. Sopran</option>
+              <option value="1. Sopran" <?php if($stemme == '1. Sopran') {echo "selected='selected'";} ?>>1. Sopran</option>
 
-              <option value="2. Sopran" <?php if($stemme == 'generalforsamling') {echo "selected='selected'";} ?>>2. Sopran</option>
+              <option value="2. Sopran" <?php if($stemme == '2. Sopran') {echo "selected='selected'";} ?>>2. Sopran</option>
 
               <option value="1. Alt" <?php if($stemme == '1. Alt') {echo "selected='selected'";} ?>>1. Alt</option>
 
