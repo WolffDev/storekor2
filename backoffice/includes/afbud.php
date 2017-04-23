@@ -23,9 +23,10 @@
               afbud.e_id = events.event_id
             WHERE
             	afbud.afbud_start_date >= SUBDATE( NOW(), INTERVAL 12 HOUR)
+            AND
+              events.old_event = 0
             GROUP BY
-              afbud.e_id
-            ";
+              afbud.e_id";
             $select = mysqli_query($conn, $query);
             $afbud_check =  mysqli_num_rows($select);
             if($afbud_check == 0) {
