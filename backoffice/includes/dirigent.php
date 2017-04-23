@@ -64,6 +64,7 @@ if(isset($_POST['new_files'])) {
 
 if(isset($_POST['checkBoxArray'])) {
   foreach($_POST['checkBoxArray'] as $checkbox_upload_id) {
+    
     $bulk_options = $_POST['bulk_options'];
 
     switch ($bulk_options) {
@@ -170,24 +171,24 @@ if(isset($_POST['checkBoxArray'])) {
 
   <div class="row content-container">
 
-    <form method="post">
+    <form method="post" id="downloadFilesForm">
       <?php if ($_SESSION['auth'] < 4) { ?>
         <div class="col m2"></div>
         <div id="bulkOptionContainer" class="col s12 m3">
-          <select class="form-control" name="bulk_options">
+          <select class="form-control" name="bulk_options" id="downloadFilesSelector">
             <option disabled selected value="">Vælg handling</option>
             <option value="noder" >Kategory: Noder</option>
             <option value="øvefiler">Kategory: Øvefiler</option>
             <option value="pr materiale">Kategory: PR Materiale</option>
-            <option value="koncert">Kategory: Koncert Programmer</option>
+            <option value="koncert programmer">Kategory: Koncert Programmer</option>
             <option value="delete">Slet fil permanent</option>
           </select>
         </div>
         <div class="col s12 m2">
-          <button class="btn waves-effect waves-light" type="submit" name="update_files">Opdater</button>
+          <button class="btn waves-effect waves-light" type="submit" name="update_files" id="downloadFilesBtn">Opdater</button>
         </div>
         <div class="col s12 m5">
-          <button class="btn waves-effect waves-light teal darken-2" type="submit" name="download_files">Download valgte filer</button>
+          <button class="btn waves-effect waves-light teal darken-2" type="submit" name="download_files">Download alle filer</button>
         </div>
       <?php } ?>
 

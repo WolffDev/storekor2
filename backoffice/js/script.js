@@ -23,8 +23,7 @@ $( document ).ready(function() {
     var absence_id = check_member.data('absence_id');
 
     if(check_member.prop('checked') === false) {
-      $.ajax
-      ({
+      $.ajax({
           url: "includes/json/absence.php",
           data:
             {
@@ -52,5 +51,6 @@ $( document ).ready(function() {
     }
 
   });
+
 
 });

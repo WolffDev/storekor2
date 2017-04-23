@@ -4,6 +4,11 @@
     return mysqli_real_escape_string($conn, trim($string));
   }
 
+  function DD($var) {
+    var_dump($var);
+    die;
+  }
+
   function mail_utf8($to, $from_user, $from_email, $subject, $message) {
     $from_user = "=?UTF-8?B?".base64_encode($from_user)."?=";
     $subject = "=?UTF-8?B?".base64_encode($subject)."?=";
