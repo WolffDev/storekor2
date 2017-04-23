@@ -1,5 +1,29 @@
 <?php
 $uploaded = false;
+
+if(isset($_POST['download_files']) && !empty($_POST['download_array'])) {
+  // var_dump($_POST['download_array']);die;
+  $files = $_POST['download_array'];
+  $zipname = 'storekorDownload.zip';
+  $zip = new ZipArchive;
+  $zip->open($zipname, ZipArchive::CREATE);
+  foreach ($files as $file) {
+    $zip->addFile($file);
+  }
+  $zip->close();
+  // var_dump($zip->numFiles);die;
+
+  ///Then download the zipped file.
+  header('Content-Type: application/zip');
+  header('Content-disposition: attachment; filename='.$zipname);
+  header('Content-Length: ' . filesize($zipname));
+  ob_clean();
+  flush();
+  readfile($zipname);
+  unlink($zipname);
+}
+
+
 if(isset($_POST['upload_files'])){
   if(!empty($_POST['category']) && !empty($_FILES['files'])) {
     $upload_category = $_POST['category'];
@@ -112,7 +136,7 @@ if(isset($_POST['checkBoxArray'])) {
         </div>
       </div>
       <div class="input-field col s12">
-        <select class="" name="category" required>
+        <select class="" name="category">
           <option value="" disabled selected="selected">Vælg kategori til upload</option>
           <option value="noder">Noder</option>
           <option value="øvefiler">Øvefiler</option>
@@ -148,7 +172,7 @@ if(isset($_POST['checkBoxArray'])) {
 
     <form method="post">
       <?php if ($_SESSION['auth'] < 4) { ?>
-        <div class="col m3"></div>
+        <div class="col m2"></div>
         <div id="bulkOptionContainer" class="col s12 m3">
           <select class="form-control" name="bulk_options">
             <option disabled selected value="">Vælg handling</option>
@@ -159,10 +183,12 @@ if(isset($_POST['checkBoxArray'])) {
             <option value="delete">Slet fil permanent</option>
           </select>
         </div>
-        <div class="col s12 m3">
+        <div class="col s12 m2">
           <button class="btn waves-effect waves-light" type="submit" name="update_files">Opdater</button>
         </div>
-        <div class="col m3"></div>
+        <div class="col s12 m5">
+          <button class="btn waves-effect waves-light teal darken-2" type="submit" name="download_files">Download valgte filer</button>
+        </div>
       <?php } ?>
 
       <table class="striped" id="medlemmer_table">
@@ -186,7 +212,7 @@ if(isset($_POST['checkBoxArray'])) {
             FROM
               uploads
             ORDER BY
-              upload_date ASC";
+              upload_date DESC";
             $download_result = mysqli_query($conn, $download_query);
 
             while($row = mysqli_fetch_assoc($download_result)) {
@@ -217,6 +243,7 @@ if(isset($_POST['checkBoxArray'])) {
               echo "<td>" . $upload_category . "</td>";
               echo "<td>" . $upload_date . "</td>";
               echo "<td><a href='" . $upload_path . "' target='_blank'><div class='btn teal darken-2 waves-effect waves-light'>Download</div></a></td>";
+              echo "<input type='hidden' value='" . $upload_path . "' name='download_array[]'></input>";
               echo "</tr>";
             }
           ?>
@@ -228,3 +255,9 @@ if(isset($_POST['checkBoxArray'])) {
   </div>
 
 </div>
+<script>
+  $('#medlemmer_table #selectAllBoxes').click(function(e){
+    var table = $(e.target).closest('table');
+    $('td input:checkbox', table).prop('checked',this.checked);
+  });
+</script>
