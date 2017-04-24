@@ -4,16 +4,16 @@
   }
 
   if(isset($_POST['deny_app'])) {
-    // $query = "DELETE FROM medlemmer WHERE id = '{$app_id}'";
-    // $delete_app = mysqli_query($conn, $query);
-    // if(!$delete_app) {
-    //   die("Query Failed123: " . mysqli_error($conn));
-    // } else {
+    $query = "DELETE FROM medlemmer WHERE id = '{$app_id}'";
+    $delete_app = mysqli_query($conn, $query);
+    if(!$delete_app) {
+      die("Query Failed123: " . mysqli_error($conn));
+    } else {
       $mail_name = $_POST['mail_name'];
       $mail_email = $_POST['mail_email'];
       $message = urlencode('new_app_delete');
       header("Location: index.php?action=send_mail&app=deny&name=" . $mail_name . "&mail=" . $mail_email . "");
-    // }
+    }
 
   }
 

@@ -22,10 +22,11 @@
         $bruger_status = $row['bruger_status'];
         $bruger_rolle = $row['bruger_rolle'];
         $auth = $row['auth'];
+        $changed_pass = $row['changed_pass'];
       }
       if($bruger_status === 'ikke godkendt') {
         $message = urlencode("unapproved");
-        header("Location: ../../index.php?message=".$message);
+        header("Location: ../../?message=".$message);
         die;
       }
       if(password_verify($password, $db_password)) {
@@ -38,12 +39,17 @@
         $_SESSION['bruger_rolle'] = $bruger_rolle;
         $_SESSION['logged_in'] = 'true';
         $_SESSION['auth'] = $auth;
+        if($changed_pass == 0) {
+          $_SESSION['changed_pass'] = 0;
+        } else {
+          $_SESSION['changed_pass'] = 1;
+        }
 
-        header("Location: ../");
+        header("Location: ../index.php");
 
       } else {
         $message = urlencode("invalid_login");
-        header("Location: ../../index.php?message=".$message);
+        header("Location: ../../?message=".$message);
         die;
       }
     }

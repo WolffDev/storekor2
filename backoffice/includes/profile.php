@@ -176,7 +176,14 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
         if($password_changed == 'true') {
           $message = urlencode("success_edit_profile_password");
           $edit_name = urlencode($fornavn);
-          header("Location: index.php?action=dashboard&message=" . $message . "&edit_name=" . $edit_name."&file_up=".$file_up."&file_up_msg=".$file_up_msg);
+          $_SESSION['brugernavn'] = null;
+          $_SESSION['fornavn'] = null;
+          $_SESSION['efternavn'] = null;
+          $_SESSION['bruger_status'] = null;
+          $_SESSION['bruger_rolle'] = null;
+          $_SESSION['logged_in'] = null;
+          $_SESSION['changed_pass'] = null;
+          header("Location: ../index.php?logout=true&message=" . $message . "&edit_name=" . $edit_name."&file_up=".$file_up."&file_up_msg=".$file_up_msg);
           die;
         } else {
           $message = urlencode("success_edit_profile");
@@ -346,7 +353,7 @@ if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION
           </div>
           <div class="input-field col s12 m6">
             <input id="old_password" type="password" class="validate" name="old_password">
-            <label for="old_password">Indtast din gamle adgangskode</label>
+            <label for="old_password">Indtast din nuværrende adgangskode</label>
           </div>
         </div>
         <div class="row">

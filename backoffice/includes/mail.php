@@ -9,8 +9,8 @@ if(isset($_POST['send_mail_deny'])) {
 
 
   // $to_mail = $mail_name;
-  $to_mail = 'wolfffie@gmail.com';
-  $from_mail = 'info@davidwolff.dk';
+  $to_mail = 'davidbkwolff@gmail.com';
+  $from_mail = 'no-reply@storekor.dk';
   $subject = 'Afvisning af ansøgning til Storekoret';
   $from_user = 'Korbestyrelsen';
   $message_add = str_replace('\r\n', '', $message_add);
@@ -32,8 +32,8 @@ if(isset($_POST['send_mail_approved'])) {
 
 
   // $to_mail = $mail_name;
-  $to_mail = 'wolfffie@gmail.com';
-  $from_mail = 'info@davidwolff.dk';
+  $to_mail = 'davidbkwolff@gmail.com';
+  $from_mail = 'no-reply@storekor.dk';
   $subject = 'Godkendelse af ansøgning til Storekoret';
   $from_user = 'Korbestyrelsen';
   $message_add = str_replace('\r\n', '', $message_add);

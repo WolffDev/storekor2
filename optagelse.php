@@ -164,7 +164,13 @@
       ?>
       <div class="col s12">
         <p>
-          For at søge om optagelse i Storekoret, skal du gennemlæse optagelseskravene.<br>Længere nede på siden er der en formular du kan udfylde og sende til os.<br>Vi vil svare dig inde for maks 7 dage, hvis vi er i korsæsonen. I mailen vil der fremkomme yderligere informationer.<br>Udenfor korsæsonen kan svartiden være op til 4 uger.
+          Hvis du ønsker optagelse i Storekoret, kan du se optagelseskravene nedenfor.
+          <br>  
+          Udfyld i givet fald formularen nederst på siden og send den ind. 
+          <br>
+          Vi vil svare dig inde for maks 7 dage, hvis vi er i korsæsonen. I mailen vil der fremkomme yderligere informationer.
+          <br>
+          Udenfor korsæsonen kan svartiden være op til 4 uger.
         </p>
       </div>
     </div>
@@ -185,7 +191,7 @@
           <li>
             <div class="collapsible-header"><i class="material-icons">done</i>Før stemmeprøven</div>
             <div class="collapsible-body">
-              <p>Før selve stemmeprøven kan du synge med til et par mandagsprøver for at finde ud af, om det er noget for dig. ¿¿De første fire mandagsprøver i hvert semester er åbne for alle interesserede, og i forlængelse af den fjerde korprøve afholdes stemmeprøver.??</p>
+              <p>Før selve stemmeprøven kan du synge med til et par mandagsprøver for at fornemme stemningen i koret og finde ud af, om det er noget for dig. Når du har deltaget et par gange bliver du bedt om at gå til en stemmeprøve.</p>
             </div>
           </li>
           <li>
@@ -197,7 +203,13 @@
           <li>
             <div class="collapsible-header"><i class="material-icons">done</i>Kontigent</div>
             <div class="collapsible-body">
-              <p>Kontingent for en sæson (september til maj) er 500 kroner.<br>Er der problemer med at betale de 500 kroner på en gang, kan der i særlige tilfælde indgås individuelle aftaler om at betale à to gange. Snak med kassereren om det.</p>
+              <p>
+                Kontingentet er 700 kr. per halvår.
+                <br>
+                For studerende er kontingentet nedsat til 300 kr. halvårligt.
+                <br>
+                Hvis der er problemer med at betale beløbet på en gang, kan der i særlige tilfælde indgås individuelle aftaler om at betale à to gange. Snak med kassereren om det.
+              </p>
             </div>
           </li>
         </ul>

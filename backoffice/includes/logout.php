@@ -6,5 +6,5 @@
   $_SESSION['bruger_status'] = null;
   $_SESSION['bruger_rolle'] = null;
   $_SESSION['logged_in'] = null;
-  header("Location: ../../index.php");
+  header("Location: ../../");
 ?>

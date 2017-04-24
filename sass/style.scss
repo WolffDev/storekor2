@@ -80,6 +80,12 @@ p {
 
 footer.page-footer {
   margin: 0;
+  a {
+    color: #f9a825;
+    &:hover {
+      color: lighten(#f9a825, 10%);
+    }
+  }
 }
 
 // Optagelse form

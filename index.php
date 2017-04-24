@@ -19,6 +19,25 @@
       </script>
 <?php
     }
+
+    if ($_GET['message'] === 'success_edit_profile_password' && $_GET['logout'] == 'true') {
+      $edit_name = escape($_GET['edit_name']); 
+    ?>
+      <div class="container">
+        <div class="row teal">
+          <div class="col s12 center white-text bold">
+            <p>
+              <?php echo ucfirst($edit_name); ?>, din profil og adgangskode er nu blevet ændret.
+              <br>
+              Du er blevet logget ud.
+              <br>
+              Venligst login igen, med den nye adgangskode.
+            </p>
+          </div>
+        </div>
+      </div>
+    <?php }
+
     if ($_GET['message'] === 'unapproved') { ?>
       <div id="modal1" class="modal">
         <div class="modal-content black-text">
@@ -71,7 +90,7 @@
           <h2 class="center green-text"><i class="material-icons">power_settings_new</i>
           </h2>
           <h5 class="center green-text">Åben for optagelse</h5>
-          <p>Vi holder løbende optagelseprøver og lige nu søger vi nye medlemmer til Storekoret.<br>Vi øver hver mandag fra kl. 19.00 til 21.30, ofte i lokale U77 på Syddansk Universitet.</p>
+          <p>Vi holder løbende optagelsesprøver og søger nye medlemmer til Storekoret. Vi øver hver mandag fra kl. 19.00 til 21.30i Henriettesalen på Henriette Hørlücks skole</p>
           <?php } else { ?>
             <h2 class="center red-text"><i class="material-icons">power_settings_new</i>
             </h2>
@@ -84,14 +103,14 @@
         <div class="icon-block">
           <h2 class="center blue-text darken-4"><i class="material-icons">group</i></h2>
           <h5 class="center blue-text darken-4">Kort om Storekoret</h5>
-          <p>Vi er et meget socialt kor, der også ses uden for prøverne og koncerterne. Vores stamsted er Carlsens Kvarter, hvor vi som regel mødes efter den ugentlige korprøve.</p>
+          <p>Vi er et alsidigt kor med overvejende klassisk repertoire, både a cappella og større værker med orkesterledsagelse. Vi er også et socialt kor der ses uden for prøverne og koncerterne til årstidernes fester, og vi mødes ofte på Carlsens Kvarter efter den ugentlige korprøve</p>
         </div>
       </div>
       <div class="col s12 m4">
         <div class="icon-block">
           <h2 class="center yellow-text text-darken-3"><i class="material-icons">lightbulb_outline</i></h2>
-          <h5 class="center yellow-text text-darken-3">Stadig med på moden</h5>
-          <p>Storekoret har rødder helt tilbage til år 1964, hvor koret blev stiftet under navnet Skt. Knuds gymnasiums kor.<br>Storekorets medlemmer findes i alle aldre - de unge får stor udbytte fra de ældres erfaringer.</p>
+          <h5 class="center yellow-text text-darken-3">Storekoret består</h5>
+          <p>Storekoret har dybe rødder i det fynske korliv. Koret blev i 1964 stiftet som Skt. Knuds gymnasiums kor. I 1984 blev koret tilknyttet Odense Universitet og siden Syddansk Universitet som indtil 2017 har lønnet korets dirigent. Fra 2017 videreføres koret som et uafhængigt kor under navnet Storekoret, Odense</p>
         </div>
       </div>
     </div>

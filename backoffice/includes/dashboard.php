@@ -17,6 +17,15 @@ if(isset($_POST['status_close'])) {
   </div>
 </div>
 <div class="container dashboard content-container">
+  <?php if(isset($_SESSION['changed_pass']) && $_SESSION['changed_pass'] == 0) { ?>
+      <div class="row">
+        <div class="col s12 red white-text">
+          <p class="center">
+            Du har endnu ikke ændret din adgangskode.<br>Gør venligst dette nu, ved at trykke på dit navn i menuen.
+          </p>
+        </div>
+      </div>
+  <?php } ?>
   <?php
   if ($_SESSION['auth'] < 3) {
   $status_query = "SELECT * FROM optagelse_status WHERE id = 1";

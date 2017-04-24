@@ -10,7 +10,6 @@
 <!DOCTYPE html>
 <html lang="dk">
   <head>
-    <title>Storekor || Odense</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
@@ -22,5 +21,6 @@
     <script src="js/min/jquery2.1.1.min.js"></script>
     <script src="js/materialize.js"></script>
     <script src="js/init.js"></script>
+    <title>Storekor || Odense</title>
   </head>
   <body>
