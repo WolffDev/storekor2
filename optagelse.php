@@ -60,6 +60,14 @@
             if(!$create_user_query) {
               die("Query Failed: " . mysqli_error($conn));
             } else {
+
+              $mail_to = "davidbkwolff@gmail.com";
+              $mail_from = "no-reply@storekor.dk";
+              $mail_msg = "Der er kommet en ny ansøger på <a href='http://www.storekor.dk'>storekor.dk.<br>Login på siden og læs den.";
+              $mail_subject = "Ny ansøger til koret";
+              $mail_user = "Storekor.dk";
+              mail_utf8($mail_to, $mail_user, $mail_from, $mail_subject, $mail_msg);
+
               $message = urlencode("success");
               header("Location: index.php?message=".$message);
               die;
