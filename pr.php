@@ -13,26 +13,33 @@
 <div class="container">
   <section>
     <div class="row">
-      <div class="col s12 m4">
+      <div class="col s12 m6">
         <div class="icon-block">
-          <h2 class="center green-text"><i class="material-icons">power_settings_new</i>
+          <h2 class="center green-text"><i class="material-icons">face</i>
           </h2>
-          <h5 class="center green-text">Åben for optagelse</h5>
-          <p>Vi holder løbende optagelsesprøver og søger nye medlemmer til Storekoret. Vi øver hver mandag fra kl. 19.00 til 21.30i Henriettesalen på Henriette Hørlücks skole</p>
+          <h5 class="center green-text"></h5>
+          <p class="center">
+            Koncert/honorar aftales med dirigenten, Theis Lyng Reinvanng,<br>mobil <a href="tel:+4531188873">31 18 88 73</a> eller på mail <a href="mailto:reinvang@gmail.com">reinvang (a) gmail.com</a><br>
+            For koncerter, hvor musikere/solister medvirker påregnes et forhøjet honorar.
+          </p>
         </div>
       </div>
-      <div class="col s12 m4">
+      <div class="col s12 m6">
         <div class="icon-block">
-          <h2 class="center blue-text darken-4"><i class="material-icons">group</i></h2>
-          <h5 class="center blue-text darken-4">Kort om Storekoret</h5>
-          <p>Vi er et alsidigt kor med overvejende klassisk repertoire, både a cappella og større værker med orkesterledsagelse. Vi er også et socialt kor der ses uden for prøverne og koncerterne til årstidernes fester, og vi mødes ofte på Carlsens Kvarter efter den ugentlige korprøve</p>
-        </div>
-      </div>
-      <div class="col s12 m4">
-        <div class="icon-block">
-          <h2 class="center yellow-text text-darken-3"><i class="material-icons">lightbulb_outline</i></h2>
-          <h5 class="center yellow-text text-darken-3">Storekoret består</h5>
-          <p>Storekoret har dybe rødder i det fynske korliv. Koret blev i 1964 stiftet som Skt. Knuds gymnasiums kor. I 1984 blev koret tilknyttet Odense Universitet og siden Syddansk Universitet som indtil 2017 har lønnet korets dirigent. Fra 2017 videreføres koret som et uafhængigt kor under navnet Storekoret, Odense</p>
+          <h2 class="center yellow-text text-darken-3"><i class="material-icons">account_balance</i></h2>
+          <h5 class="center yellow-text text-darken-3"></h5>
+          <p class="center">
+            <b>SE nummer</b>
+            <br>
+            19 30 60 38
+          </p>
+          <p class="center">
+            <b>Bank</b>
+            <br>
+            Danske Bank<br>
+            Registreringsnummer: 9570<br>
+            Kontonummer: 8835845<br>
+          </p>
         </div>
       </div>
     </div>

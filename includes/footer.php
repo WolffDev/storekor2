@@ -17,26 +17,6 @@
         <br>
         Hvis du har andre spørgsmål, kan du enten ringe til vores dirigent, Theis Lyng Reinvang, på <a href="tel:31188873">31 18 88 73</a>, skrive til Theis på <a href="mailto:reinvang@gmail.com">reinvang (at) gmail.com</a> eller sende en mail til korets bestyrelse på <a href="mailto:korbestyrelsen@gmail.com">korbestyrelsen (at) gmail.com</a>.</p>
       </div>
-      <div class="col l3 s12">
-        <h5 class="white-text">Settings</h5>
-        <ul>
-          <li><a href="#" class="white-text">Link 1</a></li>
-          <li><a href="#" class="white-text">Link 1</a></li>
-          <li><a href="#" class="white-text">Link 1</a></li>
-          <li><a href="#" class="white-text">Link 1</a></li>
-          <li><a href="#" class="white-text">Link 1</a></li>
-        </ul>
-      </div>
-      <div class="col l3 s12">
-        <h5 class="white-text">Connect</h5>
-        <ul>
-          <li><a href="#" class="white-text">Link 1</a></li>
-          <li><a href="#" class="white-text">Link 1</a></li>
-          <li><a href="#" class="white-text">Link 1</a></li>
-          <li><a href="#" class="white-text">Link 1</a></li>
-          <li><a href="#" class="white-text">Link 1</a></li>
-        </ul>
-      </div>
     </div>
   </div>
   <div class="footer-copyright">
