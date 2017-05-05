@@ -1,6 +1,27 @@
 <?php include "includes/header.php"; ?>
 <!-- ****** Navbar *****-->
 <?php include "includes/navbar.php"; ?>
+
+<?php 
+  $query = "SELECT
+    CONCAT(fornavn,' ', efternavn) AS navn,
+    bruger_rolle AS rolle
+  FROM
+    medlemmer
+  WHERE
+    bruger_rolle = 'kasserer'
+  OR
+    bruger_rolle = 'formand'
+  OR
+    bruger_rolle = 'bestyrelsen'
+  ORDER BY 
+    FIELD(bruger_rolle, 'formand') DESC";
+
+  $get_members = mysqli_query($conn, $query);
+
+
+?>
+
 <!-- ****** INTRO ******-->
 <div id="index-banner" class="parallax-container">
   <div class="section no-pad-bot">
@@ -13,26 +34,25 @@
 <div class="container">
   <section>
     <div class="row">
-      <div class="col s12 m4">
-        <div class="icon-block">
-          <h2 class="center green-text"><i class="material-icons">power_settings_new</i>
+      <div class="col s12 center-align">
+        <div class="icon-block flow-text">
+          <h2 class="center green-text"><i class="material-icons"></i>
           </h2>
-          <h5 class="center green-text">Åben for optagelse</h5>
-          <p>Vi holder løbende optagelsesprøver og søger nye medlemmer til Storekoret. Vi øver hver mandag fra kl. 19.00 til 21.30i Henriettesalen på Henriette Hørlücks skole</p>
-        </div>
-      </div>
-      <div class="col s12 m4">
-        <div class="icon-block">
-          <h2 class="center blue-text darken-4"><i class="material-icons">group</i></h2>
-          <h5 class="center blue-text darken-4">Kort om Storekoret</h5>
-          <p>Vi er et alsidigt kor med overvejende klassisk repertoire, både a cappella og større værker med orkesterledsagelse. Vi er også et socialt kor der ses uden for prøverne og koncerterne til årstidernes fester, og vi mødes ofte på Carlsens Kvarter efter den ugentlige korprøve</p>
-        </div>
-      </div>
-      <div class="col s12 m4">
-        <div class="icon-block">
-          <h2 class="center yellow-text text-darken-3"><i class="material-icons">lightbulb_outline</i></h2>
-          <h5 class="center yellow-text text-darken-3">Storekoret består</h5>
-          <p>Storekoret har dybe rødder i det fynske korliv. Koret blev i 1964 stiftet som Skt. Knuds gymnasiums kor. I 1984 blev koret tilknyttet Odense Universitet og siden Syddansk Universitet som indtil 2017 har lønnet korets dirigent. Fra 2017 videreføres koret som et uafhængigt kor under navnet Storekoret, Odense</p>
+          <?php
+            while($row = mysqli_fetch_assoc($get_members)) {
+              $navn = $row['navn'];
+              $rolle = $row['rolle'];
+
+              if($rolle == 'formand') {
+                echo "<p>$navn || <b>$rolle</b></p>";
+              } else if($rolle == 'kasserer'){
+                echo "<p>$navn || <b>$rolle</b></p>";
+              } else {
+                echo "<p>$navn</p>";
+              }
+            }
+          ?>
+          <p>Skriv til bestyrelsen på <a href="mailto:korbestyrelsen@gmail.com">korbestyrelsen (at) gmail.com</a></p>
         </div>
       </div>
     </div>

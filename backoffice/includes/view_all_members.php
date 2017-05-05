@@ -18,6 +18,10 @@
           $query = "UPDATE medlemmer SET bruger_rolle = '{$bulk_options}', auth = '2' WHERE id = '{$checkbox_member_id}'";
           $update = mysqli_query($conn, $query);
           break;
+        case 'kasserer':
+          $query = "UPDATE medlemmer SET bruger_rolle = '{$bulk_options}', auth = '2' WHERE id = '{$checkbox_member_id}'";
+          $update = mysqli_query($conn, $query);
+          break;
         case 'dirigent':
           $query = "UPDATE medlemmer SET bruger_rolle = '{$bulk_options}', auth = '3' WHERE id = '{$checkbox_member_id}'";
           $update = mysqli_query($conn, $query);
@@ -69,6 +73,7 @@
         <option disabled selected value="">Vælg handling</option>
         <?php if($_SESSION['auth'] < 2 ) { ?><option value="formand">Sæt formand</option><?php } ?>
         <option value="bestyrelsen">Sæt bestyrelse medlem</option>
+        <option value="kasserer">Sæt kasserer</option>
         <option value="dirigent">Sæt dirigent</option>
         <option value="sanger">Sæt medlem til sanger</option>
         <option value="aktiv">Sæt medlem aktiv</option>
