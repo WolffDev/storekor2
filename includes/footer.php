@@ -2,11 +2,11 @@
   <div class="section no-pad-bot">
     <div class="container">
       <div class="row center">
-        <h5 class="header col s12">A modern responsive front-end framework based on Material Design</h5>
+        <h3 class="header col s12">Storekor || Odense</h3>
       </div>
     </div>
   </div>
-  <div class="parallax"><img src="img/people3.jpg" alt="Unsplashed background img 3"/></div>
+  <div class="parallax"><img src="img/koncert4.jpg" alt="wideview of the choir at a concert"/></div>
 </div>
 <footer class="page-footer teal">
   <div class="container">
@@ -40,7 +40,7 @@
     </div>
   </div>
   <div class="footer-copyright">
-    <div class="container">&copy; 2016 Storekor Odense</div>
+    <div class="container">&copy; <?php echo date("Y"); ?> Storekor Odense</div>
   </div>
 </footer>
 </body>

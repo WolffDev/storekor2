@@ -141,7 +141,7 @@
       <br/><br/>
     </div>
   </div>
-  <div class="parallax"><img src="img/people3.jpg" alt="Unsplashed background img 1"/></div>
+  <div class="parallax"><img src="img/koncert6.jpg" alt="Unsplashed background img 1"/></div>
 </div>
 <div class="container content-container">
   <section>

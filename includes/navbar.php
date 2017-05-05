@@ -4,7 +4,7 @@
       <ul class="right hide-on-med-and-down">
         <li><a href="./">Forside</a></li>
         <li><a href="./optagelse">Optagelse</a></li>
-        <li><a href="#">Dirigent</a></li>
+        <li><a href="./dirigent">Dirigent</a></li>
         <li><a href="#" data-activates="dropdown1" class="dropdown-button">Om Os<i class="material-icons right">arrow_drop_down</i></a></li>
         <li><a href="./#kontakt">Kontakt</a></li>
         <?php if($_SESSION['logged_in'] == 'true' && $_SESSION['auth'] < 5) { ?>
@@ -42,22 +42,21 @@
 
       <div id="dropdown1" class="dropdown-content">
         <ul>
-          <li><a href="#">Om Storekoret</a></li>
-          <li><a href="#">Bestyrelsen</a></li>
-          <li><a href="#">Historie</a></li>
+          <li><a href="./omos">Om Storekoret</a></li>
+          <li><a href="./bestyrelsen">Bestyrelsen</a></li>
+          <li><a href="./historie">Historie</a></li>
           <li class="divider"></li>
-          <li><a href="#">PR</a></li>
+          <li><a href="./pr">PR</a></li>
         </ul>
       </div>
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#">Forside</a></li>
         <li><a href="optagelse.php">Optagelse</a></li>
-        <li><a href="#">Koncerter</a></li>
-        <li><a href="#">Dirigent</a></li>
-        <li><a href="#!">Om Storekoret</a></li>
-        <li><a href="#!">Bestyrelsen</a></li>
-        <li><a href="#!">Historie</a></li>
-        <li><a href="#!">PR</a></li>
+        <li><a href="./dirigent">Dirigent</a></li>
+        <li><a href="./omos">Om Storekoret</a></li>
+        <li><a href="./bestyrelsen">Bestyrelsen</a></li>
+        <li><a href="./historie">Historie</a></li>
+        <li><a href="./pr">PR</a></li>
         <li><a href="./#kontakt">Kontakt</a></li>
         <?php if($_SESSION['logged_in'] == 'true' && $_SESSION['auth'] < 5) { ?>
           <li><a href="./backoffice/">Admin</a></li>

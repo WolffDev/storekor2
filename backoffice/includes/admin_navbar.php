@@ -17,7 +17,7 @@
         <ul class="">
           <li><img src="" alt="" /></li>
           <li class="hide-on-med-and-up"><a href="../"><i class="material-icons left">home</i>Forside</a></li>
-          <li><a href="./"><i class="material-icons left">dashboard</i>Oversigt</a></li>
+          <li><a href="./index.php"><i class="material-icons left">dashboard</i>Oversigt</a></li>
           <?php
           if ($_SESSION['auth'] < 3) {
           ?>

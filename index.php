@@ -77,7 +77,7 @@
       <?php } ?>
     </div>
   </div>
-  <div class="parallax"><img src="img/people3.jpg" alt="Unsplashed background img 1"/></div>
+  <div class="parallax"><img src="img/koncert6.jpg" alt=""/></div>
 </div>
 <div class="container">
   <section>
@@ -167,7 +167,7 @@
 
         ?>
           <div class="row">
-            <div class="col s12 l6"><img src="img/background1.jpg"/></div>
+            <div class="col s12 l6"><img src="img/koncert.jpg"/></div>
             <div class="col s12 l6 concert-details">
               <div class="col m7 s12 left-align">
                 <h5><?php echo $title; ?></h5>
@@ -196,7 +196,7 @@
 <div id="kontakt" class="parallax-container valign-wrapper">
   <div class="section no-pad-bot container">
     <div class="row center">
-      <h5 class="header col s12">If you hear the birds singing does it have to have a message?</h5>
+      <h5 class="header col s12"></h5>
     </div>
   </div>
   <div class="parallax"><img src="./img/people4.jpg" alt="Unsplashed background img 2"/></div>
@@ -205,9 +205,11 @@
   <div class="section">
     <div class="row">
       <div class="col s12 center">
-        <h4 class="red-text"><i class="medium material-icons">mail_outline</i></h4>
+        <h4 class="red-text"><a href="mailto:korbestyrelsen@gmail.com"><i class="medium material-icons">mail_outline</i></a></h4>
         <h4>Kontakt</h4>
-        <p class="left-align">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+        <p class="center">Hvis du er interesseret i at komme ind i Storekoret skal du søge om optagelse <a href="/optagelse">her på siden</a>.
+        <br>
+        Hvis du har andre spørgsmål, kan du enten ringe til vores dirigent, Theis Lyng Reinvang, på <a href="tel:31188873">31 18 88 73</a>,<br>skrive til Theis på <a href="mailto:reinvang@gmail.com">reinvang (at) gmail.com</a> eller sende en mail til korets bestyrelse på <a href="mailto:korbestyrelsen@gmail.com">korbestyrelsen (at) gmail.com</a>.</p>
       </div>
     </div>
   </div>
