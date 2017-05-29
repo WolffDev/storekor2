@@ -23,7 +23,8 @@
     $query .= "stemme = '{$stemme}', ";
     $query .= "app_status = 'godkendt', ";
     $query .= "bruger_status = 'aktiv', ";
-    $query .= "bruger_rolle = 'sanger' ";
+    $query .= "bruger_rolle = 'sanger', ";
+    $query .= "auth = '4' ";
     $query .= "WHERE id = '{$app_id}'";
     $update_app = mysqli_query($conn, $query);
 

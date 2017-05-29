@@ -1,5 +1,5 @@
 <?php
-if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION['auth'] > 4 || $_SESSION['user_id'] != $_GET['id']){
+if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in']) || $_SESSION['auth'] >= 5 || $_SESSION['user_id'] != $_GET['id']){
   header("Location: index.php");
   exit();
 }
