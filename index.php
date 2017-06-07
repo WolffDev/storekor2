@@ -122,7 +122,7 @@
     <div class="row center">
     </div>
   </div>
-  <div class="parallax"><img src="./img/people2.jpg" alt="Unsplashed background img 2"/></div>
+  <div class="parallax"><img src="./img/koncert2.jpg" alt="Unsplashed background img 2"/></div>
 </div>
 <div id="koncerter" class="container">
   <div class="section">
@@ -199,7 +199,7 @@
       <h5 class="header col s12"></h5>
     </div>
   </div>
-  <div class="parallax"><img src="./img/people4.jpg" alt="Unsplashed background img 2"/></div>
+  <div class="parallax"><img src="./img/koncert5.jpg" alt="Unsplashed background img 2"/></div>
 </div>
 <div class="container">
   <div class="section">
