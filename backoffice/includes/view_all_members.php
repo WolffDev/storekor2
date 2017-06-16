@@ -71,7 +71,7 @@
     <div id="bulkOptionContainer" class="col s12 m3">
       <select class="form-control" name="bulk_options">
         <option disabled selected value="">Vælg handling</option>
-        <?php if($_SESSION['auth'] < 2 ) { ?><option value="formand">Sæt formand</option><?php } ?>
+        <?php if($_SESSION['auth'] < 3 ) { ?><option value="formand">Sæt formand</option><?php } ?>
         <option value="bestyrelsen">Sæt bestyrelse medlem</option>
         <option value="kasserer">Sæt kasserer</option>
         <option value="dirigent">Sæt dirigent</option>
