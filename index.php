@@ -17,8 +17,7 @@
       <script type="text/javascript">
         $('#modal1').openModal();
       </script>
-<?php
-    }
+<?php }
 
     if ($_GET['message'] === 'success_edit_profile_password' && $_GET['logout'] == 'true') {
       $edit_name = escape($_GET['edit_name']); 
@@ -36,7 +35,7 @@
           </div>
         </div>
       </div>
-    <?php }
+<?php }
 
     if ($_GET['message'] === 'unapproved') { ?>
       <div id="modal1" class="modal">
@@ -52,6 +51,48 @@
         $('#modal1').openModal();
       </script>
 <?php }
+
+    if ($_GET['message'] === 'resetpassword') { ?>
+      <div id="modal1" class="modal">
+        <div class="modal-content black-text">
+          <h4>Adgangskode nustillet</h4>
+          <p>
+            Din adgangskode er nu blevet nulstillet.<br>
+            Der er sendt en mail til <?php echo escape($_GET['resetmail']); ?><br><br>
+            I mailen vil der være et link til en side, hvor du kan vælge en ny adgangskode.<br>
+            HUSK - dette link vil kun være aktivt i 30 minutter fra du modtager mailen.<br><br>
+            Der kan nogen gange gå op til 10 minutter før du modtager mailen.<br>
+            Mailen kan nogen gange ligge i din spam mappe.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Luk besked</a>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('#modal1').openModal();
+      </script>
+<?php }
+
+    if ($_GET['message'] === 'resetrecent') { ?>
+      <div id="modal1" class="modal">
+        <div class="modal-content black-text">
+          <h4>Adgangskode nustillet</h4>
+          <p>
+            Din adgangskode er blevet nulstillet for nyligt - mindre end 10 minutter siden.<br>
+            Vent mindst 10 minutter, før du prøver at nulstille din adgangskode igen.<br><br>
+            Hvis du efter gentagende forsøg stadig ikke modtager en mail, så tag kontakt til bestyrrelsen, hvorefter de vil kunne guide dig videre, med at nulstille din adgangskode.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Luk besked</a>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('#modal1').openModal();
+      </script>
+<?php }
+
   if ($_GET['message'] === 'invalid_login') { ?>
     <script type="text/javascript">
       var $toastContent = $('<span>Email og/eller password er forkert.</span>');
