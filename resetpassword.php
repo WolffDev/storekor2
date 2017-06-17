@@ -39,7 +39,7 @@ if(isset($_POST['reset_password']) && !empty($_POST['reset_password_email'])) {
 				$msg .= "<hr>";
 				$msg .= "Tryk på dette link få at nulstille din password og lave en ny.<br><br>";
 				$msg .= "Dette link virker kun en gang, så sørg for at du har 2 minutter til at lave en ny adgangskode.<br><br>";
-				$msg .= "<a href='http://www.storekor.dk/resetpassword?reset_password=true&email=" . $reset_password_email . "&token=" . $salt . "'>
+				$msg .= "<a href='http://www.davidwolff.dk/projekter/storekor/resetpassword?reset_password=true&email=" . $reset_password_email . "&token=" . $salt . "'>
 					http://www.storekor.dk/resetpassword?reset_password=true&email=" . $reset_password_email . "&token=" . $salt . "
 				</a>";
 
@@ -93,7 +93,7 @@ if(isset($_POST['reset_password_link'])) {
 		</script>
 
 		<?php
-	} elseif($password === $password_validate){
+	} else if($password === $password_validate){
 		// passwords should be the same and correct now
 		
 		$password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 10));
