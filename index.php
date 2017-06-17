@@ -93,6 +93,43 @@
       </script>
 <?php }
 
+    if ($_GET['message'] === 'resetpasswordold') { ?>
+      <div id="modal1" class="modal">
+        <div class="modal-content black-text">
+          <h4>Udløbet</h4>
+          <p>
+            Dit link for at nulstille din adgangskode er udløbet.<br><br>
+            Du kan prøve at nulstille din adgangskode igen.<br>
+            HUSK - du har 30 minutter efter du har modtaget mailen, til at nulstille din adgangskode.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Luk besked</a>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('#modal1').openModal();
+      </script>
+<?php }
+
+    if ($_GET['message'] === 'resetpasswordtrue') { ?>
+      <div id="modal1" class="modal">
+        <div class="modal-content black-text">
+          <h4>Ny adgangskode oprettet</h4>
+          <p>
+            Din nye adgangskode er nu aktiv.<br>
+            Du kan nu logge ind med den nye adgangskode.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Luk besked</a>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('#modal1').openModal();
+      </script>
+<?php }
+
   if ($_GET['message'] === 'invalid_login') { ?>
     <script type="text/javascript">
       var $toastContent = $('<span>Email og/eller password er forkert.</span>');
