@@ -29,7 +29,7 @@
                     </div>
                   </div>
                   
-                  <a href="/resetpassword" id="reset-password">Nulstil adgangskode</a>
+                  <a href="./resetpassword" id="reset-password">Nulstil adgangskode</a>
                   
                   <div class="row center">
                     <button class="btn waves-effect waves-light" type="submit" name="login">Login<i class="material-icons right">send</i></button>

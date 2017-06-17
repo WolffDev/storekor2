@@ -17,7 +17,7 @@ if(isset($_POST['reset_password']) && !empty($_POST['reset_password_email'])) {
 		$reset_password_exist = mysqli_query($conn, $reset_check_query);
 
 		if(mysqli_num_rows($reset_password_exist)) {
-			header("Location: /?message=resetrecent");
+			header("Location: ./?message=resetrecent");
 			mysqli_close($conn);
 		}
 
@@ -33,23 +33,23 @@ if(isset($_POST['reset_password']) && !empty($_POST['reset_password_email'])) {
 		if($create_reset) {
 
 			// send the actual mail to the email specified in the input field, with a link to reset the password
-			$msg = "Kære medlem,<br>";
-			$msg .= "Du eller en anden har bedt om at nulstille din adgangskode til storekor.dk<br><br>";
-			$msg .= "Hvis du ikke har bedt om at få nulstillet din adgangskode, så skal du se bort fra denne mail og ikke trykke på nedestående link<br><br>";
-			$msg .= "<hr>";
-			$msg .= "Tryk på dette link få at nulstille din password og lave en ny.<br>";
-			$msg .= "Dette link virker kun en gang, så sørg for at du har 2 minutter til at lave en ny adgangskode.<br>";
-			$msg .= "<a href='http://www.storekor.dk/resetpassword?resetpassword=true&email=" . $reset_password_email . "&token=" . $salt . "'>
-				http://www.storekor.dk/resetpassword?resetpassword=true&email=" . $reset_password_email . "&token=" . $salt . "
-			</a>";
+			// $msg = "Kære medlem,<br>";
+			// $msg .= "Du eller en anden har bedt om at nulstille din adgangskode til storekor.dk<br><br>";
+			// $msg .= "Hvis du ikke har bedt om at få nulstillet din adgangskode, så skal du se bort fra denne mail og ikke trykke på nedestående link<br><br>";
+			// $msg .= "<hr>";
+			// $msg .= "Tryk på dette link få at nulstille din password og lave en ny.<br>";
+			// $msg .= "Dette link virker kun en gang, så sørg for at du har 2 minutter til at lave en ny adgangskode.<br>";
+			// $msg .= "<a href='http://www.storekor.dk/resetpassword?resetpassword=true&email=" . $reset_password_email . "&token=" . $salt . "'>
+			// 	http://www.storekor.dk/resetpassword?resetpassword=true&email=" . $reset_password_email . "&token=" . $salt . "
+			// </a>";
 
-			$subject = "Storekor.dk - nulstil adgangskode";
+			// $subject = "Storekor.dk - nulstil adgangskode";
 
-			mail_utf8('davidbkwolff@gmail.com', 'Korbestyrelsen', 'info@davidwolff.dk', $subject, $msg);
+			// mail_utf8('davidbkwolff@gmail.com', 'Korbestyrelsen', 'info@davidwolff.dk', $subject, $msg);
 
 
 			$resetmail = urlencode($reset_password_email);
-			header("Location: /?message=resetpassword&resetmail=".$resetmail);
+			header("Location: ./?message=resetpassword&resetmail=".$resetmail);
 			mysqli_close($conn);
 		} else {
 			die("Query Failed: " . mysqli_error($conn));
@@ -59,7 +59,7 @@ if(isset($_POST['reset_password']) && !empty($_POST['reset_password_email'])) {
 	} else {
 		// mail doesn't exist in the database = not a registered member
 		$resetmail = urlencode($reset_password_email);
-		header("Location: /?message=resetpassword&resetmail=".$resetmail);
+		header("Location: ./?message=resetpassword&resetmail=".$resetmail);
 		mysqli_close($conn);
 	}
 
