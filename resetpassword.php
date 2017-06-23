@@ -45,7 +45,7 @@ if(isset($_POST['reset_password']) && !empty($_POST['reset_password_email'])) {
 
 				$subject = "Storekor.dk - nulstil adgangskode";
 
-				mail_utf8('davidbkwolff@gmail.com', 'Korbestyrelsen', 'info@davidwolff.dk', $subject, $msg);
+				mail_utf8($reset_password_email, 'Korbestyrelsen', 'info@davidwolff.dk', $subject, $msg);
 
 
 				$resetmail = urlencode($reset_password_email);
