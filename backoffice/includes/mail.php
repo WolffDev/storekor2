@@ -9,8 +9,8 @@ if(isset($_POST['send_mail_deny'])) {
 
 
   // $to_mail = $mail_name;
-  $to_mail = 'davidbkwolff@gmail.com';
-  $from_mail = 'no-reply@storekor.dk';
+  $to_mail = $mail_name;
+  $from_mail = 'kontakt@storekor.dk';
   $subject = 'Afvisning af ansøgning til Storekoret';
   $from_user = 'Korbestyrelsen';
   $message_add = str_replace('\r\n', '', $message_add);
@@ -26,14 +26,14 @@ if(isset($_POST['send_mail_approved'])) {
   $mail_name = $_POST['mail_name'];
   $mail_email = $_POST['mail_email'];
   $message_mail = "Kære " . $mail_name . ",<br>";
-  $message_mail .="<br>Vi har gennemgået din ansøgning og vi vil gerne byde dit velkommen til Storekoret.<br><br>";
+  $message_mail .="<br>Vi har gennemgået din ansøgning og vi vil gerne byde dig velkommen til Storekoret.<br><br>";
   $message_add = escape(nl2br($_POST['more_text']));
   $message_end = "<br><br>Hilsen,<br>Korbestyrelsen";
 
 
   // $to_mail = $mail_name;
-  $to_mail = 'davidbkwolff@gmail.com';
-  $from_mail = 'no-reply@storekor.dk';
+  $to_mail = $mail_name;
+  $from_mail = 'kontakt@storekor.dk';
   $subject = 'Godkendelse af ansøgning til Storekoret';
   $from_user = 'Korbestyrelsen';
   $message_add = str_replace('\r\n', '', $message_add);

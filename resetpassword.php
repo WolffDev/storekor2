@@ -39,13 +39,13 @@ if(isset($_POST['reset_password']) && !empty($_POST['reset_password_email'])) {
 				$msg .= "<hr>";
 				$msg .= "Tryk på dette link få at nulstille din password og lave en ny.<br><br>";
 				$msg .= "Dette link virker kun en gang, så sørg for at du har 2 minutter til at lave en ny adgangskode.<br><br>";
-				$msg .= "<a href='http://www.davidwolff.dk/projekter/storekor/resetpassword?reset_password=true&email=" . $reset_password_email . "&token=" . $salt . "'>
+				$msg .= "<a href='http://www.storekor.dk/resetpassword?reset_password=true&email=" . $reset_password_email . "&token=" . $salt . "'>
 					http://www.storekor.dk/resetpassword?reset_password=true&email=" . $reset_password_email . "&token=" . $salt . "
 				</a>";
 
 				$subject = "Storekor.dk - nulstil adgangskode";
 
-				mail_utf8($reset_password_email, 'Korbestyrelsen', 'info@davidwolff.dk', $subject, $msg);
+				mail_utf8($reset_password_email, 'Korbestyrelsen', 'kontakt@storekor.dk', $subject, $msg);
 
 
 				$resetmail = urlencode($reset_password_email);

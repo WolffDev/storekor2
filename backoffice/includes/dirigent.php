@@ -58,7 +58,7 @@ if(isset($_POST['new_files'])) {
 
   $subject ="Nye filer uploadet til Storekor";
 
-  mail_utf8('davidbkwolff@gmail.com', 'Korbestyrelsen', 'info@davidwolff.dk', $subject, $msg);
+  mail_utf8('storekoret@gmail.com', 'Korbestyrelsen', 'kontakt@storekor.dk', $subject, $msg);
   header("Location: index.php?action=dirigent&mail=true");
 }
 

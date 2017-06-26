@@ -15,7 +15,7 @@
         <h5 class="white-text">Storekor Odense</h5>
         <p class="grey-text text-lighten-4">Hvis du er interesseret i at komme ind i Storekoret skal du søge om optagelse <a href="/optagelse">her på siden</a>.
         <br>
-        Hvis du har andre spørgsmål, kan du enten ringe til vores dirigent, Theis Lyng Reinvang, på <a href="tel:31188873">31 18 88 73</a>, skrive til Theis på <a href="mailto:reinvang@gmail.com">reinvang (at) gmail.com</a> eller sende en mail til korets bestyrelse på <a href="mailto:korbestyrelsen@gmail.com">korbestyrelsen (at) gmail.com</a>.</p>
+        Hvis du har andre spørgsmål, kan du enten ringe til vores dirigent, Theis Lyng Reinvang, på <a href="tel:31188873">31 18 88 73</a>, skrive til Theis på <a href="mailto:reinvang@gmail.com">reinvang (at) gmail.com</a> eller sende en mail til korets bestyrelse på <a href="mailto:kontakt@storekor.dk">kontakt (at) storekor.dk</a>.</p>
       </div>
     </div>
   </div>

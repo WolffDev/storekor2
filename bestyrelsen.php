@@ -52,7 +52,7 @@
               }
             }
           ?>
-          <p>Skriv til bestyrelsen på <a href="mailto:korbestyrelsen@gmail.com">korbestyrelsen (at) gmail.com</a></p>
+          <p>Skriv til bestyrelsen på <a href="mailto:kontakt@storekor.dk">kontakt (at) storekor.dk</a></p>
         </div>
       </div>
     </div>

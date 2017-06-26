@@ -283,11 +283,11 @@
   <div class="section">
     <div class="row">
       <div class="col s12 center">
-        <h4 class="red-text"><a href="mailto:korbestyrelsen@gmail.com"><i class="medium material-icons">mail_outline</i></a></h4>
+        <h4 class="red-text"><a href="mailto:kontakt@storekor.dk"><i class="medium material-icons">mail_outline</i></a></h4>
         <h4>Kontakt</h4>
         <p class="center">Hvis du er interesseret i at komme ind i Storekoret skal du søge om optagelse <a href="/optagelse">her på siden</a>.
         <br>
-        Hvis du har andre spørgsmål, kan du enten ringe til vores dirigent, Theis Lyng Reinvang, på <a href="tel:31188873">31 18 88 73</a>,<br>skrive til Theis på <a href="mailto:reinvang@gmail.com">reinvang (at) gmail.com</a> eller sende en mail til korets bestyrelse på <a href="mailto:korbestyrelsen@gmail.com">korbestyrelsen (at) gmail.com</a>.</p>
+        Hvis du har andre spørgsmål, kan du enten ringe til vores dirigent, Theis Lyng Reinvang, på <a href="tel:31188873">31 18 88 73</a>,<br>skrive til Theis på <a href="mailto:reinvang@gmail.com">reinvang (at) gmail.com</a> eller sende en mail til korets bestyrelse på <a href="mailto:kontakt@storekor.dk">kontakt (at) storekor.dk</a>.</p>
       </div>
     </div>
   </div>
