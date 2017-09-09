@@ -42,7 +42,7 @@
 			GROUP BY
 				absence_member_id
 			ORDER BY
-				absence_member_percent DESC";
+				m.fornavn ASC";
 
 			$select = mysqli_query($conn, $query);
 			$query_test = mysqli_num_rows($select);

@@ -46,22 +46,8 @@
             if(!$create_user_query) {
               die("Query Failed: " . mysqli_error($conn));
             } else {
-              $message = urlencode("success");
-              $_SESSION["code"] = null;
-              $_SESSION['logged_in'] = false;
-              header("Location: index.php?message=".$message);
-              mysqli_close($conn);
-            }
-          } else {
-            $query = "INSERT INTO medlemmer(brugernavn, password, fornavn, efternavn, adresse, postnr, bynavn, email, telefon, alder, stemme, erfaring, kor_type, job, relate, persona, flag_status, bruger_rolle, bruger_status, dato_oprettet, app_status, profil_billede) VALUES('{$brugernavn}', '{$password}','{$fornavn}','{$efternavn}','{$adresse}','{$postnr}','{$bynavn}','{$email}','{$telefon}','{$alder}','{$stemme}','{$erfaring}','{$kor_type}','{$job}','{$relate}','{$persona}', 1,'ikke godkendt','ikke godkendt','{$dato_oprettet}', 'ny', '{$profil_billede}')";
 
-            $create_user_query = mysqli_query($conn, $query);
-
-            if(!$create_user_query) {
-              die("Query Failed: " . mysqli_error($conn));
-            } else {
-
-              $mail_to = "kontakt@storekor.dk";
+              $mail_to = "wolfffie@gmail.com";
               $mail_from = "kontakt@storekor.dk";
               $mail_msg = "Der er kommet en ny ansøger på <a href='http://www.storekor.dk'>storekor.dk.<br>Login på siden og læs den.";
               $mail_subject = "Ny ansøger til koret";
@@ -69,9 +55,28 @@
               mail_utf8($mail_to, $mail_user, $mail_from, $mail_subject, $mail_msg);
 
               $message = urlencode("success");
+              $_SESSION["code"] = null;
+              $_SESSION['logged_in'] = false;
               header("Location: index.php?message=".$message);
-              die;
+              mysqli_close($conn);
             }
+          } else {
+            $dublicate_email = "Den indtastede email er allerede i brug.<br>Brug venligst en ny";
+            $fornavn = escape($_POST['fornavn']);
+            $efternavn = escape($_POST['efternavn']);
+            $adresse = escape($_POST['adresse']);
+            $postnr = escape($_POST['postnr']);
+            $bynavn = escape($_POST['bynavn']);
+            $email = escape($_POST['email']);
+            $telefon = escape($_POST['telefon']);
+            $alder = escape($_POST['alder']);
+            $stemme = escape($_POST['stemme']);
+            $erfaring = escape($_POST['erfaring']);
+            $kor_type = escape($_POST['kor_type']);
+            $job = escape($_POST['job']);
+            $relate = escape($_POST['relate']);
+            $persona = escape($_POST['persona']);
+            mysqli_close($conn);
           }
         } else {
           $password_fail = "Det password du har indtastet stemmer ikke overens i begge felter.<br>Indtast det samme password i begge felter.";
@@ -148,6 +153,13 @@
     <div class="row">
       <div class="col s12"><h4>Optagelse</h4></div>
       <?php
+        if(isset($dublicate_email)) {
+          echo "<div class='col s12'>";
+          echo "<p class='red-text'>";
+          echo $dublicate_email;
+          echo "</p>";
+          echo "</div>";
+        }
         if(isset($human_error)) {
           echo "<div class='col s12'>";
           echo "<p class='red-text'>";
