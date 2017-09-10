@@ -15,7 +15,7 @@
             <th>Stemme</th>
             <th data-field="name">Navn</th>
             <th data-field="name">Begrundelse</th>
-            <th data-field="name">Date for afbud</th>
+            <th data-field="name">Dato for afbud</th>
           </tr>
         </thead>
         <tbody>
