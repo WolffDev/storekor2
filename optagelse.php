@@ -47,7 +47,7 @@
               die("Query Failed: " . mysqli_error($conn));
             } else {
 
-              $mail_to = "wolfffie@gmail.com";
+              $mail_to = "kontakt@storekor.dk";
               $mail_from = "kontakt@storekor.dk";
               $mail_msg = "Der er kommet en ny ansøger på <a href='http://www.storekor.dk'>storekor.dk.<br>Login på siden og læs den.";
               $mail_subject = "Ny ansøger til koret";

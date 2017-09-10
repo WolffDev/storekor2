@@ -11,6 +11,7 @@
 
 	function salt() {
 		return base64_encode(bin2hex(random_bytes(32)));
+		// return base64_encode(bin2hex(openssl_random_pseudo_bytes()));
 	}
 
 	function mail_utf8($to, $from_user, $from_email, $subject, $message) {

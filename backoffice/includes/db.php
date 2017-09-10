@@ -16,5 +16,4 @@
     } else {
         echo mysqli_error($conn);
     }
-    setlocale(LC_ALL, "da_DK.UTF-8", "Danish_Denmark.1252", "danish_denmark", "danish", "dk_DK@euro");
 ?>

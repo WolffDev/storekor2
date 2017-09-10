@@ -6,7 +6,6 @@ if(isset($_POST['reset_password']) && !empty($_POST['reset_password_email'])) {
 
 	$reset_password_email = escape($_POST['reset_password_email']);
 	$reset_password_email = (string)$reset_password_email;
-
 	$email_query = "SELECT email FROM medlemmer WHERE email = '$reset_password_email'";
 	$check_email = mysqli_query($conn, $email_query);
 
@@ -20,10 +19,10 @@ if(isset($_POST['reset_password']) && !empty($_POST['reset_password_email'])) {
 			header("Location: ./?message=resetrecent");
 			mysqli_close($conn);
 		} else {
-
 			// inserts a record in reset_password, with the email, token and date created
 			$now = date("Y-m-d H:i:s");
 			$salt = salt();
+
 
 			$reset_password_query = "INSERT INTO reset_password(member_email, reset_token, reset_date, active)
 			VALUES('{$reset_password_email}', '{$salt}', '{$now}', 1)";
@@ -31,7 +30,6 @@ if(isset($_POST['reset_password']) && !empty($_POST['reset_password_email'])) {
 			$create_reset = mysqli_query($conn, $reset_password_query);
 
 			if($create_reset) {
-
 				// send the actual mail to the email specified in the input field, with a link to reset the password
 				$msg = "Kære medlem,<br>";
 				$msg .= "Du eller en anden har bedt om at nulstille din adgangskode til www.storekor.dk.<br><br>";
