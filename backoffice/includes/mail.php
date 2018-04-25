@@ -9,7 +9,7 @@ if(isset($_POST['send_mail_deny'])) {
 
 
   // $to_mail = $mail_name;
-  $to_mail = $mail_name;
+  $to_mail = $mail_email;
   $from_mail = 'kontakt@storekor.dk';
   $subject = 'Afvisning af ansøgning til Storekoret';
   $from_user = 'Korbestyrelsen';
@@ -31,7 +31,7 @@ if(isset($_POST['send_mail_approved'])) {
   $message_end = "<br><br>Hilsen,<br>Korbestyrelsen";
 
 
-  // $to_mail = $mail_name;
+  // $to_mail = $mail_email;
   $to_mail = $mail_name;
   $from_mail = 'kontakt@storekor.dk';
   $subject = 'Godkendelse af ansøgning til Storekoret';

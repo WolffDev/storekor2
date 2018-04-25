@@ -91,7 +91,8 @@ if(isset($_POST['reset_password_link'])) {
 		</script>
 
 		<?php
-	} else if($password === $password_validate){
+	} 
+	if($password === $password_validate){
 		// passwords should be the same and correct now
 		
 		$password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 10));
@@ -112,8 +113,8 @@ if(isset($_POST['reset_password_link'])) {
 			$_SESSION['resetPassword'] = null;
 
 			// redirect to index with message saying succesfull new password
-			header("Location: ./?message=resetpasswordtrue");
 			mysqli_close($conn);
+			return header("Location: ./?message=resetpasswordtrue");
 
 		} else {
 			die("Query Failed: " . mysqli_error($conn));
